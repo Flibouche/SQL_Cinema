@@ -7,8 +7,10 @@ $directors = $requestDirectors->fetchAll();
 <p>There's <?= $requestDirectors->rowCount() ?> directors</p>
 
 <?php
-foreach($directors as $director) {
-    echo $director["firstname"]." ".$director["surname"]."<br>";
+foreach ($directors as $director) {
+?>
+    <a href="index.php?action=directorsDetails&id=<?= $director["idDirector"] ?>"><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></a>
+<?php
 }
 
 ?>

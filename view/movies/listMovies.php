@@ -8,7 +8,9 @@ $movies = $requestMovies->fetchAll();
 
 <?php
 foreach($movies as $movie) {
-    echo $movie["title"]." ".$movie["releaseYear"]."<br>";
+?>
+    <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><?= $movie["title"] . " " . $movie["releaseYear"] . "<br>" ?></a>
+<?php
 }
 
 ?>

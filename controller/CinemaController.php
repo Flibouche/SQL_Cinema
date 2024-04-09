@@ -1,18 +1,20 @@
 <?php
 
 namespace Controller;
+
 use Model\Connect;
 
-class CinemaController {
+class CinemaController
+{
 
-    /**
-     * Lister les films
-     */
-    public function listMovies() {
+    // ------------------- MOVIES -------------------
+
+    public function listMovies()
+    {
 
         $pdo = Connect::toLogIn();
         $requestMovies = $pdo->query("
-        SELECT *
+        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
         FROM movie
         ORDER BY releaseYear
         ");
@@ -20,11 +22,28 @@ class CinemaController {
         require "view/movies/listMovies.php";
     }
 
-    public function listActors() {
+    public function moviesDetails($id)
+    {
+
+        $pdo = Connect::toLogIn();
+        $requestMoviesDetails = $pdo->prepare("
+        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
+        FROM movie
+        WHERE movie.idMovie = :id
+        ");
+        $requestMoviesDetails->execute(["id" => $id]);
+
+        require "view/movies/moviesDetails.php";
+    }
+
+    // ------------------- ACTORS -------------------
+
+    public function listActors()
+    {
 
         $pdo = Connect::toLogIn();
         $requestActors = $pdo->query("
-        SELECT person.firstname, person.surname
+        SELECT actor.idActor, person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
         FROM actor
         INNER JOIN person ON actor.idPerson = person.idPerson
         ORDER BY surname
@@ -33,11 +52,29 @@ class CinemaController {
         require "view/actors/listActors.php";
     }
 
-    public function listDirectors() {
+    public function actorsDetails($id)
+    {
+
+        $pdo = Connect::toLogIn();
+        $requestActorsDetails = $pdo->prepare("
+        SELECT actor.idActor, person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
+        FROM actor
+        INNER JOIN person ON actor.idPerson = person.idPerson
+        WHERE actor.idActor = :id
+        ");
+        $requestActorsDetails->execute(["id" => $id]);
+
+        require "view/actors/actorsDetails.php";
+    }
+
+    // ------------------- DIRECTORS -------------------
+
+    public function listDirectors()
+    {
 
         $pdo = Connect::toLogIn();
         $requestDirectors = $pdo->query("
-        SELECT person.firstname, person.surname
+        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
         FROM director
         INNER JOIN person ON director.idPerson = person.idPerson
         ORDER BY surname
@@ -46,11 +83,29 @@ class CinemaController {
         require "view/directors/listDirectors.php";
     }
 
-    public function listRoles() {
+    public function directorsDetails($id)
+    {
+
+        $pdo = Connect::toLogIn();
+        $requestDirectorsDetails = $pdo->prepare("
+        SELECT director.idDirector, person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
+        FROM director
+        INNER JOIN person ON director.idPerson = person.idPerson
+        WHERE director.idDirector = :id
+        ");
+        $requestDirectorsDetails->execute(["id" => $id]);
+
+        require "view/directors/directorsDetails.php";
+    }
+
+    // ------------------- ROLES -------------------
+
+    public function listRoles()
+    {
 
         $pdo = Connect::toLogIn();
         $requestRoles = $pdo->query("
-        SELECT roleName
+        SELECT role.idRole, role.roleName
         FROM role
         ORDER BY roleName
         ");
@@ -58,16 +113,18 @@ class CinemaController {
         require "view/roles/listRoles.php";
     }
 
-    public function listThemes() {
+    // ------------------- THEMES -------------------
+
+    public function listThemes()
+    {
 
         $pdo = Connect::toLogIn();
         $requestThemes = $pdo->query("
-        SELECT typeName
+        SELECT theme.idTheme, theme.typeName
         FROM theme
         ORDER BY typeName
         ");
 
         require "view/themes/listThemes.php";
     }
-
 }
