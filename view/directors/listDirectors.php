@@ -1,10 +1,10 @@
 <?php ob_start();
-$directors= $requeteDirectors->fetchAll();
+$directors = $requestDirectors->fetchAll();
 ?>
 
-<h1>Liste des directors</h1>
+<h1>Directors's List</h1>
 
-<p>Il y a <?= $requeteDirectors->rowCount() ?> directors</p>
+<p>There's <?= $requestDirectors->rowCount() ?> directors</p>
 
 <?php
 foreach($directors as $director) {
@@ -16,7 +16,7 @@ foreach($directors as $director) {
 
 <?php
 
-$title = "Liste des directors";
-$secondary_title = "Liste des directors";
+$title = "Directors's List";
+$secondary_title = "Directors's List";
 $content = ob_get_clean();
 require "view/template.php";

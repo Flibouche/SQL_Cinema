@@ -1,10 +1,10 @@
 <?php ob_start();
-$themes= $requeteThemes->fetchAll();
+$themes = $requestThemes->fetchAll();
 ?>
 
-<h1>Liste des themes</h1>
+<h1>Themes's List</h1>
 
-<p>Il y a <?= $requeteThemes->rowCount() ?> themes</p>
+<p>There's <?= $requestThemes->rowCount() ?> themes</p>
 
 <?php
 foreach($themes as $theme) {
@@ -16,7 +16,7 @@ foreach($themes as $theme) {
 
 <?php
 
-$title = "Liste des themes";
-$secondary_title = "Liste des themes";
+$title = "Themes's List";
+$secondary_title = "Themes's List";
 $content = ob_get_clean();
 require "view/template.php";

@@ -8,35 +8,35 @@ class CinemaController {
     /**
      * Lister les films
      */
-    public function listFilms() {
+    public function listMovies() {
 
-        $pdo = Connect::seConnecter();
-        $requeteFilms = $pdo->query("
+        $pdo = Connect::toLogIn();
+        $requestMovies = $pdo->query("
         SELECT *
         FROM movie
         ORDER BY releaseYear
         ");
 
-        require "view/films/listFilms.php";
+        require "view/movies/listMovies.php";
     }
 
-    public function listActeurs() {
+    public function listActors() {
 
-        $pdo = Connect::seConnecter();
-        $requeteActeurs = $pdo->query("
+        $pdo = Connect::toLogIn();
+        $requestActors = $pdo->query("
         SELECT person.firstname, person.surname
         FROM actor
         INNER JOIN person ON actor.idPerson = person.idPerson
         ORDER BY surname
         ");
 
-        require "view/acteurs/listActeurs.php";
+        require "view/actors/listActors.php";
     }
 
     public function listDirectors() {
 
-        $pdo = Connect::seConnecter();
-        $requeteDirectors = $pdo->query("
+        $pdo = Connect::toLogIn();
+        $requestDirectors = $pdo->query("
         SELECT person.firstname, person.surname
         FROM director
         INNER JOIN person ON director.idPerson = person.idPerson
@@ -48,8 +48,8 @@ class CinemaController {
 
     public function listRoles() {
 
-        $pdo = Connect::seConnecter();
-        $requeteRoles = $pdo->query("
+        $pdo = Connect::toLogIn();
+        $requestRoles = $pdo->query("
         SELECT roleName
         FROM role
         ORDER BY roleName
@@ -60,8 +60,8 @@ class CinemaController {
 
     public function listThemes() {
 
-        $pdo = Connect::seConnecter();
-        $requeteThemes = $pdo->query("
+        $pdo = Connect::toLogIn();
+        $requestThemes = $pdo->query("
         SELECT typeName
         FROM theme
         ORDER BY typeName

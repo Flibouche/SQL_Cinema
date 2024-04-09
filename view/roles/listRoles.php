@@ -1,10 +1,10 @@
 <?php ob_start();
-$roles= $requeteRoles->fetchAll();
+$roles = $requestRoles->fetchAll();
 ?>
 
-<h1>Liste des roles</h1>
+<h1>Roles's List</h1>
 
-<p>Il y a <?= $requeteRoles->rowCount() ?> roles</p>
+<p>There's <?= $requestRoles->rowCount() ?> roles</p>
 
 <?php
 foreach($roles as $role) {
@@ -16,7 +16,7 @@ foreach($roles as $role) {
 
 <?php
 
-$title = "Liste des roles";
-$secondary_title = "Liste des roles";
+$title = "Roles's List";
+$secondary_title = "Roles's List";
 $content = ob_get_clean();
 require "view/template.php";

@@ -18,8 +18,8 @@
     <header class="header" id="header">
         <nav>
             <a href="index.php" role="button">Home Page</a>
-            <a href="index.php?action=listFilms" role="button">Movies</a>
-            <a href="index.php?action=listActeurs" role="button">Acteurs</a>
+            <a href="index.php?action=listMovies" role="button">Movies</a>
+            <a href="index.php?action=listActors" role="button">Actors</a>
             <a href="index.php?action=listDirectors" role="button">Directors</a>
             <a href="index.php?action=listRoles" role="button">Roles</a>
             <a href="index.php?action=listThemes" role="button">Themes</a>
@@ -27,7 +27,7 @@
     </header>
     <div id="wrapper">
         <main>
-            <div id="contenu">
+            <div id="content">
                 <h1>PDO Cinema</h1>
                 <h2><?= $secondary_title ?></h2>
                 <?= $content ?>
