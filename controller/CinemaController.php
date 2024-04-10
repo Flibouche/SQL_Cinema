@@ -54,7 +54,7 @@ class CinemaController
 
         $pdo = Connect::toLogIn();
         $requestActors = $pdo->query("
-        SELECT actor.idActor, person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
+        SELECT actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
         FROM actor
         INNER JOIN person ON actor.idPerson = person.idPerson
         ORDER BY surname
@@ -68,7 +68,7 @@ class CinemaController
 
         $pdo = Connect::toLogIn();
         $requestActorsDetails = $pdo->prepare("
-        SELECT actor.idActor, person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
+        SELECT actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
         FROM actor
         INNER JOIN person ON actor.idPerson = person.idPerson
         WHERE actor.idActor = :id
@@ -110,7 +110,7 @@ class CinemaController
 
         $pdo = Connect::toLogIn();
         $requestDirectorsDetails = $pdo->prepare("
-        SELECT director.idDirector, person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
+        SELECT director.idDirector, person.firstname, person.surname, person.sex, person.birthdate
         FROM director
         INNER JOIN person ON director.idPerson = person.idPerson
         WHERE director.idDirector = :id
@@ -144,7 +144,8 @@ class CinemaController
         require "view/roles/listRoles.php";
     }
 
-    public function rolesDetails($id) {
+    public function rolesDetails($id)
+    {
 
         $pdo = Connect::toLogIn();
         $requestRolesDetails = $pdo->prepare("
@@ -175,8 +176,9 @@ class CinemaController
 
         require "view/themes/listThemes.php";
     }
-    
-    public function themesDetails($id) {
+
+    public function themesDetails($id)
+    {
 
         $pdo = Connect::toLogIn();
         $requestThemesDetails = $pdo->prepare("
@@ -187,7 +189,7 @@ class CinemaController
         WHERE theme.idTheme = :id
         ");
         $requestThemesDetails->execute(["id" => $id]);
-        
+
         require "view/themes/themesDetails.php";
     }
 }

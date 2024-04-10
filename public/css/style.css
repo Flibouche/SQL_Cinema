@@ -1,0 +1,43 @@
+/*========================== VARIABLES CSS ======================*/
+:root {
+    --header-height: 3.5rem;
+    /*========== Colors ==========*/
+    --background-color: #000000;
+    --brown-color: #471D07;
+    --orange-color: #A2520D;
+    --yellow-color: #D9A849;
+    --text-color: #FFFFFF;
+    
+    
+    /*========== Z Index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+/*========================== BASE ======================*/
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/*========================== REUSABLE CSS CLASSES ======================*/
+
+/*========================== HEADER & NAV ======================*/
+/* .header {
+    position: fixed;
+    width: 100;
+    top: 0;
+    left: 0;
+    border-color: transparent;
+    z-index: var(--z-fixed);
+}
+
+.nav {
+    position: relative;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
