@@ -17,7 +17,7 @@
 <body>
     <header class="header" id="header">
         <nav>
-            <a href="index.php" role="button">Home Page</a>
+            <a href="view/main.php" role="button">Home Page</a>
             <a href="index.php?action=listMovies" role="button">Movies</a>
             <a href="index.php?action=listActors" role="button">Actors</a>
             <a href="index.php?action=listDirectors" role="button">Directors</a>

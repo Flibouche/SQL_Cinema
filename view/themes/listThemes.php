@@ -7,12 +7,13 @@ $themes = $requestThemes->fetchAll();
 <p>There's <?= $requestThemes->rowCount() ?> themes</p>
 
 <?php
-foreach($themes as $theme) {
-    echo $theme["typeName"]."<br>";
+foreach ($themes as $theme) {
+?>
+    <a href="index.php?action=themesDetails&id=<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></a>
+<?php
 }
 
 ?>
-
 
 <?php
 

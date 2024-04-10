@@ -34,10 +34,11 @@ class CinemaController
         $requestMoviesDetails->execute(["id" => $id]);
 
         $requestMoviesCasting = $pdo->prepare("
-        SELECT actor.idActor, movie.idMovie, role.idRole, movie.title, person.firstname, person.surname, person.sex
+        SELECT actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex
         FROM play
         INNER JOIN movie ON play.idMovie = movie.idMovie
         INNER JOIN actor ON play.idActor = actor.idActor
+        INNER JOIN role ON play.idRole = role.idRole
         INNER JOIN person ON actor.idPerson = person.idPerson
         WHERE play.idMovie = :id
         ");
@@ -143,6 +144,23 @@ class CinemaController
         require "view/roles/listRoles.php";
     }
 
+    public function rolesDetails($id) {
+
+        $pdo = Connect::toLogIn();
+        $requestRolesDetails = $pdo->prepare("
+        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
+        FROM play
+        INNER JOIN movie ON play.idMovie = movie.idMovie
+        INNER JOIN role ON play.idRole = role.idRole
+        INNER JOIN actor ON play.idActor = actor.idActor
+        INNER JOIN person ON actor.idPerson = person.idPerson
+        WHERE role.idRole = :id
+        ");
+        $requestRolesDetails->execute(["id" => $id]);
+
+        require "view/roles/rolesDetails.php";
+    }
+
     // ------------------- THEMES -------------------
 
     public function listThemes()
@@ -156,5 +174,20 @@ class CinemaController
         ");
 
         require "view/themes/listThemes.php";
+    }
+    
+    public function themesDetails($id) {
+
+        $pdo = Connect::toLogIn();
+        $requestThemesDetails = $pdo->prepare("
+        SELECT theme.idTheme, theme.typeName, movie.idMovie, movie.title
+        FROM movie_theme
+        INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
+        INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
+        WHERE theme.idTheme = :id
+        ");
+        $requestThemesDetails->execute(["id" => $id]);
+        
+        require "view/themes/themesDetails.php";
     }
 }
