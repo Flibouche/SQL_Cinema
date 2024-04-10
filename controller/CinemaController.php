@@ -33,6 +33,16 @@ class CinemaController
         ");
         $requestMoviesDetails->execute(["id" => $id]);
 
+        $requestMoviesCasting = $pdo->prepare("
+        SELECT actor.idActor, movie.idMovie, role.idRole, movie.title, person.firstname, person.surname, person.sex
+        FROM play
+        INNER JOIN movie ON play.idMovie = movie.idMovie
+        INNER JOIN actor ON play.idActor = actor.idActor
+        INNER JOIN person ON actor.idPerson = person.idPerson
+        WHERE play.idMovie = :id
+        ");
+        $requestMoviesCasting->execute(["id" => $id]);
+
         require "view/movies/moviesDetails.php";
     }
 
@@ -63,6 +73,17 @@ class CinemaController
         WHERE actor.idActor = :id
         ");
         $requestActorsDetails->execute(["id" => $id]);
+        $requestActorsFilmography = $pdo->prepare("
+        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
+        FROM play
+        INNER JOIN movie ON play.idMovie = movie.idMovie
+        INNER JOIN role ON play.idRole = role.idRole
+        INNER JOIN actor ON play.idActor = actor.idActor
+        INNER JOIN person ON actor.idPerson = person.idPerson
+        WHERE actor.idActor = :id
+        ORDER BY releaseYear DESC
+        ");
+        $requestActorsFilmography->execute(["id" => $id]);
 
         require "view/actors/actorsDetails.php";
     }
@@ -74,7 +95,7 @@ class CinemaController
 
         $pdo = Connect::toLogIn();
         $requestDirectors = $pdo->query("
-        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate
+        SELECT director.idDirector, person.firstname, person.surname, person.sex, person.birthdate
         FROM director
         INNER JOIN person ON director.idPerson = person.idPerson
         ORDER BY surname
@@ -94,6 +115,15 @@ class CinemaController
         WHERE director.idDirector = :id
         ");
         $requestDirectorsDetails->execute(["id" => $id]);
+        $requestDirectorsFilmography = $pdo->prepare("
+        SELECT director.idDirector, movie.idMovie, person.firstname, person.surname, movie.title, movie.releaseYear
+        FROM director
+        INNER JOIN person ON director.idPerson = person.idPerson
+        INNER JOIN movie ON director.idDirector = movie.idDirector
+        WHERE director.idDirector = :id
+        ORDER BY movie.releaseYear DESC
+        ");
+        $requestDirectorsFilmography->execute(["id" => $id]);
 
         require "view/directors/directorsDetails.php";
     }

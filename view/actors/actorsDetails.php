@@ -1,14 +1,18 @@
 <?php ob_start();
-$actorsDetails = $requestActorsDetails->fetchAll();
+$actorDetails = $requestActorsDetails->fetch();
+$actorsFilmography = $requestActorsFilmography->fetchAll();
 ?>
 
 <h1>Details of : </h1>
 
 <?php
-foreach($actorsDetails as $actorDetails) {
-    echo $actorDetails["firstname"]." ".$actorDetails["surname"]." ".$actorDetails["sex"]." ".$actorDetails["birthdate"]."<br>";
-}
+echo $actorDetails["firstname"] . " " . $actorDetails["surname"] . " " . $actorDetails["sex"] . " " . $actorDetails["birthdate"] . "<br>";
 
+foreach ($actorsFilmography as $actorFilmography) {
+?>
+    <a href="index.php?action=moviesDetails&id=<?= $actorFilmography["idMovie"] ?>"><?= $actorFilmography["title"] . " (" . $actorFilmography["releaseYear"] . ")" ?></a> as <?= $actorFilmography["roleName"] . "<br>" ?>
+<?php
+}
 ?>
 
 <?php

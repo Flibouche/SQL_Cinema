@@ -1,14 +1,11 @@
 <?php ob_start();
-$moviesDetails = $requestMoviesDetails->fetchAll();
+$movieDetails = $requestMoviesDetails->fetch();
 ?>
 
 <h1>Details of : </h1>
 
 <?php
-foreach($moviesDetails as $movieDetails) {
     echo $movieDetails["title"]." ".$movieDetails["releaseYear"]." ".$movieDetails["duration"]." ".$movieDetails["note"]." ".$movieDetails["synopsis"]."<br>";
-}
-
 ?>
 
 <?php
