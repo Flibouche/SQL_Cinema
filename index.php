@@ -1,18 +1,27 @@
 <?php
 
-// Utilisation de l'espace de noms et inclusion des contrôleurs CinemaController et MainController
-use Controller\CinemaController;
+// Utilisation de l'espace de noms et inclusion des contrôleurs
 use Controller\MainController;
+use Controller\MovieController;
+use Controller\ActorController;
+use Controller\DirectorController;
+use Controller\RoleController;
+use Controller\ThemeController;
 
 // Autoloading des classes pour charger automatiquement les fichiers de classe
 spl_autoload_register(function ($class_name) {
     include $class_name . '.php';
 });
 
-// Création d'une instance du contrôleur CinemaController
-$ctrlCinema = new CinemaController();
-// Création d'une instance du contrôleur MainController
+// Création des instances des différents contrôleurs
 $ctrlMain = new MainController();
+$ctrlMovie = new MovieController();
+$ctrlActor = new ActorController();
+$ctrlActor = new ActorController();
+$ctrlDirector = new DirectorController();
+$ctrlRole = new RoleController();
+$ctrlTheme = new ThemeController();
+
 
 // Récupération de l'ID et de l'action à partir des paramètres GET
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
@@ -22,20 +31,25 @@ $id = (isset($_GET["id"])) ? $_GET["id"] : null;
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
 
-        case "listMovies" : $ctrlCinema->listMovies(); break; // Affichage de la liste des films
-        case "moviesDetails" : $ctrlCinema->moviesDetails($id); break; // Affichage des détails d'un film avec l'ID spécifié
+        case "listMovies" : $ctrlMovie->listMovies(); break; // Affichage de la liste des films
+        case "moviesDetails" : $ctrlMovie->moviesDetails($id); break; // Affichage des détails d'un film avec l'ID spécifié
+        case "addMovie" : $ctrlMovie->addMovie(); break;
 
-        case "listActors" : $ctrlCinema->listActors(); break; // Affichage de la liste des acteurs
-        case "actorsDetails" : $ctrlCinema->actorsDetails($id); break; // Affichage des détails d'un acteur avec l'ID spécifié
+        case "addPerson" : $ctrlActor->addActor(); break;
 
-        case "listDirectors" : $ctrlCinema->listDirectors(); break; // Affichage de la liste des réalisateurs
-        case "directorsDetails" : $ctrlCinema->directorsDetails($id); break; // Affichage des détails d'un réalisateur avec l'ID spécifié
+        case "listActors" : $ctrlActor->listActors(); break; // Affichage de la liste des acteurs
+        case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur avec l'ID spécifié
 
-        case "listRoles" : $ctrlCinema->listRoles(); break; // Affichage de la liste des rôles
-        case "rolesDetails" : $ctrlCinema->rolesDetails($id); break; // Affichage des détails d'un rôle avec l'ID spécifié
+        case "listDirectors" : $ctrlDirector->listDirectors(); break; // Affichage de la liste des réalisateurs
+        case "directorsDetails" : $ctrlDirector->directorsDetails($id); break; // Affichage des détails d'un réalisateur avec l'ID spécifié
 
-        case "listThemes" : $ctrlCinema->listThemes(); break; // Affichage de la liste des thèmes
-        case "themesDetails" : $ctrlCinema->themesDetails($id); break; // Affichage des détails d'un thème avec l'ID spécifié
+        case "listRoles" : $ctrlRole->listRoles(); break; // Affichage de la liste des rôles
+        case "rolesDetails" : $ctrlRole->rolesDetails($id); break; // Affichage des détails d'un rôle avec l'ID spécifié
+        case "addRole" : $ctrlRole->addRole(); break;
+
+        case "listThemes" : $ctrlTheme->listThemes(); break; // Affichage de la liste des thèmes
+        case "themesDetails" : $ctrlTheme->themesDetails($id); break; // Affichage des détails d'un thème avec l'ID spécifié
+        case "addTheme" : $ctrlTheme->addTheme(); break;
 
     }
 } else {
