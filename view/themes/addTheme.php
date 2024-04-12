@@ -3,15 +3,14 @@
 
 <h1>Add a theme</h1>
 <form action="" method="post">
-    <p>
-        <label class="">
-            Movie theme name :
-            <input class="" type="text" name="theme">
-        </label>
-    </p>
-    <p>
-        <input class="" type="submit" name="submit" value="Add theme">
-    </p>
+
+    <label class="">
+        Movie theme name :
+        <input class="" type="text" name="theme">
+    </label>
+
+    <input class="" type="submit" name="submit" value="Add theme">
+
 </form>
 
 

@@ -16,7 +16,7 @@ foreach ($actors as $actor) {
 ?>
 
 <br>
-<a href="index.php?action=addActor">Add an actor</a>
+<a href="index.php?action=addPerson">Add a person</a>
 
 <?php
 

@@ -3,6 +3,7 @@
 // Utilisation de l'espace de noms et inclusion des contrôleurs
 use Controller\MainController;
 use Controller\MovieController;
+use Controller\PersonController;
 use Controller\ActorController;
 use Controller\DirectorController;
 use Controller\RoleController;
@@ -16,7 +17,7 @@ spl_autoload_register(function ($class_name) {
 // Création des instances des différents contrôleurs
 $ctrlMain = new MainController();
 $ctrlMovie = new MovieController();
-$ctrlActor = new ActorController();
+$ctrlPerson = new PersonController();
 $ctrlActor = new ActorController();
 $ctrlDirector = new DirectorController();
 $ctrlRole = new RoleController();
@@ -35,7 +36,8 @@ if(isset($_GET["action"])){
         case "moviesDetails" : $ctrlMovie->moviesDetails($id); break; // Affichage des détails d'un film avec l'ID spécifié
         case "addMovie" : $ctrlMovie->addMovie(); break;
 
-        case "addPerson" : $ctrlActor->addActor(); break;
+        case "personsDetails" : $ctrlPerson->personsDetails($id); break;
+        case "addPerson" : $ctrlPerson->addPerson($id); break;
 
         case "listActors" : $ctrlActor->listActors(); break; // Affichage de la liste des acteurs
         case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur avec l'ID spécifié
