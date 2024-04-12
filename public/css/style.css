@@ -7,8 +7,8 @@
     --orange-color: #A2520D;
     --yellow-color: #D9A849;
     --text-color: #FFFFFF;
-    
-    
+
+
     /*========== Z Index ==========*/
     --z-tooltip: 10;
     --z-fixed: 100;
@@ -22,14 +22,37 @@
     margin: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+ul {
+    list-style: none;
+}
+
 /*========================== REUSABLE CSS CLASSES ======================*/
 
+.container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.main {
+    overflow: hidden;
+}
+
 /*========================== HEADER & NAV ======================*/
-/* .header {
+.header {
     position: fixed;
-    width: 100;
+    width: 100%;
     top: 0;
     left: 0;
+    background-color: var(--brown-color);
     border-color: transparent;
     z-index: var(--z-fixed);
 }
@@ -40,6 +63,47 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-} */
+}
 
-/* Background */
+.nav__menu {
+    display: flex;
+}
+
+#wrapper {
+    padding-top: 100px;
+}
+
+
+/* For small devices*/
+@media screen and (min-width: 576px) {
+    
+}
+
+/* For medium devices*/
+@media screen and (min-width: 768px) {
+    
+}
+
+/* For large devices*/
+@media screen and (min-width: 992px) {
+
+}
+
+
+/* For extra large devices */
+@media screen and (min-width: 1200px) {
+    
+    .nav__list {
+        display: flex;
+        flex-direction: row;
+        gap: 5rem;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+    }
+}
+
+/* For extra extra large devices */
+@media screen and (min-width: 1400px) {
+
+}

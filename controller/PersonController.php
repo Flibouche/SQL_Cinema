@@ -13,7 +13,7 @@ class PersonController
         require "view/persons/personsDetails.php";
     }
 
-    public function addPerson($id): void
+    public function addPerson(): void
     {
         $pdo = Connect::toLogIn();
         if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
