@@ -15,6 +15,8 @@ foreach ($actors as $actor) {
 
 ?>
 
+<br>
+<a href="index.php?action=addActor">Add an actor</a>
 
 <?php
 

@@ -15,6 +15,8 @@ foreach ($directors as $director) {
 
 ?>
 
+<br>
+<a href="index.php?action=addDirector">Add a director</a>
 
 <?php
 

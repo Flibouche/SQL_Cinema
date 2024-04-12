@@ -14,6 +14,8 @@ foreach ($themes as $theme) {
 }
 
 ?>
+<br>
+<a href="index.php?action=addTheme">Add a theme</a>
 
 <?php
 

@@ -15,6 +15,8 @@ foreach ($roles as $role) {
 
 ?>
 
+<br>
+<a href="index.php?action=addRole">Add a role</a>
 
 <?php
 

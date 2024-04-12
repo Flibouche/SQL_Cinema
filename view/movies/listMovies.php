@@ -15,6 +15,8 @@ foreach($movies as $movie) {
 
 ?>
 
+<br>
+<a href="index.php?action=addMovie">Add a movie</a>
 
 <?php
 
