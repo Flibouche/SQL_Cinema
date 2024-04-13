@@ -55,5 +55,5 @@ if(isset($_GET["action"])){
 
     }
 } else {
-    $ctrlMain->main($id);
+    $ctrlMain->main();
 }

@@ -45,10 +45,4 @@ class ActorController
 
         require "view/actors/actorsDetails.php";
     }
-
-    public function addActor(): void
-    {
-
-        require "view/actors/addActor.php";
-    }
 }

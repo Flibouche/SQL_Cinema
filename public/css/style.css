@@ -7,8 +7,17 @@
     --orange-color: #A2520D;
     --yellow-color: #D9A849;
     --text-color: #FFFFFF;
+    --gradient-top: linear-gradient(90deg, #D9A849 0%, #A2520D 100%);
+    --gradient-left: linear-gradient(90deg, rgba(162, 82, 13, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
+    --gradient-right: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(162, 82, 13, 0.5) 100%);
+    --gradient-bottom: linear-gradient(359.4deg, rgba(162, 82, 13, 0.5) 0.52%, rgba(0, 0, 0, 0.5) 99.48%);
+    --button-gradient: linear-gradient(90deg, #D9A849 1.11%, #A2520D 98.89%);
+    --hypertext-underline-gradient: linear-gradient(0deg, #D9A849 0%, #A2520D 100%);
+    --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%, #D9A849 23%, #471D07 72.5%, #000000 100%);    
 
-
+    /*========== Fonts ==========*/
+    --title-font:"Dune Rise";
+    --nav-text-font: "Champagne & Limousines";
     /*========== Z Index ==========*/
     --z-tooltip: 10;
     --z-fixed: 100;
@@ -24,17 +33,35 @@
 
 html {
     scroll-behavior: smooth;
+    color: var(--text-color);
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+@font-face {
+    font-family: "Champagne_&_Limousines";
+    src: url('/public/fonts/Champagne_&_Limousines.ttf');
+    font-family: "Dune_Rise";
+    src: url('/public/fonts/Dune_Rise.ttf');
 }
 
 ul {
     list-style: none;
+    font-family: var(--nav-text-font);
+}
+
+textarea {
+    resize: none;
 }
 
 /*========================== REUSABLE CSS CLASSES ======================*/
 
 .container {
-    max-width: 1120px;
+    max-width: 954px;
     margin-inline: 1.5rem;
+    /* margin-inline: 15.188rem; */
 }
 
 .grid {
@@ -65,8 +92,32 @@ ul {
     align-items: center;
 }
 
+.nav__logo {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--title-font);
+    text-decoration: none;
+    transition: .5s;
+}
+
+.nav__logo:hover {
+    color: var(--yellow-color);
+}
+
 .nav__menu {
     display: flex;
+}
+
+.nav__menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: .5s;
+}
+
+.nav__menu a:hover {
+    color: var(--yellow-color);
 }
 
 #wrapper {
@@ -76,23 +127,16 @@ ul {
 
 /* For small devices*/
 @media screen and (min-width: 576px) {
-    
+
 }
 
 /* For medium devices*/
 @media screen and (min-width: 768px) {
-    
+
 }
 
 /* For large devices*/
 @media screen and (min-width: 992px) {
-
-}
-
-
-/* For extra large devices */
-@media screen and (min-width: 1200px) {
-    
     .nav__list {
         display: flex;
         flex-direction: row;
@@ -103,7 +147,11 @@ ul {
     }
 }
 
-/* For extra extra large devices */
-@media screen and (min-width: 1400px) {
+
+/* For extra large devices */
+@media screen and (min-width: 1200px) {
 
 }
+
+/* For extra extra large devices */
+@media screen and (min-width: 1400px) {}

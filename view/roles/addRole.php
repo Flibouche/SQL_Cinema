@@ -9,7 +9,9 @@
         <input class="" type="text" name="role">
     </label>
 
-    <input class="" type="submit" name="submit" value="Add role">
+    <div>
+        <input class="" type="submit" name="submit" value="Add role">
+    </div>
 
 </form>
 

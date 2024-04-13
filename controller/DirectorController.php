@@ -43,10 +43,4 @@ class DirectorController
 
         require "view/directors/directorsDetails.php";
     }
-
-    public function addDirector(): void
-    {
-
-        require "view/directors/addDirector.php";
-    }
 }

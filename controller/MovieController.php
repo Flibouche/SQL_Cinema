@@ -46,6 +46,49 @@ class MovieController
 
     public function addMovie(): void
     {
+        $pdo = Connect::toLogIn();
+
+        $requestDirectors = $pdo->query("
+        SELECT director.idDirector, person.firstname, person.surname
+        FROM director
+        INNER JOIN person ON director.idPerson = person.idPerson
+        ORDER BY surname
+        ");
+
+        $requestThemes = $pdo->query("
+        SELECT theme.idTheme, theme.typeName
+        FROM theme
+        ORDER BY typeName
+        ");
+
+        if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
+
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $releaseYear = filter_input(INPUT_POST, "releaseyear", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
+            $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $poster = filter_input(INPUT_POST, "poster", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $director = filter_input(INPUT_POST, "director", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $theme = filter_input(INPUT_POST, "theme", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            $requestAddMovie = $pdo->prepare("
+            INSERT INTO movie (title, releaseYear, duration, note, poster)
+            VALUES (:title, :releaseyear, :duration, :note, :poster)
+            ");
+
+            $requestAddMovie->execute(["title" => $title, "releaseYear" => $releaseYear, "duration" => $duration, "note" => $note, "poster" => $poster]);
+
+            $movieId = $pdo->lastInsertId();
+
+            $requestAddDirectorToMovie= $pdo->prepare("
+            INSERT INTO movie (idDirector)
+            VALUES (:idDirector, :idMovie)            
+            ");
+            $requestAddDirectorToMovie->execute(["idDirector" => $director, "idMovie" => $movieId]);
+
+            // Redirection vers la page 'index.php?action=addMovie' après le traitement du formulaire
+            header("Location:index.php?action=addMovie");
+        }
 
         require "view/movies/addMovie.php";
     }
