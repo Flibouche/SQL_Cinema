@@ -64,28 +64,32 @@ class MovieController
         if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
 
             $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $releaseYear = filter_input(INPUT_POST, "releaseyear", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $releaseYear = filter_input(INPUT_POST, "releaseYear", FILTER_VALIDATE_INT);
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
             $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $poster = filter_input(INPUT_POST, "poster", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $director = filter_input(INPUT_POST, "director", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $theme = filter_input(INPUT_POST, "theme", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
+            $director = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $themes = filter_input(INPUT_POST, "idTheme", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
             $requestAddMovie = $pdo->prepare("
-            INSERT INTO movie (title, releaseYear, duration, note, poster)
-            VALUES (:title, :releaseyear, :duration, :note, :poster)
+            INSERT INTO movie (title, releaseYear, duration, note, synopsis, poster, idDirector)
+            VALUES (:title, :releaseYear, :duration, :note, :synopsis, :poster, :idDirector)
             ");
 
-            $requestAddMovie->execute(["title" => $title, "releaseYear" => $releaseYear, "duration" => $duration, "note" => $note, "poster" => $poster]);
-
+            $requestAddMovie->execute(["title" => $title, "releaseYear" => $releaseYear, "duration" => $duration, "note" => $note, "synopsis" => $synopsis, "poster" => $poster, "idDirector" => $director]);
+            
             $movieId = $pdo->lastInsertId();
-
-            $requestAddDirectorToMovie= $pdo->prepare("
-            INSERT INTO movie (idDirector)
-            VALUES (:idDirector, :idMovie)            
+            
+            $requestAddMovieTheme = $pdo->prepare("
+            INSERT INTO movie_theme (idMovie, idTheme)
+            VALUES(:idMovie, :idTheme)
             ");
-            $requestAddDirectorToMovie->execute(["idDirector" => $director, "idMovie" => $movieId]);
 
+            // foreach ($themes as $theme) {
+                $requestAddMovieTheme->execute(["idMovie" => $movieId, "idTheme" => $themes]);
+            // }
+            
             // Redirection vers la page 'index.php?action=addMovie' après le traitement du formulaire
             header("Location:index.php?action=addMovie");
         }

@@ -5,7 +5,7 @@ $directors = $requestDirectors->fetchAll();
 
 <h1>Add a movie</h1>
 
-<form action="">
+<form action="" method="post">
 
     <div>
         <label for="">
@@ -17,7 +17,7 @@ $directors = $requestDirectors->fetchAll();
     <div>
         <label for="">
             Release Year :
-            <input type="date" id="" name="releaseyear">
+            <input type="text" id="" name="releaseYear">
         </label>
     </div>
 
@@ -52,7 +52,7 @@ $directors = $requestDirectors->fetchAll();
     <div>
         <label for="">
             Director :
-            <select name="director" id="">
+            <select name="idDirector" id="">
                 <?php
                 foreach ($directors as $director) {
                 ?>
@@ -71,7 +71,7 @@ $directors = $requestDirectors->fetchAll();
             <?php
             foreach ($themes as $theme) {
             ?>
-                <input type="checkbox" id="" name="theme" value="<?= $theme["idTheme"] ?> " />
+                <input type="checkbox" id="" name="idTheme" value="<?= $theme["idTheme"] ?> " />
                 <p value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></p>
             <?php
             }
@@ -83,8 +83,7 @@ $directors = $requestDirectors->fetchAll();
     <div>
         <label for="">
             Synopsis :
-            <textarea rows="4" cols="50">
-            </textarea>
+            <textarea name="synopsis" rows="4" cols="50"></textarea>
         </label>
     </div>
 
