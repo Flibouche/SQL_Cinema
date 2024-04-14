@@ -13,10 +13,13 @@
     --gradient-bottom: linear-gradient(359.4deg, rgba(162, 82, 13, 0.5) 0.52%, rgba(0, 0, 0, 0.5) 99.48%);
     --button-gradient: linear-gradient(90deg, #D9A849 1.11%, #A2520D 98.89%);
     --hypertext-underline-gradient: linear-gradient(0deg, #D9A849 0%, #A2520D 100%);
-    --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%, #D9A849 23%, #471D07 72.5%, #000000 100%);    
+    --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%, #D9A849 23%, #471D07 72.5%, #000000 100%);   
+    --swiper-pagination-color: var(--yellow-color);
 
-    /*========== Fonts ==========*/
+    /*========== Fonts & typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
     --title-font:"Dune Rise";
+    --h2-font:"Dune Rise";
     --nav-text-font: "Champagne & Limousines";
     /*========== Z Index ==========*/
     --z-tooltip: 10;
@@ -46,6 +49,10 @@ body {
     font-family: "Dune_Rise";
     src: url('/public/fonts/Dune_Rise.ttf');
 }
+
+/* h2 {
+    font-family: var(--h2-font);
+} */
 
 ul {
     list-style: none;
@@ -123,6 +130,31 @@ textarea {
 #wrapper {
     padding-top: 100px;
 }
+
+
+/*========================== MAIN ======================*/
+
+.actor__card,
+.director__card {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* For small devices*/

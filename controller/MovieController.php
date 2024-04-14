@@ -70,26 +70,40 @@ class MovieController
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $poster = filter_input(INPUT_POST, "poster", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $director = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $themes = filter_input(INPUT_POST, "idTheme", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            
+
             $requestAddMovie = $pdo->prepare("
             INSERT INTO movie (title, releaseYear, duration, note, synopsis, poster, idDirector)
             VALUES (:title, :releaseYear, :duration, :note, :synopsis, :poster, :idDirector)
             ");
 
-            $requestAddMovie->execute(["title" => $title, "releaseYear" => $releaseYear, "duration" => $duration, "note" => $note, "synopsis" => $synopsis, "poster" => $poster, "idDirector" => $director]);
-            
-            $movieId = $pdo->lastInsertId();
-            
-            $requestAddMovieTheme = $pdo->prepare("
-            INSERT INTO movie_theme (idMovie, idTheme)
-            VALUES(:idMovie, :idTheme)
-            ");
+            $requestAddMovie->execute([
+                "title" => $title,
+                "releaseYear" => $releaseYear,
+                "duration" => $duration,
+                "note" => $note,
+                "synopsis" => $synopsis,
+                "poster" => $poster,
+                "idDirector" => $director
+            ]);
 
-            // foreach ($themes as $theme) {
-                $requestAddMovieTheme->execute(["idMovie" => $movieId, "idTheme" => $themes]);
-            // }
-            
+            $movieId = $pdo->lastInsertId();
+
+
+            foreach ($_POST['theme'] as $theme) {
+
+                $theme = filter_var($theme, FILTER_VALIDATE_INT);
+
+                $requestAddMovieTheme = $pdo->prepare("
+                INSERT INTO movie_theme (idMovie, idTheme)
+                VALUES(:idMovie, :idTheme)
+                ");
+
+                $requestAddMovieTheme->execute([
+                    "idMovie" => $movieId,
+                    "idTheme" => $theme
+                ]);
+            }
+
             // Redirection vers la page 'index.php?action=addMovie' après le traitement du formulaire
             header("Location:index.php?action=addMovie");
         }

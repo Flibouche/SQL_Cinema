@@ -1,6 +1,4 @@
 <?php ob_start();
-$themes = $requestThemes->fetchAll();
-$directors = $requestDirectors->fetchAll();
 ?>
 
 <h1>Add a movie</h1>
@@ -54,7 +52,7 @@ $directors = $requestDirectors->fetchAll();
             Director :
             <select name="idDirector" id="">
                 <?php
-                foreach ($directors as $director) {
+                foreach ($requestDirectors->fetchAll() as $director) {
                 ?>
                     <option value="<?= $director["idDirector"] ?>"><?= $director["firstname"] . " " . $director["surname"] ?></option>
                 <?php
@@ -69,9 +67,9 @@ $directors = $requestDirectors->fetchAll();
             Theme(s) :
 
             <?php
-            foreach ($themes as $theme) {
+            foreach ($requestThemes->fetchAll() as $theme) {
             ?>
-                <input type="checkbox" id="" name="idTheme" value="<?= $theme["idTheme"] ?> " />
+                <input type="checkbox" id="" name="theme[]" value="<?= $theme["idTheme"] ?> " />
                 <p value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></p>
             <?php
             }

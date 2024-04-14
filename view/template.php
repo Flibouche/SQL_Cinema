@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- ========================== CSS =======================-->
-    <link rel="stylesheet" href="public/css/style.css"/>
+    <link rel="stylesheet" href="public/css/style.css" />
 
     <title><?= $title ?></title>
 </head>
@@ -45,7 +45,7 @@
                     <li class="nav__item">
                         <a href="index.php?action=listRoles">Roles</a>
                     </li>
-                    
+
                     <li class="nav__item">
                         <a href="index.php?action=listThemes">Themes</a>
                     </li>
@@ -71,6 +71,18 @@
 
     <!--========================== SWIPER ==========================-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            freeMode: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+        </script>
+
 </body>
 
 </html>

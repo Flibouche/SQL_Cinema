@@ -12,6 +12,14 @@ class MainController
     public function main()
     {
         $pdo = Connect::toLogIn();
+
+        $requestMoviesMain = $pdo->query("
+        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.poster
+        FROM movie
+        ORDER BY RAND()
+        LIMIT 10
+        ");
+
         $requestActorsMain = $pdo->query("
         SELECT actor.idActor, person.firstname, person.surname, person.picture
         FROM actor
