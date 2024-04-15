@@ -88,7 +88,6 @@ class MovieController
 
             $movieId = $pdo->lastInsertId();
 
-
             foreach ($_POST['theme'] as $theme) {
 
                 $theme = filter_var($theme, FILTER_VALIDATE_INT);
@@ -109,5 +108,42 @@ class MovieController
         }
 
         require "view/movies/addMovie.php";
+    }
+
+    public function editMovie($id)
+    {
+
+
+
+        require "view/movies/editMovie.php";
+    }
+
+    public function addCasting($id)
+    {
+
+        $pdo = Connect::toLogIn();
+
+        $requestCasting = $pdo->query("
+        SELECT play.idMovie, play.idActor, play.idRole
+        FROM play
+        ");
+
+        if (isset($_POST['submit'])) {
+
+            $movie = filter_var($_POST['movie'], FILTER_VALIDATE_INT);
+            $actor = filter_var($_POST['actor'], FILTER_VALIDATE_INT);
+            $role = filter_var($_POST['role'], FILTER_VALIDATE_INT);
+
+            $requestAddCasting = $pdo->prepare("
+            INSERT INTO play (idMovie, idActor, idRole)
+            VALUES (:idMovie, :idActor, :idRole)
+            ");
+
+            $requestAddCasting->execute(["idMovie" => $movie, "idActor" => $actor, "idRole" => $role]);
+
+            header("Location:index.php?action=addCasting");
+        }
+
+        require "view/movies/addCasting.php";
     }
 }

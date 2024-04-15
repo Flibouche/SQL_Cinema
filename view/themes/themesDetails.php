@@ -12,6 +12,22 @@ foreach ($themesDetails as $themeDetails) {
 }
 ?>
 
+
+
+<br>
+<?php
+// Vérifiez s'il y a au moins un thème
+if (!empty($themesDetails)) {
+    // Lien "Edit this theme" pointant vers le premier thème de la liste
+?>
+    <a href="index.php?action=editTheme&id=<?= $themesDetails[0]["idTheme"] ?>">Edit this theme</a>
+<?php
+} else {
+    // Gérer le cas où il n'y a aucun thème
+    echo "No theme found.";
+}
+?>
+
 <?php
 
 $title = "List of movies by theme";

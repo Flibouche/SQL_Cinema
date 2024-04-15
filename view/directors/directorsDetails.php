@@ -16,6 +16,10 @@ foreach ($directorsFilmography as $directorFilmography) {
 ?>
 
 
+
+<br>
+<a href="index.php?action=editPerson">Edit this person</a>
+
 <?php
 
 $title = "Director's details";

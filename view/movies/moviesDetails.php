@@ -14,6 +14,14 @@ foreach ($moviesCasting as $movieCasting) {
 }
 ?>
 
+
+
+<br>
+<a href="index.php?action=editMovie">Edit this movie</a>
+
+<br>
+<a href="index.php?action=editCasting">Edit casting</a>
+
 <?php
 
 $title = "Movie's details";

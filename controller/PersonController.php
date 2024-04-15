@@ -67,4 +67,14 @@ class PersonController
 
         require "view/persons/addPerson.php";
     }
+
+    public function editPerson($id) {
+
+
+
+        require "view/persons/editPerson.php";
+    }
+
+
+
 }

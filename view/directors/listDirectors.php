@@ -16,7 +16,7 @@ foreach ($directors as $director) {
 ?>
 
 <br>
-<a href="index.php?action=addDirector">Add a director</a>
+<a href="index.php?action=addPerson">Add a person</a>
 
 <?php
 

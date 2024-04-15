@@ -56,4 +56,31 @@ class ThemeController
 
         require "view/themes/addTheme.php";
     }
+
+    public function editTheme($id): void
+    {
+
+        $pdo = Connect::toLogIn();
+        $requestThemeID = $pdo->prepare("
+        SELECT theme.idTheme, theme.typeName
+        FROM theme
+        WHERE idTheme = :id
+        ");
+        $requestThemeID->execute(["id" => $id]);
+
+        if (isset($_POST['submit'])) {
+
+            $newTypeName = filter_input(INPUT_POST, "typeName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $requestEditTheme = $pdo->prepare("
+            UPDATE theme
+            SET typeName = :typeName
+            WHERE idTheme = :id
+            ");
+            $requestEditTheme->execute(["typeName" => $newTypeName, "id" => $id]);
+
+            header("Location:index.php?action=listThemes");
+        }
+
+        require "view/themes/editTheme.php";
+    }
 }

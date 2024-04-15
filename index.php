@@ -35,9 +35,12 @@ if(isset($_GET["action"])){
         case "listMovies" : $ctrlMovie->listMovies(); break; // Affichage de la liste des films
         case "moviesDetails" : $ctrlMovie->moviesDetails($id); break; // Affichage des détails d'un film avec l'ID spécifié
         case "addMovie" : $ctrlMovie->addMovie(); break;
+        case "editMovie" : $ctrlMovie->editMovie($id); break;
+        case "addCasting" : $ctrlMovie->addCasting($id); break;
 
         case "personsDetails" : $ctrlPerson->personsDetails($id); break;
         case "addPerson" : $ctrlPerson->addPerson($id); break;
+        case "editPerson" : $ctrlPerson->editPerson($id); break;
 
         case "listActors" : $ctrlActor->listActors(); break; // Affichage de la liste des acteurs
         case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur avec l'ID spécifié
@@ -48,10 +51,12 @@ if(isset($_GET["action"])){
         case "listRoles" : $ctrlRole->listRoles(); break; // Affichage de la liste des rôles
         case "rolesDetails" : $ctrlRole->rolesDetails($id); break; // Affichage des détails d'un rôle avec l'ID spécifié
         case "addRole" : $ctrlRole->addRole(); break;
+        case "editRole" : $ctrlRole->editRole($id); break;
 
         case "listThemes" : $ctrlTheme->listThemes(); break; // Affichage de la liste des thèmes
         case "themesDetails" : $ctrlTheme->themesDetails($id); break; // Affichage des détails d'un thème avec l'ID spécifié
         case "addTheme" : $ctrlTheme->addTheme(); break;
+        case "editTheme" : $ctrlTheme->editTheme($id); break;
 
     }
 } else {

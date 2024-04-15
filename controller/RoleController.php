@@ -24,7 +24,7 @@ class RoleController
 
         $pdo = Connect::toLogIn();
         $requestRolesDetails = $pdo->prepare("
-        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
+        SELECT role.idRole, actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
         FROM play
         INNER JOIN movie ON play.idMovie = movie.idMovie
         INNER JOIN role ON play.idRole = role.idRole
@@ -58,5 +58,32 @@ class RoleController
         }
 
         require "view/roles/addRole.php";
+    }
+
+    public function editRole($id)
+    {
+
+        $pdo = Connect::toLogIn();
+        $requestRoleID = $pdo->prepare("
+        SELECT role.idRole, role.roleName
+        FROM role
+        WHERE idRole = :id
+        ");
+        $requestRoleID->execute(["id" => $id]);
+
+        if (isset($_POST['submit'])) {
+
+            $newRoleName = filter_input(INPUT_POST, "roleName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $requestEditRole = $pdo->prepare("
+            UPDATE role
+            SET roleName = :roleName
+            WHERE idRole = :id
+            ");
+            $requestEditRole->execute(["roleName" => $newRoleName, "id" => $id]);
+
+            header("Location: index.php?action=listRoles");
+        }
+
+        require "view/roles/editRole.php";
     }
 }
