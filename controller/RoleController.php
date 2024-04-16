@@ -34,6 +34,13 @@ class RoleController
         ");
         $requestRolesDetails->execute(["id" => $id]);
 
+        $requestRoleID = $pdo->prepare("
+        SELECT role.idRole
+        FROM role
+        WHERE role.idRole = :id
+        ");
+        $requestRoleID->execute(["id" => $id]);
+
         require "view/roles/rolesDetails.php";
     }
 
@@ -85,5 +92,19 @@ class RoleController
         }
 
         require "view/roles/editRole.php";
+    }
+
+    public function delRole($id)
+    {
+
+        $pdo = Connect::toLogIn();
+        $requestDelRole = $pdo->prepare("
+        DELETE FROM role
+        WHERE idRole = :id
+        ");
+        $requestDelRole->execute(["id" => $id]);
+
+        header("Location: index.php?action=listRoles");
+
     }
 }

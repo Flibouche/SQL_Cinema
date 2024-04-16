@@ -37,10 +37,12 @@ if(isset($_GET["action"])){
         case "addMovie" : $ctrlMovie->addMovie(); break;
         case "editMovie" : $ctrlMovie->editMovie($id); break;
         case "addCasting" : $ctrlMovie->addCasting($id); break;
+        // case "delMovie" : $ctrlMovie->delMovie($id); break;
 
         case "personsDetails" : $ctrlPerson->personsDetails($id); break;
         case "addPerson" : $ctrlPerson->addPerson($id); break;
         case "editPerson" : $ctrlPerson->editPerson($id); break;
+        case "delPerson" : $ctrlPerson->delPerson($id); break;
 
         case "listActors" : $ctrlActor->listActors(); break; // Affichage de la liste des acteurs
         case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur avec l'ID spécifié
@@ -52,11 +54,13 @@ if(isset($_GET["action"])){
         case "rolesDetails" : $ctrlRole->rolesDetails($id); break; // Affichage des détails d'un rôle avec l'ID spécifié
         case "addRole" : $ctrlRole->addRole(); break;
         case "editRole" : $ctrlRole->editRole($id); break;
+        case "delRole" : $ctrlRole->delRole($id); break;
 
         case "listThemes" : $ctrlTheme->listThemes(); break; // Affichage de la liste des thèmes
         case "themesDetails" : $ctrlTheme->themesDetails($id); break; // Affichage des détails d'un thème avec l'ID spécifié
         case "addTheme" : $ctrlTheme->addTheme(); break;
         case "editTheme" : $ctrlTheme->editTheme($id); break;
+        case "delTheme" : $ctrlTheme->delTheme($id); break;
 
     }
 } else {

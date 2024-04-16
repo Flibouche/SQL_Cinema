@@ -7,8 +7,41 @@ use Model\Connect;
 class PersonController
 {
 
-    public function personsDetails(): void
+    public function personsDetails($id): void
     {
+
+        $pdo = Connect::toLogIn();
+
+        $requestPersonsDetails = $pdo->prepare("
+        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture, actor.idActor, director.idDirector
+        FROM person
+        LEFT JOIN actor ON person.idPerson = actor.idPerson
+        LEFT JOIN director ON person.idPerson = director.idPerson
+        WHERE person.idPerson = :id
+        ");
+        $requestPersonsDetails->execute(["id" => $id]);
+
+        $requestActorsFilmography = $pdo->prepare("
+        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
+        FROM play
+        INNER JOIN movie ON play.idMovie = movie.idMovie
+        INNER JOIN role ON play.idRole = role.idRole
+        INNER JOIN actor ON play.idActor = actor.idActor
+        INNER JOIN person ON actor.idPerson = person.idPerson
+        WHERE actor.idActor = :id
+        ORDER BY releaseYear DESC
+        ");
+        $requestActorsFilmography->execute(["id" => $id]);
+
+        $requestDirectorsFilmography = $pdo->prepare("
+        SELECT director.idDirector, movie.idMovie, person.firstname, person.surname, movie.title, movie.releaseYear
+        FROM director
+        INNER JOIN person ON director.idPerson = person.idPerson
+        INNER JOIN movie ON director.idDirector = movie.idDirector
+        WHERE director.idDirector = :id
+        ORDER BY movie.releaseYear DESC
+        ");
+        $requestDirectorsFilmography->execute(["id" => $id]);
 
         require "view/persons/personsDetails.php";
     }
@@ -97,5 +130,25 @@ class PersonController
         }
 
         require "view/persons/editPerson.php";
+    }
+
+    public function delPerson($id)
+    {
+
+        $pdo = Connect::toLogIn();
+
+        $requestDelActor = $pdo->prepare("
+        DELETE FROM actor
+        WHERE idActor = :id
+        ");
+        $requestDelActor->execute(["id" => $id]);
+
+        $requestDelDirector = $pdo->prepare("
+        DELETE FROM director
+        WHERE idDirector = :id
+        ");
+        $requestDelDirector->execute(["id" => $id]);
+
+        header("Location:index.php?action=listActors");
     }
 }

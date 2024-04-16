@@ -31,6 +31,7 @@ class ActorController
         WHERE actor.idActor = :id
         ");
         $requestActorsDetails->execute(["id" => $id]);
+        
         $requestActorsFilmography = $pdo->prepare("
         SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
         FROM play

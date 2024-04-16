@@ -104,7 +104,7 @@ class MovieController
             }
 
             // Redirection vers la page 'index.php?action=addMovie' après le traitement du formulaire
-            header("Location:index.php?action=addMovie");
+            header("Location:index.php?action=listMovies");
         }
 
         require "view/movies/addMovie.php";

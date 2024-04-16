@@ -1,5 +1,6 @@
 <?php ob_start();
 $themesDetails = $requestThemesDetails->fetchAll();
+$themeID = $requestThemeID->fetch();
 ?>
 
 <h1>Details of : </h1>
@@ -29,7 +30,7 @@ if (!empty($themesDetails)) {
 ?>
 
 <br>
-<input class="" type="submit" name="submit" value="Delete theme">
+<a href="index.php?action=delTheme&id=<?= $themeID["idTheme"] ?>" type="submit" name="submit">Delete theme</a>
 
 <?php
 

@@ -32,6 +32,13 @@ class ThemeController
         ");
         $requestThemesDetails->execute(["id" => $id]);
 
+        $requestThemeID = $pdo->prepare("
+        SELECT theme.idTheme
+        FROM theme
+        WHERE theme.idTheme = :id
+        ");
+        $requestThemeID->execute(["id" => $id]);
+
         require "view/themes/themesDetails.php";
     }
 
@@ -87,17 +94,12 @@ class ThemeController
     public function delTheme($id)
     {
         $pdo = Connect::toLogIn();
-        if (isset($_POST['submit'])) {
-
-            $requestDelTheme = $pdo->prepare("
+        $requestDelTheme = $pdo->prepare("
             DELETE FROM theme
             WHERE idTheme = :id
             ");
-            $requestDelTheme->execute(["id" => $id]);
+        $requestDelTheme->execute(["id" => $id]);
 
-            header("Location:index.php?action=listThemes");
-        }
-
-        require "view/themes/themesDetails.php";
+        header("Location:index.php?action=listThemes");
     }
 }

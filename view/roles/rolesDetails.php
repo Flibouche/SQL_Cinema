@@ -1,5 +1,6 @@
 <?php ob_start();
 $rolesDetails = $requestRolesDetails->fetchAll();
+$roleID = $requestRoleID->fetch();
 ?>
 
 <h1>Details of : </h1>
@@ -27,6 +28,9 @@ foreach ($rolesDetails as $roleDetails) {
         echo "No role found.";
     }
     ?>
+
+    <br>
+    <a href="index.php?action=delRole&id=<?= $roleID["idRole"] ?>" type="submit" name="submit">Delete role</a>
 
     <?php
 
