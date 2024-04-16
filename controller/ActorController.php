@@ -11,7 +11,7 @@ class ActorController
 
         $pdo = Connect::toLogIn();
         $requestActors = $pdo->query("
-        SELECT actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
+        SELECT person.idPerson, actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
         FROM actor
         INNER JOIN person ON actor.idPerson = person.idPerson
         ORDER BY surname

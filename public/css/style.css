@@ -13,14 +13,16 @@
     --gradient-bottom: linear-gradient(359.4deg, rgba(162, 82, 13, 0.5) 0.52%, rgba(0, 0, 0, 0.5) 99.48%);
     --button-gradient: linear-gradient(90deg, #D9A849 1.11%, #A2520D 98.89%);
     --hypertext-underline-gradient: linear-gradient(0deg, #D9A849 0%, #A2520D 100%);
-    --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%, #D9A849 23%, #471D07 72.5%, #000000 100%);   
+    --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%, #D9A849 23%, #471D07 72.5%, #000000 100%);
     --swiper-pagination-color: var(--yellow-color);
 
     /*========== Fonts & typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
-    --title-font:"Dune Rise";
-    --h2-font:"Dune Rise";
+    --title-font: "Dune Rise";
+    --h2-font: "Dune Rise";
     --nav-text-font: "Champagne & Limousines";
+    /* --h1-font-size: 1.5rem;
+    --h2-font-size: 1.5rem; */
     /*========== Z Index ==========*/
     --z-tooltip: 10;
     --z-fixed: 100;
@@ -50,9 +52,18 @@ body {
     src: url('/public/fonts/Dune_Rise.ttf');
 }
 
-/* h2 {
+h2 {
     font-family: var(--h2-font);
-} */
+    font-size: 1.5rem;
+    padding-left: 1rem;
+    padding-bottom: .5rem;
+}
+
+hr {
+    height: 2px;
+    background: var(--gradient-top);
+    border: none;
+}
 
 ul {
     list-style: none;
@@ -86,9 +97,17 @@ textarea {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: var(--brown-color);
-    border-color: transparent;
+    /* background-color: var(--brown-color); */
+    /* background: url(../img/header.svg) no-repeat; */
+    /* background-position-y: -100px; */
+    /* border-color: transparent; */
     z-index: var(--z-fixed);
+}
+
+.background__header {
+    position: absolute;
+    width: 100%;
+    top: -75px;
 }
 
 .nav {
@@ -134,6 +153,10 @@ textarea {
 
 /*========================== MAIN ======================*/
 
+.title-background__main {
+    background-image: var(--gradient-bottom);
+}
+
 .actor__card,
 .director__card {
     display: grid;
@@ -158,14 +181,10 @@ textarea {
 
 
 /* For small devices*/
-@media screen and (min-width: 576px) {
-
-}
+@media screen and (min-width: 576px) {}
 
 /* For medium devices*/
-@media screen and (min-width: 768px) {
-
-}
+@media screen and (min-width: 768px) {}
 
 /* For large devices*/
 @media screen and (min-width: 992px) {
@@ -181,9 +200,7 @@ textarea {
 
 
 /* For extra large devices */
-@media screen and (min-width: 1200px) {
-
-}
+@media screen and (min-width: 1200px) {}
 
 /* For extra extra large devices */
 @media screen and (min-width: 1400px) {}

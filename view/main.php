@@ -10,7 +10,10 @@
         <p>Are you lost in this tumult of information when you just wanted to know the cast of the movie you just watched ?<br> No problem, CineDune gets straight to the point !<br> And as a bonus, you can contribute to the site yourself !</p>
 
         <div class="swiper mySwiper container">
-            <h2>Movies</h2>
+            <div class="title-background__main">
+                <h2>Movies</h2>
+                <hr />
+            </div>
             <div class="swiper-wrapper">
                 <?php
                 foreach ($requestMoviesMain->fetchAll() as $movie) {
@@ -29,7 +32,11 @@
         </div>
 
         <div class="actors__main">
-            <h2>Actors</h2>
+            <div class="title-background__main">
+                <h2>Actors</h2>
+                <hr />
+            </div>
+
             <div class="actor__card">
                 <?php
                 foreach ($requestActorsMain->fetchAll() as $actor) {
@@ -43,7 +50,10 @@
         </div>
 
         <div class="directors__main">
-            <h2>Directors</h2>
+            <div class="title-background__main">
+                <h2>Directors</h2>
+                <hr />
+            </div>
             <div class="director__card">
                 <?php
                 foreach ($requestDirectorsMain->fetchAll() as $director) {

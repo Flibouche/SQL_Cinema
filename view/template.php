@@ -18,7 +18,11 @@
 </head>
 
 <body>
+    <!--========================== HEADER ===========================-->
     <header class="header" id="header">
+
+        <img class="background__header" src="public/img/header.svg" alt="background header">
+
         <nav class="nav container">
             <a href="index.php" class="nav__logo">
                 <img src="public/img/bxs-planet.svg" alt="Logo CineDune">CineDune
@@ -50,9 +54,25 @@
                         <a href="index.php?action=listThemes">Themes</a>
                     </li>
                 </ul>
+
+                <!-- Close button -->
+                <div class="nav__close" id="nav-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
             </div>
+
+            <div class="nav__actions">
+                <!-- Toggle Button -->
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+            </div>
+
         </nav>
     </header>
+
+    <!--========================== MAIN ===========================-->
     <div id="wrapper">
         <main>
             <div id="content">
@@ -81,7 +101,7 @@
                 clickable: true,
             },
         });
-        </script>
+    </script>
 
 </body>
 
