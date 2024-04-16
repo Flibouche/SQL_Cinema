@@ -83,4 +83,21 @@ class ThemeController
 
         require "view/themes/editTheme.php";
     }
+
+    public function delTheme($id)
+    {
+        $pdo = Connect::toLogIn();
+        if (isset($_POST['submit'])) {
+
+            $requestDelTheme = $pdo->prepare("
+            DELETE FROM theme
+            WHERE idTheme = :id
+            ");
+            $requestDelTheme->execute(["id" => $id]);
+
+            header("Location:index.php?action=listThemes");
+        }
+
+        require "view/themes/themesDetails.php";
+    }
 }

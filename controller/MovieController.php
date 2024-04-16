@@ -113,7 +113,37 @@ class MovieController
     public function editMovie($id)
     {
 
+        $pdo = Connect::toLogIn();
+        $requestMovie = $pdo->prepare("
+        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
+        FROM movie
+        WHERE movie.idMovie = :id
+        ");
+        $requestMovie->execute(["id" => $id]);
 
+        if (isset($_POST['submit'])) {
+
+            $newTitle = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $newReleaseYear = filter_input(INPUT_POST, "releaseYear", FILTER_VALIDATE_INT);
+            $newDuration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
+            $newNote = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $newSynopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $requestEditMovie = $pdo->prepare("
+            UPDATE movie
+            SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis
+            WHERE idMovie = :id
+            ");
+            $requestEditMovie->execute([
+                "title" => $newTitle,
+                "releaseYear" => $newReleaseYear,
+                "duration" => $newDuration,
+                "note" => $newNote,
+                "synopsis" => $newSynopsis,
+                "id" => $id
+            ]);
+
+            header("Location:index.php?action=editMovie&id=$id");
+        }
 
         require "view/movies/editMovie.php";
     }
@@ -128,11 +158,31 @@ class MovieController
         FROM play
         ");
 
+        $requestMovies = $pdo->prepare("
+        SELECT movie.idMovie, movie.title
+        FROM movie
+        WHERE movie.idMovie = :id
+        ");
+        $requestMovies->execute(["id" => $id]);
+
+        $requestActors = $pdo->query("
+        SELECT actor.idActor, person.firstname, person.surname
+        FROM actor
+        INNER JOIN person ON actor.idPerson = person.idPerson
+        ORDER BY person.surname
+        ");
+
+        $requestRoles = $pdo->query("
+        SELECT role.idRole, role.roleName
+        FROM role
+        ORDER BY role.roleName
+        ");
+
         if (isset($_POST['submit'])) {
 
-            $movie = filter_var($_POST['movie'], FILTER_VALIDATE_INT);
-            $actor = filter_var($_POST['actor'], FILTER_VALIDATE_INT);
-            $role = filter_var($_POST['role'], FILTER_VALIDATE_INT);
+            $movie = filter_var($_POST['idMovie'], FILTER_VALIDATE_INT);
+            $actor = filter_var($_POST['idActor'], FILTER_VALIDATE_INT);
+            $role = filter_var($_POST['idRole'], FILTER_VALIDATE_INT);
 
             $requestAddCasting = $pdo->prepare("
             INSERT INTO play (idMovie, idActor, idRole)
@@ -141,7 +191,7 @@ class MovieController
 
             $requestAddCasting->execute(["idMovie" => $movie, "idActor" => $actor, "idRole" => $role]);
 
-            header("Location:index.php?action=addCasting");
+            header("Location:index.php?action=addCasting&id=$id");
         }
 
         require "view/movies/addCasting.php";

@@ -23,8 +23,8 @@
         <label class="">
             Sex :
             <select name="sex" id="sex__select" placeholder="Please choose a sex">
-                <option value="">Male</option>
-                <option value="">Female</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
             </select>
         </label>
     </div>

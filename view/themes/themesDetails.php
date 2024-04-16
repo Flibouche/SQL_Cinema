@@ -24,9 +24,12 @@ if (!empty($themesDetails)) {
 <?php
 } else {
     // Gérer le cas où il n'y a aucun thème
-    echo "No theme found.";
+    echo "No movie found.";
 }
 ?>
+
+<br>
+<input class="" type="submit" name="submit" value="Delete theme">
 
 <?php
 

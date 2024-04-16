@@ -25,7 +25,7 @@ class DirectorController
 
         $pdo = Connect::toLogIn();
         $requestDirectorsDetails = $pdo->prepare("
-        SELECT director.idDirector, person.firstname, person.surname, person.sex, person.birthdate
+        SELECT person.idPerson, director.idDirector, person.firstname, person.surname, person.sex, person.birthdate
         FROM director
         INNER JOIN person ON director.idPerson = person.idPerson
         WHERE director.idDirector = :id

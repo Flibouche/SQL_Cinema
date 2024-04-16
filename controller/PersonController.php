@@ -68,13 +68,34 @@ class PersonController
         require "view/persons/addPerson.php";
     }
 
-    public function editPerson($id) {
+    public function editPerson($id)
+    {
+        
+        $pdo = Connect::toLogIn();
+        $requestPerson = $pdo->prepare("
+        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture
+        FROM person
+        WHERE person.idPerson = :id        
+        ");
+        $requestPerson->execute(["id" => $id]);
 
+        if (isset($_POST['submit'])) {
 
+            $newFirstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $newSurname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $newSex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $newBirthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $newPicture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $requestEditPerson = $pdo->prepare("
+            UPDATE person
+            SET firstname = :firstname, surname = :surname, sex = :sex, birthdate = :birthdate, picture = :picture
+            WHERE idPerson = :id
+            ");
+            $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "picture" => $newPicture, "id" => $id]);
+
+            header("Location:index.php?action=editPerson&id=$id");
+        }
 
         require "view/persons/editPerson.php";
     }
-
-
-
 }

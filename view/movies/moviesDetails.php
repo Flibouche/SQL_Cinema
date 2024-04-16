@@ -17,10 +17,10 @@ foreach ($moviesCasting as $movieCasting) {
 
 
 <br>
-<a href="index.php?action=editMovie">Edit this movie</a>
+<a href="index.php?action=editMovie&id=<?= $movieDetails["idMovie"] ?>">Edit this movie</a>
 
 <br>
-<a href="index.php?action=editCasting">Edit casting</a>
+<a href="index.php?action=addCasting&id=<?= $movieDetails["idMovie"] ?>">Add a casting</a>
 
 <?php
 

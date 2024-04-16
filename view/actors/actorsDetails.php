@@ -17,7 +17,7 @@ foreach ($actorsFilmography as $actorFilmography) {
 
 
 <br>
-<a href="index.php?action=editPerson">Edit this person</a>
+<a href="index.php?action=editPerson&id=<?= $actorDetails['idPerson']?>">Edit this person</a>
 
 
 <?php

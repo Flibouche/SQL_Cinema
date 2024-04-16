@@ -25,7 +25,7 @@ class ActorController
 
         $pdo = Connect::toLogIn();
         $requestActorsDetails = $pdo->prepare("
-        SELECT actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
+        SELECT person.idPerson, actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
         FROM actor
         INNER JOIN person ON actor.idPerson = person.idPerson
         WHERE actor.idActor = :id
