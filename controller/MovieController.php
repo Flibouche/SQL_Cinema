@@ -13,7 +13,7 @@ class MovieController
         $requestMovies = $pdo->query("
         SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
         FROM movie
-        ORDER BY releaseYear
+        ORDER BY releaseYear DESC
         ");
 
         require "view/movies/listMovies.php";
@@ -40,6 +40,15 @@ class MovieController
         WHERE play.idMovie = :id
         ");
         $requestMoviesCasting->execute(["id" => $id]);
+
+        $requestMovieThemes = $pdo->prepare("
+        SELECT GROUP_CONCAT(theme.typeName SEPARATOR ', ') AS theme
+        FROM movie_theme
+        INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
+        INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
+        WHERE movie.idMovie = :id
+        ");
+        $requestMovieThemes->execute(["id" => $id]);
 
         require "view/movies/moviesDetails.php";
     }
@@ -103,7 +112,7 @@ class MovieController
                 ]);
             }
 
-            // Redirection vers la page 'index.php?action=addMovie' après le traitement du formulaire
+            // Redirection vers la page 'index.php?action=listMovies' après le traitement du formulaire
             header("Location:index.php?action=listMovies");
         }
 
@@ -121,6 +130,34 @@ class MovieController
         ");
         $requestMovie->execute(["id" => $id]);
 
+        $requestDirectors = $pdo->query("
+        SELECT director.idDirector, person.firstname, person.surname
+        FROM director
+        INNER JOIN person ON director.idPerson = person.idPerson
+        ORDER BY surname
+        ");
+
+        $requestThemes = $pdo->query("
+        SELECT theme.idTheme, theme.typeName
+        FROM theme
+        ORDER BY typeName
+        ");
+
+        $requestMovieThemes = $pdo->prepare("
+        SELECT theme.idTheme
+        FROM movie_theme
+        INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
+        INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
+        WHERE movie.idMovie = :id
+        ");
+        $requestMovieThemes->execute(["id" => $id]);
+
+        $themes = $requestMovieThemes->fetchAll();
+        $themesMovie = [];
+        foreach ($themes as $t) {
+            $themesMovie[] = $t["idTheme"];
+        }
+
         if (isset($_POST['submit'])) {
 
             $newTitle = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -128,6 +165,8 @@ class MovieController
             $newDuration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
             $newNote = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $newSynopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $newDirector = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // $newThemes = $_POST['theme'];
             $requestEditMovie = $pdo->prepare("
             UPDATE movie
             SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis
@@ -139,6 +178,7 @@ class MovieController
                 "duration" => $newDuration,
                 "note" => $newNote,
                 "synopsis" => $newSynopsis,
+                "idDirector" => $newDirector,
                 "id" => $id
             ]);
 
@@ -195,5 +235,31 @@ class MovieController
         }
 
         require "view/movies/addCasting.php";
+    }
+
+    public function delMovie($id)
+    {
+
+        $pdo = Connect::toLogIn();
+
+        $requestDelMovieTheme = $pdo->prepare("
+        DELETE FROM movie_theme
+        WHERE idMovie = :id;
+        ");
+        $requestDelMovieTheme->execute(["id" => $id]);
+
+        $requestDelCasting = $pdo->prepare("
+        DELETE FROM play
+        WHERE idMovie = :id;
+        ");
+        $requestDelCasting->execute(["id" => $id]);
+
+        $requestDelMovie = $pdo->prepare("
+        DELETE FROM movie
+        WHERE idMovie = :id;
+        ");
+        $requestDelMovie->execute(["id" => $id]);
+
+        header("Location:index.php?action=listMovies");
     }
 }

@@ -51,7 +51,39 @@ $movieDetails = $requestMovie->fetch();
     <div>
         <label for="">
             Synopsis :
-            <textarea name="synopsis" rows="4" cols="50"><?= $movieDetails['synopsis']?></textarea>
+            <textarea name="synopsis" rows="4" cols="50"><?= $movieDetails['synopsis'] ?></textarea>
+        </label>
+    </div>
+
+    
+    <div>
+        <label for="">
+            Director :
+            <select name="idDirector" id="">
+                <?php
+                foreach ($requestDirectors->fetchAll() as $director) {
+                    $selected = ($director["idDirector"]) ? "selected" : "";
+                ?>
+                    <option value="<?= $director["idDirector"] ?>" <?= $selected ?> ><?= $director["firstname"] . " " . $director["surname"] ?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label for="">
+            Theme(s) :
+            <?php
+            foreach ($requestThemes->fetchAll() as $theme) {
+                $check = (in_array($theme["idTheme"], $themesMovie)) ? "checked" : "";
+            ?>
+                <input type="checkbox" id="" name="theme[]" value="<?= $theme['idTheme'] ?>" <?= $check ?> />
+                <p value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></p>
+            <?php
+            }
+            ?>
         </label>
     </div>
 

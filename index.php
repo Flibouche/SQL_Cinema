@@ -37,7 +37,7 @@ if(isset($_GET["action"])){
         case "addMovie" : $ctrlMovie->addMovie(); break;
         case "editMovie" : $ctrlMovie->editMovie($id); break;
         case "addCasting" : $ctrlMovie->addCasting($id); break;
-        // case "delMovie" : $ctrlMovie->delMovie($id); break;
+        case "delMovie" : $ctrlMovie->delMovie($id); break;
 
         case "personsDetails" : $ctrlPerson->personsDetails($id); break;
         case "addPerson" : $ctrlPerson->addPerson($id); break;

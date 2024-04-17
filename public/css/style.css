@@ -97,8 +97,8 @@ textarea {
     width: 100%;
     top: 0;
     left: 0;
-    /* background-color: var(--brown-color); */
-    /* background: url(../img/header.svg) no-repeat; */
+    background-color: var(--brown-color);
+    /* background: url(../img/header.svg) repeat-x; */
     /* background-position-y: -100px; */
     /* border-color: transparent; */
     z-index: var(--z-fixed);
@@ -107,6 +107,7 @@ textarea {
 .background__header {
     position: absolute;
     width: 100%;
+    object-fit: fill;
     top: -75px;
 }
 
