@@ -62,7 +62,7 @@ $movieDetails = $requestMovie->fetch();
             <select name="idDirector" id="">
                 <?php
                 foreach ($requestDirectors->fetchAll() as $director) {
-                    $selected = ($director["idDirector"]) ? "selected" : "";
+                    $selected = ($director["idDirector"] == $movieDetails["idDirector"]) ? "selected" : "";
                 ?>
                     <option value="<?= $director["idDirector"] ?>" <?= $selected ?> ><?= $director["firstname"] . " " . $director["surname"] ?></option>
                 <?php

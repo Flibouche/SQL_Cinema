@@ -124,7 +124,7 @@ class MovieController
 
         $pdo = Connect::toLogIn();
         $requestMovie = $pdo->prepare("
-        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
+        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, movie.idDirector
         FROM movie
         WHERE movie.idMovie = :id
         ");
@@ -165,11 +165,10 @@ class MovieController
             $newDuration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
             $newNote = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $newSynopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $newDirector = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // $newThemes = $_POST['theme'];
+            $newDirector = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_NUMBER_INT);
             $requestEditMovie = $pdo->prepare("
             UPDATE movie
-            SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis
+            SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis,  idDirector = :idDirector
             WHERE idMovie = :id
             ");
             $requestEditMovie->execute([
@@ -181,6 +180,30 @@ class MovieController
                 "idDirector" => $newDirector,
                 "id" => $id
             ]);
+
+            $theme = filter_input(INPUT_POST, "idTheme", FILTER_VALIDATE_INT);
+
+            $requestPurgeMovieTheme = $pdo->prepare("
+            DELETE FROM movie_theme
+            WHERE idMovie = :idMovie
+            ");
+
+            $requestPurgeMovieTheme->execute([
+                "idMovie" => $id
+            ]);
+
+            foreach ($_POST['theme'] as $theme) {
+
+                $requestEditMovieTheme = $pdo->prepare("
+                INSERT INTO movie_theme (idMovie, idTheme)
+                VALUES(:idMovie, :idTheme)
+                ");
+
+                $requestEditMovieTheme->execute([
+                    "idMovie" => $id,
+                    "idTheme" => $theme
+                ]);
+            }
 
             header("Location:index.php?action=editMovie&id=$id");
         }
