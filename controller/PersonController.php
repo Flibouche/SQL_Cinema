@@ -168,7 +168,7 @@ class PersonController
                     echo "Wrong extension or file size too large or error !";
                 }
             }
-            
+
             // unlink
 
             $requestEditPerson = $pdo->prepare("
