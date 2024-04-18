@@ -36,39 +36,39 @@ if(isset($_GET["action"])){
 
         case "listMovies" : $ctrlMovie->listMovies(); break; // Affichage de la liste des films
         case "moviesDetails" : $ctrlMovie->moviesDetails($id); break; // Affichage des détails d'un film avec l'ID spécifié
-        case "addMovie" : $ctrlMovie->addMovie(); break;
-        case "editMovie" : $ctrlMovie->editMovie($id); break;
-        case "addCasting" : $ctrlMovie->addCasting($id); break;
-        case "delCasting" : $ctrlMovie->delCasting($id); break;
-        case "delMovie" : $ctrlMovie->delMovie($id); break;
+        case "addMovie" : $ctrlMovie->addMovie(); break; // Ajout d'un film
+        case "editMovie" : $ctrlMovie->editMovie($id); break; // Modification d'un film
+        case "addCasting" : $ctrlMovie->addCasting($id); break; // Ajout de casting à un film
+        case "delCasting" : $ctrlMovie->delCasting($id); break; // Suppression de casting d'un film
+        case "delMovie" : $ctrlMovie->delMovie($id); break; // Suppression d'un film
 
-        case "personsDetails" : $ctrlPerson->personsDetails($id); break;
-        case "addPerson" : $ctrlPerson->addPerson($id); break;
-        case "editPerson" : $ctrlPerson->editPerson($id); break;
-        case "delActor" : $ctrlPerson->delActor($id); break;
-        case "delDirector" : $ctrlPerson->delDirector($id); break;
+        case "personsDetails" : $ctrlPerson->personsDetails($id); break; // Affichage des détails d'une personne
+        case "addPerson" : $ctrlPerson->addPerson($id); break; // Ajout d'une personne
+        case "editPerson" : $ctrlPerson->editPerson($id); break; // Modification d'une personne
+        case "delActor" : $ctrlPerson->delActor($id); break; // Suppression d'un acteur
+        case "delDirector" : $ctrlPerson->delDirector($id); break; // Suppression d'un réalisateur
 
         case "listActors" : $ctrlActor->listActors(); break; // Affichage de la liste des acteurs
-        case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur avec l'ID spécifié
+        case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur
 
         case "listDirectors" : $ctrlDirector->listDirectors(); break; // Affichage de la liste des réalisateurs
-        case "directorsDetails" : $ctrlDirector->directorsDetails($id); break; // Affichage des détails d'un réalisateur avec l'ID spécifié
+        case "directorsDetails" : $ctrlDirector->directorsDetails($id); break; // Affichage des détails d'un réalisateur
 
         case "listRoles" : $ctrlRole->listRoles(); break; // Affichage de la liste des rôles
-        case "rolesDetails" : $ctrlRole->rolesDetails($id); break; // Affichage des détails d'un rôle avec l'ID spécifié
-        case "addRole" : $ctrlRole->addRole(); break;
-        case "editRole" : $ctrlRole->editRole($id); break;
-        case "delRole" : $ctrlRole->delRole($id); break;
+        case "rolesDetails" : $ctrlRole->rolesDetails($id); break; // Affichage des détails d'un rôle
+        case "addRole" : $ctrlRole->addRole(); break; // Ajout d'un rôle
+        case "editRole" : $ctrlRole->editRole($id); break; // Modification d'un rôle
+        case "delRole" : $ctrlRole->delRole($id); break; // Suppression d'un rôle
 
         case "listThemes" : $ctrlTheme->listThemes(); break; // Affichage de la liste des thèmes
-        case "themesDetails" : $ctrlTheme->themesDetails($id); break; // Affichage des détails d'un thème avec l'ID spécifié
-        case "addTheme" : $ctrlTheme->addTheme(); break;
-        case "editTheme" : $ctrlTheme->editTheme($id); break;
-        case "delTheme" : $ctrlTheme->delTheme($id); break;
+        case "themesDetails" : $ctrlTheme->themesDetails($id); break; // Affichage des détails d'un thème
+        case "addTheme" : $ctrlTheme->addTheme(); break; // Ajout d'un thème
+        case "editTheme" : $ctrlTheme->editTheme($id); break; // Modification d'un thème
+        case "delTheme" : $ctrlTheme->delTheme($id); break; // Suppression d'un thème
 
-        case "listSubmissions" : $ctrlSubmission->listSubmissions(); break;
+        case "listSubmissions" : $ctrlSubmission->listSubmissions(); break; // Affichage de la liste des soumissions
 
     }
 } else {
-    $ctrlMain->main();
+    $ctrlMain->main(); // Action par défaut si aucune action spécifiée
 }
