@@ -3,7 +3,7 @@
 
 <h1>Add a movie</h1>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 
     <div>
         <label for="">
@@ -30,13 +30,6 @@
         <label for="">
             Note :
             <input type="text" name="note">
-        </label>
-    </div>
-
-    <div>
-        <label for="">
-            Poster text :
-            <input type="text" name="poster">
         </label>
     </div>
 

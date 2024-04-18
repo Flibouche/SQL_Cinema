@@ -31,14 +31,7 @@
     <div>
         <label for="">
             Birthdate :
-            <input type="date" id="" name="birthdate" />
-        </label>
-    </div>
-
-    <div>
-        <label for="">
-            Picture text :
-            <input type="text" name="picture">
+            <input type="date" id="" name="birthdate">
         </label>
     </div>
 

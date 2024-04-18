@@ -23,14 +23,14 @@ $movieDetails = $requestMovie->fetch();
     <div>
         <label for="">
             Duration (in minutes):
-            <input type="text" name="duration" value="<?= $movieDetails['duration'] ?>">
+            <input type="number" name="duration" value="<?= $movieDetails['duration'] ?>">
         </label>
     </div>
 
     <div>
         <label for="">
             Note :
-            <input type="text" name="note" value="<?= $movieDetails['note'] ?>">
+            <input type="number" step="0.1" name="note" value="<?= $movieDetails['note'] ?>">
         </label>
     </div>
 

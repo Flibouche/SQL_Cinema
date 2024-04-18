@@ -46,10 +46,12 @@ body {
 }
 
 @font-face {
-    font-family: "Champagne_&_Limousines";
-    src: url('/public/fonts/Champagne_&_Limousines.ttf');
-    font-family: "Dune_Rise";
-    src: url('/public/fonts/Dune_Rise.ttf');
+    font-family: "Champagne & Limousines";
+    src: url("../fonts/Champagne_&_Limousines.ttf") format("truetype");
+    font-family: "Dune Rise";
+    src: url("../fonts/Dune_Rise.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 h2 {

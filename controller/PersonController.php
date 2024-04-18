@@ -56,7 +56,6 @@ class PersonController
             $surname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $sex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $birthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $picture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $job = filter_input(INPUT_POST, "job", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if (isset($_FILES['file'])) {
@@ -71,14 +70,14 @@ class PersonController
 
                 // Tableau des extensions qu'on autorise
                 $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
-                $maxSize = 40000;
+                $maxSize = 100000;
 
                 if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
 
                     $uniqueName = uniqid('', true);
-                    $fileName = $uniqueName . '.' . $extension;
+                    $file = $uniqueName . '.' . $extension;
 
-                    move_uploaded_file($tmpName, './public/img/persons/' . $name);
+                    move_uploaded_file($tmpName, "./public/img/persons/" . $file);
                 } else {
                     echo "Wrong extension or file size too large or error !";
                 }
@@ -89,7 +88,7 @@ class PersonController
                         VALUES (:firstname, :surname, :sex, :birthdate, :picture)
                         ");
 
-            $requestAddPerson->execute(["firstname" => $firstname, "surname" => $surname, "sex" => $sex, "birthdate" => $birthdate, "picture" => $picture]);
+            $requestAddPerson->execute(["firstname" => $firstname, "surname" => $surname, "sex" => $sex, "birthdate" => $birthdate, "picture" => "public/img/persons/" . $file]);
 
             $personId = $pdo->lastInsertId();
 
@@ -143,13 +142,41 @@ class PersonController
             $newSurname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $newSex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $newBirthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $newPicture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // $newPicture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if (isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+                $type = $_FILES['file']['type'];
+
+                $tabExtension = explode('.', $name);
+                $extension = strtolower(end($tabExtension));
+
+                // Tableau des extensions qu'on autorise
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $maxSize = 100000;
+
+                if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
+
+                    $uniqueName = uniqid('', true);
+                    $file = $uniqueName . '.' . $extension;
+
+                    move_uploaded_file($tmpName, "./public/img/persons/" . $file);
+                } else {
+                    echo "Wrong extension or file size too large or error !";
+                }
+            }
+            
+            // unlink
+
             $requestEditPerson = $pdo->prepare("
             UPDATE person
             SET firstname = :firstname, surname = :surname, sex = :sex, birthdate = :birthdate, picture = :picture
             WHERE idPerson = :id
             ");
-            $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "picture" => $newPicture, "id" => $id]);
+            $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "./public/img/persons/" => $file, "id" => $id]);
 
             header("Location:index.php?action=editPerson&id=$id");
         }

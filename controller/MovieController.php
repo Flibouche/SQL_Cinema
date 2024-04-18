@@ -77,8 +77,32 @@ class MovieController
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
             $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $poster = filter_input(INPUT_POST, "poster", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $director = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if (isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+                $type = $_FILES['file']['type'];
+
+                $tabExtension = explode('.', $name);
+                $extension = strtolower(end($tabExtension));
+
+                // Tableau des extensions qu'on autorise
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $maxSize = 100000;
+
+                if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
+
+                    $uniqueName = uniqid('', true);
+                    $file = $uniqueName . '.' . $extension;
+
+                    move_uploaded_file($tmpName, "./public/img/movies/" . $file);
+                } else {
+                    echo "Wrong extension or file size too large or error !";
+                }
+            }
 
             $requestAddMovie = $pdo->prepare("
             INSERT INTO movie (title, releaseYear, duration, note, synopsis, poster, idDirector)
@@ -91,7 +115,7 @@ class MovieController
                 "duration" => $duration,
                 "note" => $note,
                 "synopsis" => $synopsis,
-                "poster" => $poster,
+                "poster" => "public/img/movies/" . $file,
                 "idDirector" => $director
             ]);
 
@@ -260,7 +284,8 @@ class MovieController
         require "view/movies/addCasting.php";
     }
 
-    public function delCasting($id) {
+    public function delCasting($id)
+    {
 
         $pdo = Connect::toLogIn();
 

@@ -7,6 +7,14 @@ $actorsFilmography = $requestActorsFilmography->fetchAll();
 
 <?php
 echo $actorDetails["firstname"] . " " . $actorDetails["surname"] . " " . $actorDetails["sex"] . " " . $actorDetails["birthdate"] . "<br>";
+?>
+
+<div>
+    <img src="<?= $actorDetails["picture"] ?>" alt="">
+</div>
+
+
+<?php
 
 foreach ($actorsFilmography as $actorFilmography) {
 ?>
