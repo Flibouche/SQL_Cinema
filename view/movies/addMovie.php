@@ -64,13 +64,12 @@
 
     <div>
         <label for="">
-            Theme(s) :
-
+            Theme(s) : <br>
             <?php
             foreach ($requestThemes->fetchAll() as $theme) {
             ?>
                 <input type="checkbox" id="" name="theme[]" value="<?= $theme["idTheme"] ?> " />
-                <p value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></p>
+                <label for="" value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></label>
             <?php
             }
             ?>

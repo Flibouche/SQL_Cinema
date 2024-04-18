@@ -59,6 +59,31 @@ class PersonController
             $picture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $job = filter_input(INPUT_POST, "job", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+            if (isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+                $type = $_FILES['file']['type'];
+
+                $tabExtension = explode('.', $name);
+                $extension = strtolower(end($tabExtension));
+
+                // Tableau des extensions qu'on autorise
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $maxSize = 40000;
+
+                if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
+
+                    $uniqueName = uniqid('', true);
+                    $fileName = $uniqueName . '.' . $extension;
+
+                    move_uploaded_file($tmpName, './public/img/persons/' . $name);
+                } else {
+                    echo "Wrong extension or file size too large or error !";
+                }
+            }
+
             $requestAddPerson = $pdo->prepare("
                         INSERT INTO person (firstname, surname, sex, birthdate, picture)
                         VALUES (:firstname, :surname, :sex, :birthdate, :picture)
@@ -103,7 +128,7 @@ class PersonController
 
     public function editPerson($id)
     {
-        
+
         $pdo = Connect::toLogIn();
         $requestPerson = $pdo->prepare("
         SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture
@@ -132,10 +157,16 @@ class PersonController
         require "view/persons/editPerson.php";
     }
 
-    public function delPerson($id)
+    public function delActor($id)
     {
 
         $pdo = Connect::toLogIn();
+
+        $requestDelCasting = $pdo->prepare("
+        DELETE FROM play
+        WHERE idActor = :id
+        ");
+        $requestDelCasting->execute(["id" => $id]);
 
         $requestDelActor = $pdo->prepare("
         DELETE FROM actor
@@ -143,12 +174,27 @@ class PersonController
         ");
         $requestDelActor->execute(["id" => $id]);
 
+        header("Location:index.php?action=listActors");
+    }
+
+    public function delDirector($id)
+    {
+
+        $pdo = Connect::toLogIn();
+
+        $requestDelMovieDirector = $pdo->prepare("
+        UPDATE movie
+        SET idDirector = NULL
+        WHERE idDirector = :id
+        ");
+        $requestDelMovieDirector->execute(["id" => $id]);
+
         $requestDelDirector = $pdo->prepare("
         DELETE FROM director
         WHERE idDirector = :id
         ");
         $requestDelDirector->execute(["id" => $id]);
 
-        header("Location:index.php?action=listActors");
+        header("Location:index.php?action=listDirectors");
     }
 }

@@ -14,7 +14,8 @@ foreach ($requestMovieThemes->fetchAll() as $themes) {
 
 foreach ($moviesCasting as $movieCasting) {
 ?>
-    <a href="index.php?action=actorsDetails&id=<?= $movieCasting["idActor"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a> as <?= $movieCasting["roleName"] . "<br>" ?>
+    <a href="index.php?action=actorsDetails&id=<?= $movieCasting["idActor"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a> as <?= $movieCasting["roleName"] ?>
+    <a href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>"><i class="fa-solid fa-xmark"></i></a><br>
 <?php
 }
 ?>
@@ -26,6 +27,9 @@ foreach ($moviesCasting as $movieCasting) {
 
 <br>
 <a href="index.php?action=addCasting&id=<?= $movieDetails["idMovie"] ?>">Add a casting</a>
+
+<br>
+<a href="index.php?action=editCasting&id=<?= $movieDetails["idMovie"] ?>">Edit this casting</a>
 
 <br>
 <br>

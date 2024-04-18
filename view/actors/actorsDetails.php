@@ -25,7 +25,7 @@ foreach ($actorsFilmography as $actorFilmography) {
 <br>
 <br>
 <br>
-<a href="index.php?action=delPerson&id=<?= $actorDetails['idActor'] ?>">Delete this actor</a>
+<a href="index.php?action=delActor&id=<?= $actorDetails['idActor'] ?>">Delete this actor</a>
 
 
 <?php

@@ -8,6 +8,7 @@ use Controller\ActorController;
 use Controller\DirectorController;
 use Controller\RoleController;
 use Controller\ThemeController;
+use Controller\SubmissionController;
 
 // Autoloading des classes pour charger automatiquement les fichiers de classe
 spl_autoload_register(function ($class_name) {
@@ -22,6 +23,7 @@ $ctrlActor = new ActorController();
 $ctrlDirector = new DirectorController();
 $ctrlRole = new RoleController();
 $ctrlTheme = new ThemeController();
+$ctrlSubmission = new SubmissionController();
 
 
 // Récupération de l'ID et de l'action à partir des paramètres GET
@@ -37,12 +39,14 @@ if(isset($_GET["action"])){
         case "addMovie" : $ctrlMovie->addMovie(); break;
         case "editMovie" : $ctrlMovie->editMovie($id); break;
         case "addCasting" : $ctrlMovie->addCasting($id); break;
+        case "delCasting" : $ctrlMovie->delCasting($id); break;
         case "delMovie" : $ctrlMovie->delMovie($id); break;
 
         case "personsDetails" : $ctrlPerson->personsDetails($id); break;
         case "addPerson" : $ctrlPerson->addPerson($id); break;
         case "editPerson" : $ctrlPerson->editPerson($id); break;
-        case "delPerson" : $ctrlPerson->delPerson($id); break;
+        case "delActor" : $ctrlPerson->delActor($id); break;
+        case "delDirector" : $ctrlPerson->delDirector($id); break;
 
         case "listActors" : $ctrlActor->listActors(); break; // Affichage de la liste des acteurs
         case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur avec l'ID spécifié
@@ -61,6 +65,8 @@ if(isset($_GET["action"])){
         case "addTheme" : $ctrlTheme->addTheme(); break;
         case "editTheme" : $ctrlTheme->editTheme($id); break;
         case "delTheme" : $ctrlTheme->delTheme($id); break;
+
+        case "listSubmissions" : $ctrlSubmission->listSubmissions(); break;
 
     }
 } else {

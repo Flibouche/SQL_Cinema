@@ -53,6 +53,10 @@
                     <li class="nav__item">
                         <a href="index.php?action=listThemes">Themes</a>
                     </li>
+
+                    <li class="nav__item">
+                        <a href="index.php?action=listSubmissions">Submission</a>
+                    </li>
                 </ul>
 
                 <!-- Close button -->

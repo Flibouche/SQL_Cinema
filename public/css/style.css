@@ -77,7 +77,8 @@ textarea {
 /*========================== REUSABLE CSS CLASSES ======================*/
 
 .container {
-    max-width: 954px;
+    max-width: 1200px;
+    /* max-width: 954px; */
     margin-inline: 1.5rem;
     /* margin-inline: 15.188rem; */
 }

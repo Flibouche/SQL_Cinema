@@ -55,7 +55,7 @@ $movieDetails = $requestMovie->fetch();
         </label>
     </div>
 
-    
+
     <div>
         <label for="">
             Director :
@@ -64,7 +64,7 @@ $movieDetails = $requestMovie->fetch();
                 foreach ($requestDirectors->fetchAll() as $director) {
                     $selected = ($director["idDirector"] == $movieDetails["idDirector"]) ? "selected" : "";
                 ?>
-                    <option value="<?= $director["idDirector"] ?>" <?= $selected ?> ><?= $director["firstname"] . " " . $director["surname"] ?></option>
+                    <option value="<?= $director["idDirector"] ?>" <?= $selected ?>><?= $director["firstname"] . " " . $director["surname"] ?></option>
                 <?php
                 }
                 ?>
@@ -74,13 +74,13 @@ $movieDetails = $requestMovie->fetch();
 
     <div>
         <label for="">
-            Theme(s) :
+            Theme(s) : <br>
             <?php
             foreach ($requestThemes->fetchAll() as $theme) {
                 $check = (in_array($theme["idTheme"], $themesMovie)) ? "checked" : "";
             ?>
                 <input type="checkbox" id="" name="theme[]" value="<?= $theme['idTheme'] ?>" <?= $check ?> />
-                <p value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></p>
+                <label for="" value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></label>
             <?php
             }
             ?>

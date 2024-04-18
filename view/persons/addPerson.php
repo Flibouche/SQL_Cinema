@@ -3,8 +3,7 @@
 
 <h1>Add a person</h1>
 
-<form action="" method="post">
-
+<form action="" method="post" enctype="multipart/form-data">
     <div>
         <label class="">
             Person's firstname :
@@ -45,7 +44,7 @@
 
     <div>
         <label for="">
-            Picture upload :
+            Upload a picture :
             <input type="file" name="file">
         </label>
     </div>

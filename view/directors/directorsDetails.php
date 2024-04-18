@@ -20,6 +20,14 @@ foreach ($directorsFilmography as $directorFilmography) {
 <br>
 <a href="index.php?action=editPerson&id=<?= $directorDetails['idPerson']?>">Edit this person</a>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="index.php?action=delDirector&id=<?= $directorDetails['idDirector'] ?>">Delete this director</a>
+
 <?php
 
 $title = "Director's details";

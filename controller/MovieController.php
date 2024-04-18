@@ -254,10 +254,31 @@ class MovieController
 
             $requestAddCasting->execute(["idMovie" => $movie, "idActor" => $actor, "idRole" => $role]);
 
-            header("Location:index.php?action=addCasting&id=$id");
+            header("Location:index.php?action=moviesDetails&id=$id");
         }
 
         require "view/movies/addCasting.php";
+    }
+
+    public function delCasting($id) {
+
+        $pdo = Connect::toLogIn();
+
+        $requestMovie = $pdo->prepare("
+        SELECT play.idMovie
+        FROM play
+        WHERE idActor = :id
+        ");
+        $requestMovie->execute(["id" => $id]);
+        $idMovie = $requestMovie->fetchColumn();
+
+        $requestDelCasting = $pdo->prepare("
+            DELETE FROM play
+            WHERE play.idActor = :id
+        ");
+        $requestDelCasting->execute(["id" => $id]);
+
+        header("Location:index.php?action=moviesDetails&id=$idMovie");
     }
 
     public function delMovie($id)
