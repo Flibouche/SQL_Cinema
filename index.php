@@ -10,6 +10,7 @@ use Controller\RoleController;
 use Controller\ThemeController;
 use Controller\SubmissionController;
 
+
 // Autoloading des classes pour charger automatiquement les fichiers de classe
 spl_autoload_register(function ($class_name) {
     include $class_name . '.php';

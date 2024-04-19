@@ -2,7 +2,7 @@
 $movies = $requestMovies->fetchAll();
 ?>
 
-<h1>Movies's List</h1>
+<h1>Movies' List</h1>
 
 <p>There's <?= $requestMovies->rowCount() ?> movies</p>
 
@@ -20,7 +20,7 @@ foreach($movies as $movie) {
 
 <?php
 
-$title = "Movies's List";
-$secondary_title = "Movies's List";
+$title = "Movies' List";
+$secondary_title = "Movies' List";
 $content = ob_get_clean();
 require "view/template.php";

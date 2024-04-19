@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Connect; // Importation de la classe Connect depuis le namespace Model
+use Model\Service;
 
 class ActorController
 {
@@ -27,20 +28,25 @@ class ActorController
     // Méthode pour afficher les détails d'un acteur
     public function actorsDetails($id)
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-        $pdo = Connect::toLogIn();
 
-        // Préparation et exécution de la requête SQL pour récupérer les détails d'un acteur spécifique
-        $requestActorsDetails = $pdo->prepare("
+        if (!Service::exists("actor", $id)) {
+            header("Location:index.php?action=listActors");
+            exit;
+        } else {
+            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+            $pdo = Connect::toLogIn();
+
+            // Préparation et exécution de la requête SQL pour récupérer les détails d'un acteur spécifique
+            $requestActorsDetails = $pdo->prepare("
             SELECT person.idPerson, actor.idActor, person.firstname, person.surname, person.sex, person.birthdate, person.picture
             FROM actor
             INNER JOIN person ON actor.idPerson = person.idPerson
             WHERE actor.idActor = :id
         ");
-        $requestActorsDetails->execute(["id" => $id]);
-        
-        // Préparation et exécution de la requête SQL pour récupérer la filmographie d'un acteur spécifique
-        $requestActorsFilmography = $pdo->prepare("
+            $requestActorsDetails->execute(["id" => $id]);
+
+            // Préparation et exécution de la requête SQL pour récupérer la filmographie d'un acteur spécifique
+            $requestActorsFilmography = $pdo->prepare("
             SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
             FROM play
             INNER JOIN movie ON play.idMovie = movie.idMovie
@@ -50,9 +56,10 @@ class ActorController
             WHERE actor.idActor = :id
             ORDER BY releaseYear DESC
         ");
-        $requestActorsFilmography->execute(["id" => $id]);
+            $requestActorsFilmography->execute(["id" => $id]);
 
-        // Inclusion du fichier de vue pour afficher les détails de l'acteur ainsi que sa filmographie
-        require "view/actors/actorsDetails.php";
+            // Inclusion du fichier de vue pour afficher les détails de l'acteur ainsi que sa filmographie
+            require "view/actors/actorsDetails.php";
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Connect; // Importation de la classe Connect depuis le namespace Model
+use Model\Service;
 
 class ThemeController
 {
@@ -26,29 +27,36 @@ class ThemeController
     // Méthode pour afficher les détails d'un thème
     public function themesDetails(int $id): void
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-        $pdo = Connect::toLogIn();
 
-        // Exécution de la requête SQL pour récupérer les détails d'un thème spécifique
-        $requestThemesDetails = $pdo->prepare("
+        if (!Service::exists("theme", $id)) {
+            header("Location:index.php?action=listThemes");
+            exit;
+        } else {
+
+            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+            $pdo = Connect::toLogIn();
+
+            // Exécution de la requête SQL pour récupérer les détails d'un thème spécifique
+            $requestThemesDetails = $pdo->prepare("
             SELECT theme.idTheme, theme.typeName, movie.idMovie, movie.title
             FROM movie_theme
             INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
             INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
             WHERE theme.idTheme = :id
         ");
-        $requestThemesDetails->execute(["id" => $id]);
+            $requestThemesDetails->execute(["id" => $id]);
 
-        // Exécution de la requête SQL pour récupérer l'ID du thème spécifique
-        $requestThemeID = $pdo->prepare("
+            // Exécution de la requête SQL pour récupérer l'ID du thème spécifique
+            $requestThemeID = $pdo->prepare("
             SELECT theme.idTheme
             FROM theme
             WHERE theme.idTheme = :id
         ");
-        $requestThemeID->execute(["id" => $id]);
+            $requestThemeID->execute(["id" => $id]);
 
-        // Inclusion du fichier de vue pour afficher les détails du thème
-        require "view/themes/themesDetails.php";
+            // Inclusion du fichier de vue pour afficher les détails du thème
+            require "view/themes/themesDetails.php";
+        }
     }
 
     // Méthode pour ajouter un nouveau thème
@@ -79,35 +87,42 @@ class ThemeController
     // Méthode pour modifier un thème existant
     public function editTheme($id): void
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-        $pdo = Connect::toLogIn();
 
-        // Exécution de la requête SQL pour récupérer les informations du thème à modifier
-        $requestThemeID = $pdo->prepare("
+        if (!Service::exists("theme", $id)) {
+            header("Location:index.php?action=listThemes");
+            exit;
+        } else {
+
+            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+            $pdo = Connect::toLogIn();
+
+            // Exécution de la requête SQL pour récupérer les informations du thème à modifier
+            $requestThemeID = $pdo->prepare("
             SELECT theme.idTheme, theme.typeName
             FROM theme
             WHERE idTheme = :id
         ");
-        $requestThemeID->execute(["id" => $id]);
+            $requestThemeID->execute(["id" => $id]);
 
-        if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
-            // Récupération et filtrage des données du formulaire
-            $newTypeName = filter_input(INPUT_POST, "typeName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
+                // Récupération et filtrage des données du formulaire
+                $newTypeName = filter_input(INPUT_POST, "typeName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            // Exécution de la requête SQL pour modifier le nom du thème dans la base de données
-            $requestEditTheme = $pdo->prepare("
+                // Exécution de la requête SQL pour modifier le nom du thème dans la base de données
+                $requestEditTheme = $pdo->prepare("
                 UPDATE theme
                 SET typeName = :typeName
                 WHERE idTheme = :id
             ");
-            $requestEditTheme->execute(["typeName" => $newTypeName, "id" => $id]);
+                $requestEditTheme->execute(["typeName" => $newTypeName, "id" => $id]);
 
-            // Redirection vers la page 'index.php?action=listThemes' après la modification du thème
-            header("Location:index.php?action=listThemes");
+                // Redirection vers la page 'index.php?action=listThemes' après la modification du thème
+                header("Location:index.php?action=listThemes");
+            }
+
+            // Inclusion du fichier de vue pour afficher le formulaire de modification de thème
+            require "view/themes/editTheme.php";
         }
-
-        // Inclusion du fichier de vue pour afficher le formulaire de modification de thème
-        require "view/themes/editTheme.php";
     }
 
     // Méthode pour supprimer un thème

@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Connect;
+use Model\Service;
 
 class PersonController
 {
@@ -70,7 +71,7 @@ class PersonController
 
                 // Tableau des extensions qu'on autorise
                 $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
-                $maxSize = 100000;
+                $maxSize = 1000000;
 
                 if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
 
@@ -80,13 +81,13 @@ class PersonController
                     move_uploaded_file($tmpName, "./public/img/persons/" . $file);
 
                     // Conversion en webp
-
-                    $pictureData = file_get_contents("./public/img/persons/" . $file);
-
-                    $pictureSource = imagecreatefromstring($pictureData);
-
-                    imagewebp($pictureSource, $pictureData);
-
+                    // Création de mon image en doublon
+                    $pictureSource = imagecreatefromstring(file_get_contents("./public/img/persons/" . $file));
+                    // Récupération du chemin de l'image
+                    $webpPath = "./public/img/persons/" . $uniqueName . ".webp";
+                    // Conversion en format webp
+                    imagewebp($pictureSource, $webpPath);
+                    // Suppression de l'ancienne image
                     unlink("./public/img/persons/" . $file);
 
                 } else {
@@ -94,12 +95,15 @@ class PersonController
                 }
             }
 
+            $picture = isset($webpPath) ? $webpPath : "./public/img/persons/default.webp";
+
             $requestAddPerson = $pdo->prepare("
                         INSERT INTO person (firstname, surname, sex, birthdate, picture)
                         VALUES (:firstname, :surname, :sex, :birthdate, :picture)
                         ");
 
-            $requestAddPerson->execute(["firstname" => $firstname, "surname" => $surname, "sex" => $sex, "birthdate" => $birthdate, "picture" => "public/img/persons/" . $file]);
+            // $webpPath doit être ajouté dans l'execute.
+            $requestAddPerson->execute(["firstname" => $firstname, "surname" => $surname, "sex" => $sex, "birthdate" => $birthdate, "picture" => $picture]);
 
             $personId = $pdo->lastInsertId();
 
@@ -187,6 +191,19 @@ class PersonController
                     }
 
                     move_uploaded_file($tmpName, "./public/img/persons/" . $file);
+
+                    // Conversion en webp
+                    // Création de mon image en doublon
+                    $pictureSource = imagecreatefromstring(file_get_contents("./public/img/persons/" . $file));
+                    // Récupération du chemin de l'image
+                    $webpPath = "./public/img/persons/" . $uniqueName . ".webp";
+                    // Conversion en format webp
+                    imagewebp($pictureSource, $webpPath);
+                    // Suppression de l'ancienne image
+                    unlink("./public/img/persons/" . $file);
+
+                    
+
                     $requestNewPicture = $pdo->prepare("
                     UPDATE person
                     SET picture = :picture
@@ -194,7 +211,7 @@ class PersonController
                     ");
 
                     $requestNewPicture->execute([
-                        "picture" => "./public/img/persons/" . $file,
+                        "picture" => $webpPath,
                         "id" => $id
                     ]);
                 } else {

@@ -15,7 +15,7 @@ foreach ($requestMovieThemes->fetchAll() as $themes) {
 foreach ($moviesCasting as $movieCasting) {
 ?>
     <a href="index.php?action=actorsDetails&id=<?= $movieCasting["idActor"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a> as <?= $movieCasting["roleName"] ?>
-    <a href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>"><i class="fa-solid fa-xmark"></i></a><br>
+    <a class="delBtn" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>"><i class="fa-solid fa-xmark"></i></a><br>
 <?php
 }
 ?>
@@ -39,7 +39,14 @@ foreach ($moviesCasting as $movieCasting) {
 <br>
 <br>
 <br>
-<a href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Delete this movie</a>
+<a onclick="checker()" href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Delete this movie</a>
+
+<script>function checker() {
+    var result = confirm('Are you sure ?');
+    if (result == false) {
+        event.preventDefault();
+    }
+}</script>
 
 <?php
 

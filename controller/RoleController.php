@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Connect; // Importation de la classe Connect depuis le namespace Model
+use Model\Service;
 
 class RoleController
 {
@@ -26,11 +27,17 @@ class RoleController
     // Méthode pour afficher les détails d'un rôle
     public function rolesDetails($id)
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-        $pdo = Connect::toLogIn();
 
-        // Exécution de la requête SQL pour récupérer les détails d'un rôle spécifique
-        $requestRolesDetails = $pdo->prepare("
+        if (!Service::exists("role", $id)) {
+            header("Location:index.php?action=listRoles");
+            exit;
+        } else {
+
+            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+            $pdo = Connect::toLogIn();
+
+            // Exécution de la requête SQL pour récupérer les détails d'un rôle spécifique
+            $requestRolesDetails = $pdo->prepare("
             SELECT role.idRole, actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
             FROM play
             INNER JOIN movie ON play.idMovie = movie.idMovie
@@ -39,18 +46,19 @@ class RoleController
             INNER JOIN person ON actor.idPerson = person.idPerson
             WHERE role.idRole = :id
         ");
-        $requestRolesDetails->execute(["id" => $id]);
+            $requestRolesDetails->execute(["id" => $id]);
 
-        // Exécution de la requête SQL pour récupérer l'ID du rôle spécifique
-        $requestRoleID = $pdo->prepare("
+            // Exécution de la requête SQL pour récupérer l'ID du rôle spécifique
+            $requestRoleID = $pdo->prepare("
             SELECT role.idRole
             FROM role
             WHERE role.idRole = :id
         ");
-        $requestRoleID->execute(["id" => $id]);
+            $requestRoleID->execute(["id" => $id]);
 
-        // Inclusion du fichier de vue pour afficher les détails du rôle
-        require "view/roles/rolesDetails.php";
+            // Inclusion du fichier de vue pour afficher les détails du rôle
+            require "view/roles/rolesDetails.php";
+        }
     }
 
     // Méthode pour ajouter un nouveau rôle
@@ -81,35 +89,42 @@ class RoleController
     // Méthode pour modifier un rôle existant
     public function editRole($id)
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-        $pdo = Connect::toLogIn();
 
-        // Exécution de la requête SQL pour récupérer les informations du rôle à modifier
-        $requestRoleID = $pdo->prepare("
+        if (!Service::exists("role", $id)) {
+            header("Location:index.php?action=listRoles");
+            exit;
+        } else {
+
+            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+            $pdo = Connect::toLogIn();
+
+            // Exécution de la requête SQL pour récupérer les informations du rôle à modifier
+            $requestRoleID = $pdo->prepare("
             SELECT role.idRole, role.roleName
             FROM role
             WHERE idRole = :id
         ");
-        $requestRoleID->execute(["id" => $id]);
+            $requestRoleID->execute(["id" => $id]);
 
-        if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
-            // Récupération et filtrage des données du formulaire
-            $newRoleName = filter_input(INPUT_POST, "roleName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
+                // Récupération et filtrage des données du formulaire
+                $newRoleName = filter_input(INPUT_POST, "roleName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            // Exécution de la requête SQL pour modifier le nom du rôle dans la base de données
-            $requestEditRole = $pdo->prepare("
+                // Exécution de la requête SQL pour modifier le nom du rôle dans la base de données
+                $requestEditRole = $pdo->prepare("
                 UPDATE role
                 SET roleName = :roleName
                 WHERE idRole = :id
             ");
-            $requestEditRole->execute(["roleName" => $newRoleName, "id" => $id]);
+                $requestEditRole->execute(["roleName" => $newRoleName, "id" => $id]);
 
-            // Redirection vers la page 'index.php?action=listRoles' après la modification du rôle
-            header("Location:index.php?action=listRoles");
+                // Redirection vers la page 'index.php?action=listRoles' après la modification du rôle
+                header("Location:index.php?action=listRoles");
+            }
+
+            // Inclusion du fichier de vue pour afficher le formulaire de modification de rôle
+            require "view/roles/editRole.php";
         }
-
-        // Inclusion du fichier de vue pour afficher le formulaire de modification de rôle
-        require "view/roles/editRole.php";
     }
 
     // Méthode pour supprimer un rôle
