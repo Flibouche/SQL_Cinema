@@ -22,14 +22,14 @@
     <div>
         <label for="">
             Duration (in minutes):
-            <input type="text" name="duration">
+            <input type="number" name="duration">
         </label>
     </div>
 
     <div>
         <label for="">
             Note :
-            <input type="text" name="note">
+            <input type="number" step="0.1" name="note">
         </label>
     </div>
 
