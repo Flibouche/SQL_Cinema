@@ -20,7 +20,7 @@
 <body>
     <!--========================== HEADER ===========================-->
     <header class="header" id="header">
-
+        
         <!-- <img class="background__header" src="public/img/header.svg" alt="Background header"> -->
 
         <nav class="nav container">

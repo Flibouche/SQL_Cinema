@@ -4,7 +4,7 @@ $personDetails = $requestPerson->fetch();
 
 <h1>Edit this person</h1>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 
     <div>
         <label class="">
@@ -39,15 +39,9 @@ $personDetails = $requestPerson->fetch();
 
     <div>
         <label for="">
-            Picture text :
-            <input type="text" name="picture" value="<?= $personDetails['picture'] ?>">
-        </label>
-    </div>
-
-    <div>
-        <label for="">
             Picture upload :
             <input type="file" name="file">
+            <img src="<?= $personDetails['picture'] ?>" alt="Person's picture">
         </label>
     </div>
 

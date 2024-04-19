@@ -109,9 +109,6 @@ textarea {
 
 .background__header {
     position: absolute;
-    width: 100%;
-    object-fit: fill;
-    top: -75px;
 }
 
 .nav {

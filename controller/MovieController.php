@@ -190,9 +190,59 @@ class MovieController
             $newNote = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $newSynopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $newDirector = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_NUMBER_INT);
+
+            if (isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+                $type = $_FILES['file']['type'];
+
+                $tabExtension = explode('.', $name);
+                $extension = strtolower(end($tabExtension));
+
+                // Tableau des extensions qu'on autorise
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $maxSize = 1000000;
+
+                if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
+
+                    $uniqueName = uniqid('', true);
+                    $file = $uniqueName . '.' . $extension;
+
+                    $requestPoster = $pdo->prepare("
+                    SELECT movie.poster
+                    FROM movie
+                    WHERE movie.idMovie = :id
+                    ");
+                    $requestPoster->execute(["id" => $id]);
+
+                    // Permet de récupérer l'image du poster du film et de la supprimer en passant par la variable et le tableau "poster", autrement on pourrait faire une variable pour récupérer directement le tableau
+                    $linkPoster = $requestPoster->fetch();
+                    
+                    if ($linkPoster) {
+                        unlink($linkPoster['poster']);
+                    }
+
+                    move_uploaded_file($tmpName, "./public/img/movies/" . $file);
+                    $requestNewPoster = $pdo->prepare("
+                    UPDATE movie
+                    SET poster = :poster
+                    WHERE idMovie = :id
+                    ");
+
+                    $requestNewPoster->execute([
+                        "poster" => "public/img/movies/" . $file,
+                        "id" => $id
+                    ]);
+                } else {
+                    echo "Wrong extension or file size too large or error !";
+                }
+            }
+
             $requestEditMovie = $pdo->prepare("
             UPDATE movie
-            SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis,  idDirector = :idDirector
+            SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis, idDirector = :idDirector
             WHERE idMovie = :id
             ");
             $requestEditMovie->execute([

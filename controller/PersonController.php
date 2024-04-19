@@ -78,6 +78,17 @@ class PersonController
                     $file = $uniqueName . '.' . $extension;
 
                     move_uploaded_file($tmpName, "./public/img/persons/" . $file);
+
+                    // Conversion en webp
+
+                    $pictureData = file_get_contents("./public/img/persons/" . $file);
+
+                    $pictureSource = imagecreatefromstring($pictureData);
+
+                    imagewebp($pictureSource, $pictureData);
+
+                    unlink("./public/img/persons/" . $file);
+
                 } else {
                     echo "Wrong extension or file size too large or error !";
                 }
@@ -142,7 +153,6 @@ class PersonController
             $newSurname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $newSex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $newBirthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // $newPicture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if (isset($_FILES['file'])) {
                 $tmpName = $_FILES['file']['tmp_name'];
@@ -156,27 +166,48 @@ class PersonController
 
                 // Tableau des extensions qu'on autorise
                 $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
-                $maxSize = 100000;
+                $maxSize = 100000000;
 
                 if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
 
                     $uniqueName = uniqid('', true);
                     $file = $uniqueName . '.' . $extension;
 
+                    $requestPicture = $pdo->prepare("
+                    SELECT person.picture
+                    FROM person
+                    WHERE person.idPerson = :id
+                    ");
+                    $requestPicture->execute(["id" => $id]);
+
+                    $linkPicture = $requestPicture->fetch();
+
+                    if ($linkPicture) {
+                        unlink($linkPicture['picture']);
+                    }
+
                     move_uploaded_file($tmpName, "./public/img/persons/" . $file);
+                    $requestNewPicture = $pdo->prepare("
+                    UPDATE person
+                    SET picture = :picture
+                    WHERE idPerson = :id
+                    ");
+
+                    $requestNewPicture->execute([
+                        "picture" => "./public/img/persons/" . $file,
+                        "id" => $id
+                    ]);
                 } else {
                     echo "Wrong extension or file size too large or error !";
                 }
             }
 
-            // unlink
-
             $requestEditPerson = $pdo->prepare("
             UPDATE person
-            SET firstname = :firstname, surname = :surname, sex = :sex, birthdate = :birthdate, picture = :picture
+            SET firstname = :firstname, surname = :surname, sex = :sex, birthdate = :birthdate
             WHERE idPerson = :id
             ");
-            $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "./public/img/persons/" => $file, "id" => $id]);
+            $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "id" => $id]);
 
             header("Location:index.php?action=editPerson&id=$id");
         }

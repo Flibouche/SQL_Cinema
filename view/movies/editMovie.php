@@ -4,7 +4,7 @@ $movieDetails = $requestMovie->fetch();
 
 <h1>Edit this movie</h1>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 
     <div>
         <label for="">
@@ -36,15 +36,9 @@ $movieDetails = $requestMovie->fetch();
 
     <div>
         <label for="">
-            Poster text :
-            <input type="text" name="poster" value="<?= $movieDetails['poster'] ?>">
-        </label>
-    </div>
-
-    <div>
-        <label for="">
             Poster upload :
             <input type="file" name="file">
+            <img src="<?= $movieDetails['poster'] ?>">
         </label>
     </div>
 
@@ -54,7 +48,6 @@ $movieDetails = $requestMovie->fetch();
             <textarea name="synopsis" rows="4" cols="50"><?= $movieDetails['synopsis'] ?></textarea>
         </label>
     </div>
-
 
     <div>
         <label for="">
