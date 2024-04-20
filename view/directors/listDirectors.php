@@ -9,7 +9,7 @@ $directors = $requestDirectors->fetchAll();
 <?php
 foreach ($directors as $director) {
 ?>
-    <a href="index.php?action=directorsDetails&id=<?= $director["idDirector"] ?>"><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></a>
+    <a href="index.php?action=personsDetails&id=<?= $director["idPerson"] ?>"><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></a>
 <?php
 }
 

@@ -9,7 +9,7 @@ $actors = $requestActors->fetchAll();
 <?php
 foreach ($actors as $actor) {
 ?>
-    <a href="index.php?action=actorsDetails&id=<?= $actor["idActor"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] . "<br>" ?></a>
+    <a href="index.php?action=personsDetails&id=<?= $actor["idPerson"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] . "<br>" ?></a>
 <?php
 }
 

@@ -8,43 +8,84 @@ use Model\Service;
 class PersonController
 {
 
-    public function personsDetails($id): void
+    // Méthode pour afficher la liste des acteurs
+    public function listActors()
     {
-
+        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
         $pdo = Connect::toLogIn();
 
-        $requestPersonsDetails = $pdo->prepare("
+        // Préparation et exécution de la requête SQL pour récupérer les informations sur les acteurs
+        $requestActors = $pdo->query("
+                SELECT person.idPerson, actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
+                FROM actor
+                INNER JOIN person ON actor.idPerson = person.idPerson
+                ORDER BY surname
+            ");
+
+        // Inclusion du fichier de vue pour afficher la liste des acteurs
+        require "view/actors/listActors.php";
+    }
+
+    // Méthode pour afficher la liste des réalisateurs
+    public function listDirectors()
+    {
+        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+        $pdo = Connect::toLogIn();
+
+        // Préparation et exécution de la requête SQL pour récupérer les informations sur les réalisateurs
+        $requestDirectors = $pdo->query("
+            SELECT person.idPerson, director.idDirector, person.firstname, person.surname, person.sex, person.birthdate
+            FROM director
+            INNER JOIN person ON director.idPerson = person.idPerson
+            ORDER BY surname
+        ");
+
+        // Inclusion du fichier de vue pour afficher la liste des réalisateurs
+        require "view/directors/listDirectors.php";
+    }
+
+    public function personsDetails($id): void
+    {
+        if (!Service::exists("person", $id)) {
+            header("Location:index.php");
+            exit;
+        } else {
+
+            $pdo = Connect::toLogIn();
+
+            $requestPersonsDetails = $pdo->prepare("
         SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture, actor.idActor, director.idDirector
         FROM person
         LEFT JOIN actor ON person.idPerson = actor.idPerson
         LEFT JOIN director ON person.idPerson = director.idPerson
         WHERE person.idPerson = :id
         ");
-        $requestPersonsDetails->execute(["id" => $id]);
+            $requestPersonsDetails->execute(["id" => $id]);
 
-        $requestActorsFilmography = $pdo->prepare("
+            $requestActorsFilmography = $pdo->prepare("
         SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
         FROM play
         INNER JOIN movie ON play.idMovie = movie.idMovie
         INNER JOIN role ON play.idRole = role.idRole
         INNER JOIN actor ON play.idActor = actor.idActor
         INNER JOIN person ON actor.idPerson = person.idPerson
-        WHERE actor.idActor = :id
+        WHERE person.idPerson = :id
         ORDER BY releaseYear DESC
         ");
-        $requestActorsFilmography->execute(["id" => $id]);
+            $requestActorsFilmography->execute(["id" => $id]);
 
-        $requestDirectorsFilmography = $pdo->prepare("
+            $requestDirectorsFilmography = $pdo->prepare("
         SELECT director.idDirector, movie.idMovie, person.firstname, person.surname, movie.title, movie.releaseYear
         FROM director
         INNER JOIN person ON director.idPerson = person.idPerson
         INNER JOIN movie ON director.idDirector = movie.idDirector
-        WHERE director.idDirector = :id
+        WHERE person.idPerson = :id
         ORDER BY movie.releaseYear DESC
         ");
-        $requestDirectorsFilmography->execute(["id" => $id]);
+            $requestDirectorsFilmography->execute(["id" => $id]);
 
-        require "view/persons/personsDetails.php";
+            require "view/persons/personsDetails.php";
+        }
     }
 
     public function addPerson(): void
@@ -89,7 +130,6 @@ class PersonController
                     imagewebp($pictureSource, $webpPath);
                     // Suppression de l'ancienne image
                     unlink("./public/img/persons/" . $file);
-
                 } else {
                     echo "Wrong extension or file size too large or error !";
                 }
@@ -143,93 +183,99 @@ class PersonController
     public function editPerson($id)
     {
 
-        $pdo = Connect::toLogIn();
-        $requestPerson = $pdo->prepare("
+        if (!Service::exists("person", $id)) {
+            header("Location:index.php");
+            exit;
+        } else {
+
+            $pdo = Connect::toLogIn();
+            $requestPerson = $pdo->prepare("
         SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture
         FROM person
         WHERE person.idPerson = :id        
         ");
-        $requestPerson->execute(["id" => $id]);
+            $requestPerson->execute(["id" => $id]);
 
-        if (isset($_POST['submit'])) {
+            if (isset($_POST['submit'])) {
 
-            $newFirstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $newSurname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $newSex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $newBirthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $newFirstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $newSurname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $newSex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $newBirthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if (isset($_FILES['file'])) {
-                $tmpName = $_FILES['file']['tmp_name'];
-                $name = $_FILES['file']['name'];
-                $size = $_FILES['file']['size'];
-                $error = $_FILES['file']['error'];
-                $type = $_FILES['file']['type'];
+                if (isset($_FILES['file'])) {
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $name = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
+                    $error = $_FILES['file']['error'];
+                    $type = $_FILES['file']['type'];
 
-                $tabExtension = explode('.', $name);
-                $extension = strtolower(end($tabExtension));
+                    $tabExtension = explode('.', $name);
+                    $extension = strtolower(end($tabExtension));
 
-                // Tableau des extensions qu'on autorise
-                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
-                $maxSize = 100000000;
+                    // Tableau des extensions qu'on autorise
+                    $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                    $maxSize = 100000000;
 
-                if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
+                    if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
 
-                    $uniqueName = uniqid('', true);
-                    $file = $uniqueName . '.' . $extension;
+                        $uniqueName = uniqid('', true);
+                        $file = $uniqueName . '.' . $extension;
 
-                    $requestPicture = $pdo->prepare("
+                        $requestPicture = $pdo->prepare("
                     SELECT person.picture
                     FROM person
                     WHERE person.idPerson = :id
                     ");
-                    $requestPicture->execute(["id" => $id]);
+                        $requestPicture->execute(["id" => $id]);
 
-                    $linkPicture = $requestPicture->fetch();
+                        $linkPicture = $requestPicture->fetch();
 
-                    if ($linkPicture) {
-                        unlink($linkPicture['picture']);
-                    }
+                        if ($linkPicture) {
+                            unlink($linkPicture['picture']);
+                        }
 
-                    move_uploaded_file($tmpName, "./public/img/persons/" . $file);
+                        move_uploaded_file($tmpName, "./public/img/persons/" . $file);
 
-                    // Conversion en webp
-                    // Création de mon image en doublon
-                    $pictureSource = imagecreatefromstring(file_get_contents("./public/img/persons/" . $file));
-                    // Récupération du chemin de l'image
-                    $webpPath = "./public/img/persons/" . $uniqueName . ".webp";
-                    // Conversion en format webp
-                    imagewebp($pictureSource, $webpPath);
-                    // Suppression de l'ancienne image
-                    unlink("./public/img/persons/" . $file);
+                        // Conversion en webp
+                        // Création de mon image en doublon
+                        $pictureSource = imagecreatefromstring(file_get_contents("./public/img/persons/" . $file));
+                        // Récupération du chemin de l'image
+                        $webpPath = "./public/img/persons/" . $uniqueName . ".webp";
+                        // Conversion en format webp
+                        imagewebp($pictureSource, $webpPath);
+                        // Suppression de l'ancienne image
+                        unlink("./public/img/persons/" . $file);
 
-                    
 
-                    $requestNewPicture = $pdo->prepare("
+
+                        $requestNewPicture = $pdo->prepare("
                     UPDATE person
                     SET picture = :picture
                     WHERE idPerson = :id
                     ");
 
-                    $requestNewPicture->execute([
-                        "picture" => $webpPath,
-                        "id" => $id
-                    ]);
-                } else {
-                    echo "Wrong extension or file size too large or error !";
+                        $requestNewPicture->execute([
+                            "picture" => $webpPath,
+                            "id" => $id
+                        ]);
+                    } else {
+                        echo "Wrong extension or file size too large or error !";
+                    }
                 }
-            }
 
-            $requestEditPerson = $pdo->prepare("
+                $requestEditPerson = $pdo->prepare("
             UPDATE person
             SET firstname = :firstname, surname = :surname, sex = :sex, birthdate = :birthdate
             WHERE idPerson = :id
             ");
-            $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "id" => $id]);
+                $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "id" => $id]);
 
-            header("Location:index.php?action=editPerson&id=$id");
+                header("Location:index.php?action=editPerson&id=$id");
+            }
+
+            require "view/persons/editPerson.php";
         }
-
-        require "view/persons/editPerson.php";
     }
 
     public function delActor($id)

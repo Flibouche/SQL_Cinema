@@ -4,8 +4,6 @@
 use Controller\MainController;
 use Controller\MovieController;
 use Controller\PersonController;
-use Controller\ActorController;
-use Controller\DirectorController;
 use Controller\RoleController;
 use Controller\ThemeController;
 use Controller\SubmissionController;
@@ -20,8 +18,6 @@ spl_autoload_register(function ($class_name) {
 $ctrlMain = new MainController();
 $ctrlMovie = new MovieController();
 $ctrlPerson = new PersonController();
-$ctrlActor = new ActorController();
-$ctrlDirector = new DirectorController();
 $ctrlRole = new RoleController();
 $ctrlTheme = new ThemeController();
 $ctrlSubmission = new SubmissionController();
@@ -43,17 +39,13 @@ if(isset($_GET["action"])){
         case "delCasting" : $ctrlMovie->delCasting($id); break; // Suppression de casting d'un film
         case "delMovie" : $ctrlMovie->delMovie($id); break; // Suppression d'un film
 
+        case "listActors" : $ctrlPerson->listActors(); break; // Affichage de la liste des acteurs
+        case "listDirectors" : $ctrlPerson->listDirectors(); break; // Affichage de la liste des réalisateurs
         case "personsDetails" : $ctrlPerson->personsDetails($id); break; // Affichage des détails d'une personne
         case "addPerson" : $ctrlPerson->addPerson($id); break; // Ajout d'une personne
         case "editPerson" : $ctrlPerson->editPerson($id); break; // Modification d'une personne
         case "delActor" : $ctrlPerson->delActor($id); break; // Suppression d'un acteur
         case "delDirector" : $ctrlPerson->delDirector($id); break; // Suppression d'un réalisateur
-
-        case "listActors" : $ctrlActor->listActors(); break; // Affichage de la liste des acteurs
-        case "actorsDetails" : $ctrlActor->actorsDetails($id); break; // Affichage des détails d'un acteur
-
-        case "listDirectors" : $ctrlDirector->listDirectors(); break; // Affichage de la liste des réalisateurs
-        case "directorsDetails" : $ctrlDirector->directorsDetails($id); break; // Affichage des détails d'un réalisateur
 
         case "listRoles" : $ctrlRole->listRoles(); break; // Affichage de la liste des rôles
         case "rolesDetails" : $ctrlRole->rolesDetails($id); break; // Affichage des détails d'un rôle

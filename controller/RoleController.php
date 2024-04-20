@@ -38,7 +38,7 @@ class RoleController
 
             // Exécution de la requête SQL pour récupérer les détails d'un rôle spécifique
             $requestRolesDetails = $pdo->prepare("
-            SELECT role.idRole, actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
+            SELECT person.idPerson, role.idRole, actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
             FROM play
             INNER JOIN movie ON play.idMovie = movie.idMovie
             INNER JOIN role ON play.idRole = role.idRole

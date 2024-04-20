@@ -37,7 +37,7 @@ class MovieController
             $requestMoviesDetails->execute(["id" => $id]);
 
             $requestMoviesCasting = $pdo->prepare("
-            SELECT actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex
+            SELECT person.idPerson, actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex
             FROM play
             INNER JOIN movie ON play.idMovie = movie.idMovie
             INNER JOIN actor ON play.idActor = actor.idActor

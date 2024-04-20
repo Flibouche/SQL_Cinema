@@ -12,29 +12,63 @@ echo $person["firstname"] . " " . $person["surname"] . " " . $person["sex"] . " 
 
 
 if (!empty($person["idActor"])) {
+
     $actorFilmography = $requestActorsFilmography->fetchAll();
-    if (!empty($actorFilmography)) {
-        foreach ($actorFilmography as $filmography) {
+
+    if (empty($actorFilmography)) {
+        echo "No filmography found for this actor !";
+    } else {
 ?>
-            <a href="index.php?action=moviesDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a> as <?= $filmography["roleName"] . "<br>" ?>
+        <h3>Filmography as an actor:</h3>
         <?php
+        foreach ($actorFilmography as $filmography) {
+        ?>
+            <a href="index.php?action=moviesDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a> as <?= $filmography["roleName"] . "<br>" ?>
+    <?php
         }
     }
+    ?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="index.php?action=delActor&id=<?= $person['idActor'] ?>">Delete this actor</a>
+    <?php
 }
 
 if (!empty($person["idDirector"])) {
+
     $directorFilmography = $requestDirectorsFilmography->fetchAll();
-    foreach ($directorFilmography as $filmography) {
+
+    if (empty($directorFilmography)) {
+        echo "No filmography found for this director.";
+    } else {
+    ?>
+        <h3>Filmography as a director</h3>
+        <?php
+        foreach ($directorFilmography as $filmography) {
         ?>
-        <a href="index.php?action=moviesDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a><br>
-<?php
+            <a href="index.php?action=moviesDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a><br>
+    <?php
+        }
     }
+    ?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="index.php?action=delActor&id=<?= $person['idDirector'] ?>">Delete this director</a>
+<?php
 }
 
 ?>
 
-<!-- <br>
-<a href="index.php?action=editPerson&id=<?= $actorDetails['idPerson'] ?>">Edit this person</a> -->
+<br>
+<a href="index.php?action=editPerson&id=<?= $person['idPerson'] ?>">Edit this person</a>
 
 <?php
 
