@@ -79,8 +79,7 @@ textarea {
 /*========================== REUSABLE CSS CLASSES ======================*/
 
 .container {
-    max-width: 1200px;
-    /* max-width: 954px; */
+    max-width: 954px;
     margin-inline: 1.5rem;
     /* margin-inline: 15.188rem; */
 }
@@ -88,6 +87,10 @@ textarea {
 .grid {
     display: grid;
     gap: 1.5rem;
+}
+
+.section {
+    padding-block: 5rem 1rem;
 }
 
 .main {
@@ -154,14 +157,33 @@ textarea {
 
 /*========================== MAIN ======================*/
 
+.main__home {
+    text-align: center;
+}
+
+.main__title {
+    position: absolute;
+    font-family: var(--h2-font);
+    top: 50%;
+    left: 50%;
+}
+
+.main__gif {
+    position: relative;
+    width: 50vw;
+}
+
+
+
+
+
 .title-background__main {
     background-image: var(--gradient-bottom);
 }
 
-.actor__card,
-.director__card {
+.actors__container {
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-columns: repeat(3, 240px);
 }
 
 

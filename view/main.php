@@ -4,10 +4,12 @@
 <section class="main section" id="main">
     <div class="main__container container grid">
 
-        <h1>CineDune</h1>
-        <img src="public/img/mainPlanet.gif" alt="Logo of CineDune">
-        <h2>Welcome to CineDune</h2>
-        <p>Are you lost in this tumult of information when you just wanted to know the cast of the movie you just watched ?<br> No problem, CineDune gets straight to the point !<br> And as a bonus, you can contribute to the site yourself !</p>
+        <div class="main__home">
+            <img class="main__gif" src="public/img/mainPlanet.gif" alt="Logo of CineDune">
+            <h1 class="main__title">CineDune</h1>
+            <h2>Welcome to CineDune</h2>
+            <p>Are you lost in this tumult of information when you just wanted to know the cast of the movie you just watched ?<br> No problem, CineDune gets straight to the point !<br> And as a bonus, you can contribute to the site yourself !</p>
+        </div>
 
         <div class="swiper mySwiper container">
             <div class="title-background__main">
@@ -31,23 +33,28 @@
             <div class="swiper-pagination"></div>
         </div>
 
-        <div class="actors__main">
+        <section id="actors" class="actors section">
             <div class="title-background__main">
                 <h2>Actors</h2>
                 <hr />
             </div>
+            <div class="actors__container container grid">
 
-            <div class="actor__card">
                 <?php
                 foreach ($requestActorsMain->fetchAll() as $actor) {
                 ?>
-                    <img src="<?= $actor["picture"] ?>">
-                    <a href="index.php?action=actorsDetails&id=<?= $actor["idActor"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] . "<br>" ?></a>
-                <?php
-                }
-                ?>
+                    <div class="actor__card">
+                        <div class="actor__card-header">
+                            <img src="<?= $actor["picture"] ?>">
+                            <a href="index.php?action=actorsDetails&id=<?= $actor["idActor"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] . "<br>" ?></a>
+                        <?php
+                    }
+                        ?>
+                        </div>
+                    </div>
             </div>
-        </div>
+        </section>
+
 
         <div class="directors__main">
             <div class="title-background__main">
