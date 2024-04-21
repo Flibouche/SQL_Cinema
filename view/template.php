@@ -8,9 +8,6 @@
     <!-- ========================== FONT AWESOME =======================-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- ========================== SWIPER =======================-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <!-- ========================== CSS =======================-->
     <link rel="stylesheet" href="public/css/style.css" />
 
@@ -92,19 +89,17 @@
         </div>
     </footer>
 
-    <!--========================== SWIPER ==========================-->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--========================== JQUERY & MATERIALIZE ==========================-->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            freeMode: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
+        $(document).ready(function() {
+            $('.carousel').carousel({
+                indicators: true
+            });
         });
     </script>
+
     <!--========================== MAIN JS ==========================-->
     <script src="public/js/main.js"></script>
 

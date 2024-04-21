@@ -5,7 +5,7 @@
     <div class="main__background">
 
     </div>
-    
+
     <div class="main__container container">
 
         <div class="main__home">
@@ -14,6 +14,32 @@
             <h2>Welcome to CineDune</h2>
             <p>Are you lost in this tumult of information when you just wanted to know the cast of the movie you just watched ?<br> No problem, CineDune gets straight to the point !<br> And as a bonus, you can contribute to the site yourself !</p>
         </div>
+
+        <div class="carouse__container">
+            <div class="title-background__main">
+                <h2>Movies</h2>
+                <hr />
+            </div>
+            <div class="carousel-box">
+                <div class="carousel">
+
+                    <?php
+                    foreach ($requestMoviesMain->fetchAll() as $movie) {
+                    ?>
+                        <div class="carousel-item">
+                            <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
+                            <div>
+                                <p><?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?></p>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <div class="indicators" indicators></div>
+            </div>
+        </div>
+
 
         <div class="swiper mySwiper">
             <div class="title-background__main">
