@@ -2,16 +2,20 @@
 ?>
 
 <section class="main section" id="main">
-    <div class="main__container container grid">
+    <div class="main__background">
+
+    </div>
+    
+    <div class="main__container container">
 
         <div class="main__home">
             <img class="main__gif" src="public/img/mainPlanet.gif" alt="Logo of CineDune">
-            <h1 class="main__title">CineDune</h1>
+            <h1 class="main__title"><?= $secondary_title = "CineDune" ?></h1>
             <h2>Welcome to CineDune</h2>
             <p>Are you lost in this tumult of information when you just wanted to know the cast of the movie you just watched ?<br> No problem, CineDune gets straight to the point !<br> And as a bonus, you can contribute to the site yourself !</p>
         </div>
 
-        <div class="swiper mySwiper container">
+        <div class="swiper mySwiper">
             <div class="title-background__main">
                 <h2>Movies</h2>
                 <hr />
@@ -38,7 +42,7 @@
                 <h2>Actors</h2>
                 <hr />
             </div>
-            <div class="actors__container container grid">
+            <div class="actors__container container">
 
                 <?php
                 foreach ($requestActorsMain->fetchAll() as $actor) {
@@ -78,6 +82,5 @@
 <?php
 
 $title = "Main";
-$secondary_title = "Main";
 $content = ob_get_clean();
 require "template.php";

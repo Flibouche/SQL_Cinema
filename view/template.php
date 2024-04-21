@@ -20,12 +20,12 @@
 <body>
     <!--========================== HEADER ===========================-->
     <header class="header" id="header">
-        
+
         <!-- <img class="background__header" src="public/img/header.svg" alt="Background header"> -->
 
         <nav class="nav container">
             <a href="index.php" class="nav__logo">
-                <img src="public/img/bxs-planet.svg" alt="Logo CineDune">CineDune
+                <img src="public/img/bxs-planet.svg" alt="Logo CineDune">CinEDunE
             </a>
 
             <div class="nav__menu" id="nav-menu">
@@ -80,7 +80,6 @@
     <div id="wrapper">
         <main>
             <div id="content">
-                <h1>CineDune</h1>
                 <h2><?= $secondary_title ?></h2>
                 <?= $content ?>
             </div>
@@ -106,6 +105,8 @@
             },
         });
     </script>
+    <!--========================== MAIN JS ==========================-->
+    <script src="public/js/main.js"></script>
 
 </body>
 
