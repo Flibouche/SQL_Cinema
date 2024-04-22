@@ -22,7 +22,7 @@
 
         <nav class="nav container">
             <a href="index.php" class="nav__logo">
-                <img src="public/img/bxs-planet.svg" alt="Logo CineDune">CinEDunE
+                <img src="public/img/bxs-planet.svg" alt="Logo CineDune"><span>CinE<span class="nav__span">DunE</span></span>
             </a>
 
             <div class="nav__menu" id="nav-menu">
