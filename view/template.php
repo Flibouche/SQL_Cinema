@@ -51,9 +51,9 @@
                         <a href="index.php?action=listThemes">Themes</a>
                     </li>
 
-                    <li class="nav__item">
+                    <!-- <li class="nav__item">
                         <a href="index.php?action=listSubmissions">Submission</a>
-                    </li>
+                    </li> -->
                 </ul>
 
                 <!-- Close button -->
@@ -75,7 +75,7 @@
 
     <!--========================== MAIN ===========================-->
     <div id="wrapper">
-        <main>
+        <main class="main">
             <div id="content">
                 <h2><?= $secondary_title ?></h2>
                 <?= $content ?>
