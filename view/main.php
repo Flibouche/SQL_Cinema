@@ -118,7 +118,7 @@
                 ?>
                 </div>
         </div>
-        <button class="main__buttons"><a href="index.php?action=listDirectors">See All Directors</a></button>
+        <button class="main__buttons gradient__buttons"><a href="index.php?action=listDirectors">See All Directors</a></button>
     </div>
 </section>
 
