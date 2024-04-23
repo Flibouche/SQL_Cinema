@@ -11,37 +11,25 @@
   --yellow-color: #d9a849;
   --text-color: #ffffff;
   --gradient-top: linear-gradient(90deg, #d9a849 0%, #a2520d 100%);
-  --gradient-left: linear-gradient(
-    90deg,
-    rgba(162, 82, 13, 0.5) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  --gradient-right: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(162, 82, 13, 0.5) 100%
-  );
-  --gradient-bottom: linear-gradient(
-    359.4deg,
-    rgba(162, 82, 13, 0.5) 0.52%,
-    rgba(0, 0, 0, 0.5) 99.48%
-  );
-  --button-gradient: linear-gradient(
-    90deg,
-    rgba(217, 168, 73, 1) 0%,
-    rgba(162, 82, 13, 1) 100%
-  );
-  --hypertext-underline-gradient: linear-gradient(
-    0deg,
-    #d9a849 0%,
-    #a2520d 100%
-  );
-  --background-gradient: radial-gradient(
-    131.8% 131.8% at 50% -31.8%,
-    #d9a849 23%,
-    #471d07 72.5%,
-    #000000 100%
-  );
+  --gradient-left: linear-gradient(90deg,
+      rgba(162, 82, 13, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+  --gradient-right: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(162, 82, 13, 0.5) 100%);
+  --gradient-bottom: linear-gradient(359.4deg,
+      rgba(162, 82, 13, 0.5) 0.52%,
+      rgba(0, 0, 0, 0.5) 99.48%);
+  --button-gradient: linear-gradient(90deg,
+      rgba(217, 168, 73, 1) 0%,
+      rgba(162, 82, 13, 1) 100%);
+  --hypertext-underline-gradient: linear-gradient(0deg,
+      #d9a849 0%,
+      #a2520d 100%);
+  --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%,
+      #d9a849 23%,
+      #471d07 72.5%,
+      #000000 100%);
   --swiper-pagination-color: var(--yellow-color);
 
   /*========== Fonts & typography ==========*/
@@ -51,6 +39,7 @@
   --nav-text-font: "Champagne & Limousines";
   --step--2: clamp(1.3021rem, 0.273rem + 4.5735cqi, 3rem);
   --step--1: clamp(0.8681rem, 0.2922rem + 2.8793cqi, 2rem);
+  --step--3: clamp(1.0851rem, 0.8926rem + 0.8555cqi, 1.4rem);
   /* --h1-font-size: 1.5rem;
     --h2-font-size: 1.5rem; */
   /*========== Z Index ==========*/
@@ -130,14 +119,12 @@ textarea {
 
 .nav__logo img,
 .footer__logo img {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(126deg)
-    brightness(110%) contrast(101%);
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(126deg) brightness(110%) contrast(101%);
 }
 
 .nav__logo img:hover,
 .footer__logo img:hover {
-  filter: invert(67%) sepia(34%) saturate(706%) hue-rotate(1deg) brightness(97%)
-    contrast(90%);
+  filter: invert(67%) sepia(34%) saturate(706%) hue-rotate(1deg) brightness(97%) contrast(90%);
 }
 
 .main__separator hr {
@@ -344,6 +331,7 @@ textarea {
 .main__description {
   text-align: center;
   font-family: var(--nav-text-font);
+  font-size: var(--step--3);
 }
 
 .main__span {
@@ -370,6 +358,7 @@ textarea {
   position: relative;
   width: 100vw;
   height: 550px;
+  /* perspective: 100vmin; */
   perspective: 500px;
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
@@ -393,10 +382,9 @@ textarea {
 }
 
 .carousel.carousel-slider .carousel-item {
+  position: absolute;
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  position: absolute;
   top: 0;
   left: 0;
 }
@@ -420,7 +408,18 @@ textarea {
   left: 0;
 }
 
-.carousel .carousel-item > img {
+.carousel .carousel-item img {
+  width: 235px;
+  height: 319px;
+  /* width: 25vmin;
+  height: 35vmin; */
+  border-radius: 10px;
+  transform: translateX(8px) translateY(-100px);
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel .carousel-item>img {
   width: 100%;
 }
 
@@ -454,15 +453,6 @@ textarea {
 .carousel.scrolling .carousel-item .materialboxed,
 .carousel .carousel-item:not(.active) .materialboxed {
   pointer-events: none;
-}
-
-.carousel .carousel-item img {
-  max-width: 235px;
-  max-height: 319px;
-  border-radius: 10px;
-  transform: translateX(8px) translateY(-100px);
-  object-fit: cover;
-  object-position: center;
 }
 
 .carousel__background {
@@ -601,12 +591,10 @@ textarea {
 /* ==================================================== */
 
 /* For small devices*/
-@media screen and (min-width: 576px) {
-}
+@media screen and (min-width: 576px) {}
 
 /* For medium devices*/
-@media screen and (min-width: 768px) {
-}
+@media screen and (min-width: 768px) {}
 
 /* For large devices*/
 @media screen and (min-width: 992px) {
@@ -626,9 +614,7 @@ textarea {
 }
 
 /* For extra large devices */
-@media screen and (min-width: 1200px) {
-}
+@media screen and (min-width: 1200px) {}
 
 /* For extra extra large devices */
-@media screen and (min-width: 1400px) {
-}
+@media screen and (min-width: 1400px) {}
