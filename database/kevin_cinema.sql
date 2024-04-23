@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `movie_theme` (
   CONSTRAINT `FK2_movie_theme_theme` FOREIGN KEY (`idTheme`) REFERENCES `theme` (`idTheme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.movie_theme : ~0 rows (environ)
+-- Listage des données de la table kevin_cinema.movie_theme : ~16 rows (environ)
 INSERT INTO `movie_theme` (`idMovie`, `idTheme`) VALUES
 	(1, 1),
 	(1, 2),
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   PRIMARY KEY (`idPerson`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.person : ~0 rows (environ)
+-- Listage des données de la table kevin_cinema.person : ~16 rows (environ)
 INSERT INTO `person` (`idPerson`, `firstname`, `surname`, `sex`, `birthdate`, `picture`) VALUES
 	(1, 'Elijah', 'Wood', 'M', '1981-01-28', './public/img/persons/662237324f6c35.82620521.webp'),
 	(2, 'Sean', 'Astin', 'M', '1971-02-25', 'https://fr.web.img2.acsta.net/c_310_420/pictures/16/07/22/17/26/392369.jpg'),
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `theme` (
   PRIMARY KEY (`idTheme`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.theme : ~0 rows (environ)
+-- Listage des données de la table kevin_cinema.theme : ~9 rows (environ)
 INSERT INTO `theme` (`idTheme`, `typeName`) VALUES
 	(1, 'Aventure'),
 	(2, 'Fantastique'),

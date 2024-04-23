@@ -77,15 +77,94 @@
     <div id="wrapper">
         <main class="main">
             <div id="content">
-                <h2><?= $secondary_title ?></h2>
+                <?php if (isset($secondary_title)) : ?>
+                    <h2 class="secondary-title"><?= $secondary_title ?></h2>
+                <?php endif; ?>
                 <?= $content ?>
             </div>
         </main>
     </div>
 
     <footer class="footer">
-        <div class="footer__container container grid">
+        <div class="footer__svg"></div>
 
+        <div class="footer__container">
+            <div class="footer__social-media">
+
+                <h3 class="footer__title">FOLLOW US</h3>
+
+                <div class="footer_social">
+
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <hr class="footer__hr">
+
+            <div class="footer__content">
+                <div>
+                    <h3 class="footer__title">COMPANY</h3>
+
+                    <ul class="footer__links">
+                        <li>
+                            <a href="#" class="footer_link">CONTACT</a> |
+                        </li>
+
+                        <li>
+                            <a href="#" class="footer_link">WHO ARE WE ?</a> |
+                        </li>
+
+                        <li>
+                            <a href="#" class="footer_link">HIRING</a> |
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer__title">INFORMATION</h3>
+
+                    <ul class="footer__links">
+                        <li>
+                            <a href="#" class="footer_link">PRIVACY POLICY</a> |
+                        </li>
+
+                        <li>
+                            <a href="#" class="footer_link">TERMS AND POLICIES</a> |
+                        </li>
+
+                        <li>
+                            <a href="#" class="footer_link">COOKIE PREFERENCES</a> |
+                        </li>
+                </div>
+
+                <span class="footer__copy">
+                    2024 &#169; CineDune - All Rights Reserved.
+                </span>
+
+                <a href="index.php" class="footer__logo">
+                    <img src="public/img/bxs-planet.svg" alt="Logo CineDune"><span>CinE<span class="nav__span">DunE</span></span>
+                </a>
+            </div>
         </div>
     </footer>
 
