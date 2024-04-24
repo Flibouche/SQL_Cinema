@@ -10,7 +10,7 @@ $directors = $requestDirectors->fetchAll();
         foreach ($directors as $director) {
         ?>
             <figure class="director__card-listDirectors">
-                <a href="index.php?action=personsDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>" alt=""><span><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></span></a>
+                <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>" alt=""><span><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></span></a>
             </figure>
         <?php
         }

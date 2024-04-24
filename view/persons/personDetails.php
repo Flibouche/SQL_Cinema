@@ -4,7 +4,7 @@
 <h1>Details of : </h1>
 
 <?php
-$person = $requestPersonsDetails->fetch();
+$person = $requestpersonDetails->fetch();
 echo $person["firstname"] . " " . $person["surname"] . " " . $person["sex"] . " " . $person["birthdate"] . "<br>";
 
 
@@ -23,7 +23,7 @@ if (!empty($person["idActor"])) {
         <?php
         foreach ($actorFilmography as $filmography) {
         ?>
-            <a href="index.php?action=moviesDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a> as <?= $filmography["roleName"] . "<br>" ?>
+            <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a> as <?= $filmography["roleName"] . "<br>" ?>
     <?php
         }
     }
@@ -50,7 +50,7 @@ if (!empty($person["idDirector"])) {
         <?php
         foreach ($directorFilmography as $filmography) {
         ?>
-            <a href="index.php?action=moviesDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a><br>
+            <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a><br>
     <?php
         }
     }

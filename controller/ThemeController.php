@@ -25,7 +25,7 @@ class ThemeController
     }
 
     // Méthode pour afficher les détails d'un thème
-    public function themesDetails(int $id): void
+    public function themeDetails(int $id): void
     {
 
         if (!Service::exists("theme", $id)) {
@@ -37,14 +37,14 @@ class ThemeController
             $pdo = Connect::toLogIn();
 
             // Exécution de la requête SQL pour récupérer les détails d'un thème spécifique
-            $requestThemesDetails = $pdo->prepare("
+            $requestthemeDetails = $pdo->prepare("
             SELECT theme.idTheme, theme.typeName, movie.idMovie, movie.title
             FROM movie_theme
             INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
             INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
             WHERE theme.idTheme = :id
         ");
-            $requestThemesDetails->execute(["id" => $id]);
+            $requestthemeDetails->execute(["id" => $id]);
 
             // Exécution de la requête SQL pour récupérer l'ID du thème spécifique
             $requestThemeID = $pdo->prepare("
@@ -55,7 +55,7 @@ class ThemeController
             $requestThemeID->execute(["id" => $id]);
 
             // Inclusion du fichier de vue pour afficher les détails du thème
-            require "view/themes/themesDetails.php";
+            require "view/themes/themeDetails.php";
         }
     }
 

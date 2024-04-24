@@ -12,11 +12,11 @@ $movies = $requestMovies->fetchAll();
             <figure class="movie__card-listMovies">
 
                 <div class="card__header-listMovies">
-                    <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
                 </div>
 
                 <div class="card__description-listMovies">
-                    <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><span><?= $movie["title"] ?></span></a>
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><span><?= $movie["title"] ?></span></a>
                     <p><?= $movie["releaseYear"] ?></p>
                 </div>
 

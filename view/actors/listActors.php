@@ -10,7 +10,7 @@ $actors = $requestActors->fetchAll();
         foreach ($actors as $actor) {
         ?>
             <figure class="actor__card-listActors">
-                <a href="index.php?action=personsDetails&id=<?= $actor["idPerson"] ?>"><img src="<?= $actor["picture"] ?>" alt=""><span><?= $actor["firstname"] . " " . $actor["surname"] ?></span></a>
+                <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>"><img src="<?= $actor["picture"] ?>" alt=""><span><?= $actor["firstname"] . " " . $actor["surname"] ?></span></a>
             </figure>
         <?php
         }

@@ -20,7 +20,7 @@ class MovieController
         require "view/movies/listMovies.php";
     }
 
-    public function moviesDetails($id)
+    public function movieDetails($id)
     {
 
         if (!Service::exists("movie", $id)) {
@@ -29,12 +29,12 @@ class MovieController
         } else {
 
             $pdo = Connect::toLogIn();
-            $requestMoviesDetails = $pdo->prepare("
+            $requestmovieDetails = $pdo->prepare("
             SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
             FROM movie
             WHERE movie.idMovie = :id
             ");
-            $requestMoviesDetails->execute(["id" => $id]);
+            $requestmovieDetails->execute(["id" => $id]);
 
             $requestMoviesCasting = $pdo->prepare("
             SELECT person.idPerson, actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex
@@ -56,7 +56,7 @@ class MovieController
             ");
             $requestMovieThemes->execute(["id" => $id]);
 
-            require "view/movies/moviesDetails.php";
+            require "view/movies/movieDetails.php";
         }
     }
 
@@ -369,7 +369,7 @@ class MovieController
 
                 $requestAddCasting->execute(["idMovie" => $movie, "idActor" => $actor, "idRole" => $role]);
 
-                header("Location:index.php?action=moviesDetails&id=$id");
+                header("Location:index.php?action=movieDetails&id=$id");
             }
 
             require "view/movies/addCasting.php";
@@ -395,7 +395,7 @@ class MovieController
         ");
         $requestDelCasting->execute(["id" => $id]);
 
-        header("Location:index.php?action=moviesDetails&id=$idMovie");
+        header("Location:index.php?action=movieDetails&id=$idMovie");
     }
 
     public function delMovie($id)

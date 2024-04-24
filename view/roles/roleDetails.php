@@ -1,14 +1,14 @@
 <?php ob_start();
-$rolesDetails = $requestRolesDetails->fetchAll();
+$roleDetails = $requestroleDetails->fetchAll();
 $roleID = $requestRoleID->fetch();
 ?>
 
 <h1>Details of : </h1>
 
 <?php
-foreach ($rolesDetails as $roleDetails) {
+foreach ($roleDetails as $roleDetails) {
 ?>
-    <a href="index.php?action=moviesDetails&id=<?= $roleDetails["idMovie"] ?>"><?= $roleDetails["title"] ?></a> played by <a href="index.php?action=personsDetails&id=<?= $roleDetails["idPerson"] ?>"><?= $roleDetails["firstname"] . " " . $roleDetails["surname"] . "<br>" ?>
+    <a href="index.php?action=movieDetails&id=<?= $roleDetails["idMovie"] ?>"><?= $roleDetails["title"] ?></a> played by <a href="index.php?action=personDetails&id=<?= $roleDetails["idPerson"] ?>"><?= $roleDetails["firstname"] . " " . $roleDetails["surname"] . "<br>" ?>
     <?php
 }
     ?>
@@ -18,10 +18,10 @@ foreach ($rolesDetails as $roleDetails) {
     <br>
     <?php
     // Vérifiez s'il y a au moins un role
-    if (!empty($rolesDetails)) {
+    if (!empty($roleDetails)) {
         // Lien "Edit this role" pointant vers le premier role de la liste
     ?>
-        <a href="index.php?action=editRole&id=<?= $rolesDetails[0]["idRole"] ?>">Edit this role</a>
+        <a href="index.php?action=editRole&id=<?= $roleDetails["idRole"] ?>">Edit this role</a>
     <?php
     } else {
         // Gérer le cas où il n'y a aucun role

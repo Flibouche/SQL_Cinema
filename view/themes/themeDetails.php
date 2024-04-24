@@ -1,14 +1,14 @@
 <?php ob_start();
-$themesDetails = $requestThemesDetails->fetchAll();
+$themeDetails = $requestthemeDetails->fetchAll();
 $themeID = $requestThemeID->fetch();
 ?>
 
 <h1>Details of : </h1>
 
 <?php
-foreach ($themesDetails as $themeDetails) {
+foreach ($themeDetails as $themeDetails) {
 ?>
-    <a href="index.php?action=moviesDetails&id=<?= $themeDetails["idMovie"] ?>"><?= $themeDetails["title"] . "<br>" ?></a>
+    <a href="index.php?action=movieDetails&id=<?= $themeDetails["idMovie"] ?>"><?= $themeDetails["title"] . "<br>" ?></a>
 <?php
 }
 ?>
@@ -18,10 +18,10 @@ foreach ($themesDetails as $themeDetails) {
 <br>
 <?php
 // Vérifiez s'il y a au moins un thème
-if (!empty($themesDetails)) {
+if (!empty($themeDetails)) {
     // Lien "Edit this theme" pointant vers le premier thème de la liste
 ?>
-    <a href="index.php?action=editTheme&id=<?= $themesDetails[0]["idTheme"] ?>">Edit this theme</a>
+    <a href="index.php?action=editTheme&id=<?= $themeDetails["idTheme"] ?>">Edit this theme</a>
 <?php
 } else {
     // Gérer le cas où il n'y a aucun thème

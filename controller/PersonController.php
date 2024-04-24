@@ -44,7 +44,7 @@ class PersonController
         require "view/directors/listDirectors.php";
     }
 
-    public function personsDetails($id): void
+    public function personDetails($id): void
     {
         if (!Service::exists("person", $id)) {
             header("Location:index.php");
@@ -53,14 +53,14 @@ class PersonController
 
             $pdo = Connect::toLogIn();
 
-            $requestPersonsDetails = $pdo->prepare("
+            $requestpersonDetails = $pdo->prepare("
         SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture, actor.idActor, director.idDirector
         FROM person
         LEFT JOIN actor ON person.idPerson = actor.idPerson
         LEFT JOIN director ON person.idPerson = director.idPerson
         WHERE person.idPerson = :id
         ");
-            $requestPersonsDetails->execute(["id" => $id]);
+            $requestpersonDetails->execute(["id" => $id]);
 
             $requestActorsFilmography = $pdo->prepare("
         SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
@@ -84,7 +84,7 @@ class PersonController
         ");
             $requestDirectorsFilmography->execute(["id" => $id]);
 
-            require "view/persons/personsDetails.php";
+            require "view/persons/personDetails.php";
         }
     }
 

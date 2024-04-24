@@ -217,8 +217,7 @@ textarea {
 .header {
   position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
+  min-height: 75px;
   background: url(../img/header.svg) repeat-x;
   z-index: var(--z-fixed);
 }
@@ -231,18 +230,22 @@ textarea {
   align-items: center;
 }
 
+.nav__container {
+  margin-inline: auto;
+}
+
 .nav__logo,
 .nav__close,
 .nav__toggle,
 .nav__actions {
   display: flex;
+  justify-content: center;
   color: var(--text-color);
   cursor: pointer;
 }
 
 .nav__logo {
   color: var(--text-color);
-  display: flex;
   align-items: center;
   gap: 1rem;
   font-family: var(--title-font);
@@ -677,14 +680,21 @@ textarea {
   border-radius: 20px 20px 0px 0px;
 }
 
+/* ==================================================== */
+/* ===================== DETAILS ====================== */
+/* ==================================================== */
 
+.movie__info-movieDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 3rem 0rem;
+}
 
-
-
-
-
-
-
+.movie__poster-movieDetails img {
+  width: 250px;
+  height: 350px;
+}
 
 /* ==================================================== */
 /* ================== MEDIA QUERIES =================== */
@@ -709,7 +719,7 @@ textarea {
   .nav__list {
     display: flex;
     flex-direction: row;
-    gap: 5rem;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
     justify-items: center;

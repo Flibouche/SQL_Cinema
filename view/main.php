@@ -35,7 +35,7 @@
                 ?>
                     <div class="carousel-item">
                         <div class="carousel-header">
-                            <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
+                            <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
                         </div>
                         <div class="carousel-description">
                             <p><?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?></p>

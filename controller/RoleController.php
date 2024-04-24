@@ -25,7 +25,7 @@ class RoleController
     }
 
     // Méthode pour afficher les détails d'un rôle
-    public function rolesDetails($id)
+    public function roleDetails($id)
     {
 
         if (!Service::exists("role", $id)) {
@@ -37,7 +37,7 @@ class RoleController
             $pdo = Connect::toLogIn();
 
             // Exécution de la requête SQL pour récupérer les détails d'un rôle spécifique
-            $requestRolesDetails = $pdo->prepare("
+            $requestroleDetails = $pdo->prepare("
             SELECT person.idPerson, role.idRole, actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
             FROM play
             INNER JOIN movie ON play.idMovie = movie.idMovie
@@ -46,7 +46,7 @@ class RoleController
             INNER JOIN person ON actor.idPerson = person.idPerson
             WHERE role.idRole = :id
         ");
-            $requestRolesDetails->execute(["id" => $id]);
+            $requestroleDetails->execute(["id" => $id]);
 
             // Exécution de la requête SQL pour récupérer l'ID du rôle spécifique
             $requestRoleID = $pdo->prepare("
@@ -57,7 +57,7 @@ class RoleController
             $requestRoleID->execute(["id" => $id]);
 
             // Inclusion du fichier de vue pour afficher les détails du rôle
-            require "view/roles/rolesDetails.php";
+            require "view/roles/roleDetails.php";
         }
     }
 
