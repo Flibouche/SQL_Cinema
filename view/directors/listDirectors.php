@@ -2,25 +2,29 @@
 $directors = $requestDirectors->fetchAll();
 ?>
 
-<h1>Directors's List</h1>
+<section class="listDirectors section" id="listDirectors">
+    <p>There's <?= $requestDirectors->rowCount() ?> directors</p>
+    <div class="listDirectors__container container">
 
-<p>There's <?= $requestDirectors->rowCount() ?> directors</p>
+        <?php
+        foreach ($directors as $director) {
+        ?>
+            <figure class="director__card-listDirectors">
+                <a href="index.php?action=personsDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>" alt=""><span><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></span></a>
+            </figure>
+        <?php
+        }
+
+        ?>
+    </div>
+
+    <button class="main__button list__button"><a href="index.php?action=addPerson">Add a person</a></button>
+
+</section>
 
 <?php
-foreach ($directors as $director) {
-?>
-    <a href="index.php?action=personsDetails&id=<?= $director["idPerson"] ?>"><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></a>
-<?php
-}
 
-?>
-
-<br>
-<a href="index.php?action=addPerson">Add a person</a>
-
-<?php
-
-$title = "Directors's List";
+$title = "Directors's List ";
 $secondary_title = "Directors's List";
 $content = ob_get_clean();
 require "view/template.php";

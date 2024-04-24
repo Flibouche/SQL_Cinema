@@ -2,21 +2,26 @@
 $actors = $requestActors->fetchAll();
 ?>
 
-<h1>Actors's list</h1>
+<section class="listActors section" id="listActors">
+    <p>There's <?= $requestActors->rowCount() ?> actors</p>
+    <div class="listActors__container container">
 
-<p>There's <?= $requestActors->rowCount() ?> actors</p>
+        <?php
+        foreach ($actors as $actor) {
+        ?>
+            <figure class="actor__card-listActors">
+                <a href="index.php?action=personsDetails&id=<?= $actor["idPerson"] ?>"><img src="<?= $actor["picture"] ?>" alt=""><span><?= $actor["firstname"] . " " . $actor["surname"] ?></span></a>
+            </figure>
+        <?php
+        }
 
-<?php
-foreach ($actors as $actor) {
-?>
-    <a href="index.php?action=personsDetails&id=<?= $actor["idPerson"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] . "<br>" ?></a>
-<?php
-}
+        ?>
 
-?>
+    </div>
 
-<br>
-<a href="index.php?action=addPerson">Add a person</a>
+    <button class="main__button list__button"><a href="index.php?action=addPerson">Add a person</a></button>
+
+</section>
 
 <?php
 

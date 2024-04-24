@@ -93,7 +93,7 @@
 
                 <h3 class="footer__title">FOLLOW US</h3>
 
-                <div class="footer_social">
+                <div class="footer__social">
 
                     <a href="#" target="_blank" class="footer__social-link">
                         <i class="fa-brands fa-facebook-f"></i>
@@ -126,15 +126,15 @@
 
                     <ul class="footer__links">
                         <li>
-                            <a href="#" class="footer_link">CONTACT</a> |
+                            <a href="#" class="footer_link">CONTACT</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer_link">WHO ARE WE ?</a> |
+                            <a href="#" class="footer_link">WHO ARE WE ?</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer_link">HIRING</a> |
+                            <a href="#" class="footer_link">HIRING</a>
                         </li>
 
                     </ul>
@@ -145,26 +145,28 @@
 
                     <ul class="footer__links">
                         <li>
-                            <a href="#" class="footer_link">PRIVACY POLICY</a> |
+                            <a href="#" class="footer_link">PRIVACY POLICY</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer_link">TERMS AND POLICIES</a> |
+                            <a href="#" class="footer_link">TERMS AND POLICIES</a>
                         </li>
 
                         <li>
-                            <a href="#" class="footer_link">COOKIE PREFERENCES</a> |
+                            <a href="#" class="footer_link">COOKIE PREFERENCES</a>
                         </li>
                 </div>
+            </div>
 
-                <span class="footer__copy">
+            <div class="footer__copy">
+                <span>
                     2024 &#169; CineDune - All Rights Reserved.
                 </span>
-
-                <a href="index.php" class="footer__logo">
-                    <img src="public/img/bxs-planet.svg" alt="Logo CineDune"><span>CinE<span class="nav__span">DunE</span></span>
-                </a>
             </div>
+
+            <a href="index.php" class="footer__logo">
+                <img src="public/img/bxs-planet.svg" alt="Logo CineDune"><span>CinE<span class="nav__span">DunE</span></span>
+            </a>
         </div>
     </footer>
 

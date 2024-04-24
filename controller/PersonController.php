@@ -16,7 +16,7 @@ class PersonController
 
         // Préparation et exécution de la requête SQL pour récupérer les informations sur les acteurs
         $requestActors = $pdo->query("
-                SELECT person.idPerson, actor.idActor, person.firstname, person.surname, person.sex, person.birthdate
+                SELECT person.idPerson, actor.idActor, person.firstname, person.surname, person.sex, person.birthdate, person.picture
                 FROM actor
                 INNER JOIN person ON actor.idPerson = person.idPerson
                 ORDER BY surname
@@ -34,7 +34,7 @@ class PersonController
 
         // Préparation et exécution de la requête SQL pour récupérer les informations sur les réalisateurs
         $requestDirectors = $pdo->query("
-            SELECT person.idPerson, director.idDirector, person.firstname, person.surname, person.sex, person.birthdate
+            SELECT person.idPerson, director.idDirector, person.firstname, person.surname, person.sex, person.birthdate, person.picture
             FROM director
             INNER JOIN person ON director.idPerson = person.idPerson
             ORDER BY surname

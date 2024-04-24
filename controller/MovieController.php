@@ -14,7 +14,7 @@ class MovieController
         $requestMovies = $pdo->query("
         SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
         FROM movie
-        ORDER BY releaseYear DESC
+        ORDER BY movie.title
         ");
 
         require "view/movies/listMovies.php";

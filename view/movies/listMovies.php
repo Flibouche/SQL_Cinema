@@ -3,23 +3,32 @@ $movies = $requestMovies->fetchAll();
 ?>
 
 <section class="listMovies section" id="listMovies">
+    <p>There's <?= $requestMovies->rowCount() ?> movies</p>
     <div class="listMovies__container container">
-
-        <p>There's <?= $requestMovies->rowCount() ?> movies</p>
 
         <?php
         foreach ($movies as $movie) {
         ?>
-            <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><?= $movie["title"] . " " . $movie["releaseYear"] . "<br>" ?></a>
+            <figure class="movie__card-listMovies">
+
+                <div class="card__header-listMovies">
+                    <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
+                </div>
+
+                <div class="card__description-listMovies">
+                    <a href="index.php?action=moviesDetails&id=<?= $movie["idMovie"] ?>"><span><?= $movie["title"] ?></span></a>
+                    <p><?= $movie["releaseYear"] ?></p>
+                </div>
+
+            </figure>
         <?php
         }
 
         ?>
-
-        <br>
-        <a href="index.php?action=addMovie">Add a movie</a>
-
     </div>
+
+    <button class="main__button list__button"><a href="index.php?action=addMovie">Add a movie</a></button>
+
 </section>
 
 <?php

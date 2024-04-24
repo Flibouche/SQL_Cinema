@@ -11,25 +11,37 @@
   --yellow-color: #d9a849;
   --text-color: #ffffff;
   --gradient-top: linear-gradient(90deg, #d9a849 0%, #a2520d 100%);
-  --gradient-left: linear-gradient(90deg,
-      rgba(162, 82, 13, 0.5) 0%,
-      rgba(0, 0, 0, 0.5) 100%);
-  --gradient-right: linear-gradient(90deg,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(162, 82, 13, 0.5) 100%);
-  --gradient-bottom: linear-gradient(359.4deg,
-      rgba(162, 82, 13, 0.5) 0.52%,
-      rgba(0, 0, 0, 0.5) 99.48%);
-  --button-gradient: linear-gradient(90deg,
-      rgba(217, 168, 73, 1) 0%,
-      rgba(162, 82, 13, 1) 100%);
-  --hypertext-underline-gradient: linear-gradient(0deg,
-      #d9a849 0%,
-      #a2520d 100%);
-  --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%,
-      #d9a849 23%,
-      #471d07 72.5%,
-      #000000 100%);
+  --gradient-left: linear-gradient(
+    90deg,
+    rgba(162, 82, 13, 0.5) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  --gradient-right: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(162, 82, 13, 0.5) 100%
+  );
+  --gradient-bottom: linear-gradient(
+    359.4deg,
+    rgba(162, 82, 13, 0.5) 0.52%,
+    rgba(0, 0, 0, 0.5) 99.48%
+  );
+  --button-gradient: linear-gradient(
+    90deg,
+    rgba(217, 168, 73, 1) 0%,
+    rgba(162, 82, 13, 1) 100%
+  );
+  --hypertext-underline-gradient: linear-gradient(
+    0deg,
+    #d9a849 0%,
+    #a2520d 100%
+  );
+  --background-gradient: radial-gradient(
+    131.8% 131.8% at 50% -31.8%,
+    #d9a849 23%,
+    #471d07 72.5%,
+    #000000 100%
+  );
   --swiper-pagination-color: var(--yellow-color);
 
   /*========== Fonts & typography ==========*/
@@ -37,8 +49,8 @@
   --title-font: "Dune Rise";
   --h2-font: "Dune Rise";
   --nav-text-font: "Champagne & Limousines";
+  --step--1: clamp(0.8681rem, 0.4rem + 2.8793cqi, 1.5rem);
   --step--2: clamp(1.3021rem, 0.273rem + 4.5735cqi, 3rem);
-  --step--1: clamp(0.8681rem, 0.2922rem + 2.8793cqi, 2rem);
   --step--3: clamp(1.0851rem, 0.8926rem + 0.8555cqi, 1.4rem);
   /* --h1-font-size: 1.5rem;
     --h2-font-size: 1.5rem; */
@@ -66,10 +78,15 @@ body {
 }
 
 @font-face {
-  font-family: "Champagne & Limousines";
-  src: url("../fonts/Champagne_&_Limousines.ttf") format("truetype");
   font-family: "Dune Rise";
   src: url("../fonts/Dune_Rise.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Champagne & Limousines";
+  src: url("../fonts/Champagne_&_Limousines.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -82,7 +99,7 @@ a {
 h2 {
   font-family: var(--h2-font);
   font-size: 1.5rem;
-  padding-left: .7rem;
+  padding-left: 0.7rem;
   padding-bottom: 0.5rem;
 }
 
@@ -105,12 +122,14 @@ textarea {
 
 .container {
   max-width: 954px;
-  margin-inline: 0.7rem;
   /* margin-inline: 15.188rem; */
 }
 
 .main {
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin-inline: 0.7rem;
 }
 
 .secondary-title {
@@ -119,12 +138,14 @@ textarea {
 
 .nav__logo img,
 .footer__logo img {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(126deg) brightness(110%) contrast(101%);
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(126deg)
+    brightness(110%) contrast(101%);
 }
 
 .nav__logo img:hover,
 .footer__logo img:hover {
-  filter: invert(67%) sepia(34%) saturate(706%) hue-rotate(1deg) brightness(97%) contrast(90%);
+  filter: invert(67%) sepia(34%) saturate(706%) hue-rotate(1deg) brightness(97%)
+    contrast(90%);
 }
 
 .main__separator hr {
@@ -134,7 +155,7 @@ textarea {
   background: var(--yellow-color);
 }
 
-.main__buttons {
+.main__button {
   overflow: hidden;
   position: relative;
   padding: 10px 50px;
@@ -163,19 +184,23 @@ textarea {
   }
 }
 
-.main__buttons:hover {
+.main__button:hover {
   &:after {
     left: 120%;
     transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
   }
 }
 
-.main__buttons a {
+.main__button a {
   transition: 0.5s;
 }
 
-.main__buttons:hover a {
+.main__button:hover a {
   color: var(--yellow-color);
+}
+
+.list__button {
+  margin-top: 50px;
 }
 
 .svg__resp {
@@ -340,17 +365,11 @@ textarea {
 
 /* Carousel */
 
-.carousel__container {
-  padding-bottom: 50px;
-}
-
 .carousel-box {
   position: relative;
-  /* min-width: 954px; */
   width: clamp(360px, 100%, 949px);
-  padding-top: 50px;
+  /* padding-top: 50px; */
   display: flex;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -358,10 +377,10 @@ textarea {
   position: relative;
   width: 100vw;
   height: 550px;
-  /* perspective: 100vmin; */
-  perspective: 500px;
+  perspective: 150px;
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
+  margin-right: 20px;
 }
 
 .carousel.carousel-slider {
@@ -404,7 +423,7 @@ textarea {
   width: 250px;
   cursor: pointer;
   position: absolute;
-  top: 0;
+  top: 13%;
   left: 0;
 }
 
@@ -419,7 +438,7 @@ textarea {
   object-position: center;
 }
 
-.carousel .carousel-item>img {
+.carousel .carousel-item > img {
   width: 100%;
 }
 
@@ -428,6 +447,7 @@ textarea {
   list-style-type: none;
   position: absolute;
   text-align: center;
+  top: 88%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -461,15 +481,22 @@ textarea {
   bottom: 0%;
 }
 
-/* Actors */
-
-.actors__container,
-.directors__container {
-  padding-bottom: 100px;
+.carousel-poster {
+  position: relative;
 }
 
-.actors__content,
-.directors__content {
+.carousel-description {
+  position: absolute;
+  background-color: var(--background-color);
+  width: 235px;
+  height: 80px;
+  top: 35%;
+}
+
+/* Actors */
+
+.actors__content-main,
+.directors__content-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -477,21 +504,21 @@ textarea {
   padding-top: 10px;
 }
 
-.actor__card,
-.director__card {
+.actor__card-main,
+.director__card-main {
   position: relative;
   text-align: center;
-  width: clamp(150px, 39vw, 360px);
+  width: clamp(150px, 39vw, 220px);
 }
 
-.actor__card img,
-.director__card img {
+.actor__card-main img,
+.director__card-main img {
   object-fit: fill;
-  width: clamp(150px, 100%, 600px);
+  width: clamp(150px, 100%, 220px);
 }
 
-.actor__figcaption,
-.director__figcaption {
+.actor__figcaption-main,
+.director__figcaption-main {
   position: absolute;
   width: 100%;
   padding: 10px 0px;
@@ -501,8 +528,8 @@ textarea {
   background-color: var(--brown-color);
 }
 
-.actors__background,
-.directors__background {
+.actors__background-main,
+.directors__background-main {
   padding-top: 10px;
   /* width: clamp(150px, 39vw, 360px); */
 }
@@ -512,6 +539,7 @@ textarea {
   position: relative;
   background-color: var(--brown-color);
   padding-block: 1rem 2rem;
+  margin-top: 100px;
 }
 
 .footer__svg {
@@ -526,55 +554,86 @@ textarea {
   text-align: center;
 }
 
+.footer__title {
+  font-family: var(--nav-text-font);
+  font-size: var(--step--3);
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  font-size: var(--step--2);
+  gap: 35px;
+  padding: 10px 0px;
+}
+
 .footer__hr {
   background: var(--text-color);
+}
+
+.footer__content {
+  display: grid;
+  padding-top: 10px;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: center;
+  gap: 50px;
+  text-align: left;
+}
+
+.footer__links {
+  padding-top: 10px;
+}
+
+.footer__copy {
+  padding: 20px 0px;
+}
+
+.footer__logo {
+  justify-content: center;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--title-font);
+  text-decoration: none;
 }
 
 /* ==================================================== */
 /* ===================== MOVIES ======================= */
 /* ==================================================== */
 
+.listMovies__container,
+.listActors__container,
+.listDirectors__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
 
+.card__description-listMovies {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 
+.movie__card-listMovies,
+.actor__card-listActors,
+.director__card-listDirectors {
+  text-align: center;
+  font-family: var(--nav-text-font);
+  /* font-size: var(--step--1); */
+  width: 150px;
+  height: 200px;
+  margin-bottom: 30px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.movie__card-listMovies img,
+.actor__card-listActors img,
+.director__card-listDirectors img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 20px 0px 0px;
+}
 
 
 
@@ -591,10 +650,18 @@ textarea {
 /* ==================================================== */
 
 /* For small devices*/
-@media screen and (min-width: 576px) {}
+@media screen and (min-width: 576px) {
+  .carousel {
+    perspective: 300px;
+  }
+}
 
 /* For medium devices*/
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+  .carousel {
+    perspective: 500px;
+  }
+}
 
 /* For large devices*/
 @media screen and (min-width: 992px) {
@@ -611,10 +678,16 @@ textarea {
   .nav__close {
     display: none;
   }
+
+  .carousel {
+    perspective: 700px;
+  }
 }
 
 /* For extra large devices */
-@media screen and (min-width: 1200px) {}
+@media screen and (min-width: 1200px) {
+}
 
 /* For extra extra large devices */
-@media screen and (min-width: 1400px) {}
+@media screen and (min-width: 1400px) {
+}
