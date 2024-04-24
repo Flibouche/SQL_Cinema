@@ -42,7 +42,6 @@
     #471d07 72.5%,
     #000000 100%
   );
-  --swiper-pagination-color: var(--yellow-color);
 
   /*========== Fonts & typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
@@ -122,14 +121,17 @@ textarea {
 
 .container {
   max-width: 954px;
+  margin-inline: 0.7rem;
   /* margin-inline: 15.188rem; */
+}
+
+#wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .main {
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  margin-inline: 0.7rem;
 }
 
 .secondary-title {
@@ -315,7 +317,9 @@ textarea {
 
 .main__background {
   position: absolute;
+  justify-content: center;
   background-image: var(--background-gradient);
+  left: 0;
   width: 100%;
   height: 500px;
   z-index: var(--z-background);
@@ -442,6 +446,56 @@ textarea {
   width: 100%;
 }
 
+.carousel-header {
+  position: relative;
+}
+
+.carousel-description {
+  position: absolute;
+  background-color: var(--background-color);
+  opacity: 0%;
+  width: 235px;
+  height: 80px;
+  left: 3.2%;
+  padding: 5px 10px;
+  top: 45%;
+  transition: 0.7s;
+}
+
+.carousel-item.active:hover .carousel-description p {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid var(--yellow-color); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--yellow-color);
+  }
+}
+
+.carousel-item.active:hover .carousel-description {
+  opacity: 100%;
+}
+
 .carousel .indicators {
   padding-left: 0;
   list-style-type: none;
@@ -479,18 +533,6 @@ textarea {
   position: absolute;
   z-index: var(--z-background);
   bottom: 0%;
-}
-
-.carousel-poster {
-  position: relative;
-}
-
-.carousel-description {
-  position: absolute;
-  background-color: var(--background-color);
-  width: 235px;
-  height: 80px;
-  top: 35%;
 }
 
 /* Actors */
@@ -599,7 +641,7 @@ textarea {
 }
 
 /* ==================================================== */
-/* ===================== MOVIES ======================= */
+/* ====================== LISTS ======================= */
 /* ==================================================== */
 
 .listMovies__container,
@@ -634,7 +676,6 @@ textarea {
   height: 100%;
   border-radius: 20px 20px 0px 0px;
 }
-
 
 
 

@@ -2,25 +2,28 @@
 $roles = $requestRoles->fetchAll();
 ?>
 
-<h1>Roles's List</h1>
+<section class="listRoles section" id="listRoles">
+    <p>There's <?= $requestRoles->rowCount() ?> roles</p>
+    <div class="listRoles__container container">
 
-<p>There's <?= $requestRoles->rowCount() ?> roles</p>
+        <?php
+        foreach ($roles as $role) {
+        ?>
+            <a href="index.php?action=rolesDetails&id=<?= $role["idRole"] ?>"><?= $role["roleName"] . "<br>" ?></a>
+        <?php
+        }
+
+        ?>
+
+    </div>
+
+    <button class="main__button list__button"><a href="index.php?action=addRole">Add a role</a></button>
+    
+</section>
 
 <?php
-foreach ($roles as $role) {
-?>
-    <a href="index.php?action=rolesDetails&id=<?= $role["idRole"] ?>"><?= $role["roleName"] . "<br>" ?></a>
-<?php
-}
 
-?>
-
-<br>
-<a href="index.php?action=addRole">Add a role</a>
-
-<?php
-
-$title = "Roles's List";
-$secondary_title = "Roles's List";
+$title = "Roles' List";
+$secondary_title = "Roles' List";
 $content = ob_get_clean();
 require "view/template.php";
