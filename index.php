@@ -11,7 +11,7 @@ use Controller\SubmissionController;
 
 // Autoloading des classes pour charger automatiquement les fichiers de classe
 spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
+    include str_replace("\\", DIRECTORY_SEPARATOR, $class_name) . '.php';
 });
 
 // Création des instances des différents contrôleurs

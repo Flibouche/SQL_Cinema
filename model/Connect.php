@@ -7,7 +7,7 @@ abstract class Connect
 {
 
     // Définition des constantes pour les paramètres de connexion à la base de données
-    const HOST = "localhost"; // Nom d'hôte de la base de données
+    const HOST = "db"; // Nom d'hôte de la base de données
     const DB = "kevin_cinema"; // Nom de la base de données
     const USER = "root"; // Nom d'utilisateur de la base de données
     const PASS = ""; // Mot de passe de la base de données (vide dans ce cas)
