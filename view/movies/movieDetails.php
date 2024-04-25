@@ -6,72 +6,91 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 <section class="movieDetails section" id="listMovies">
     <div class="movieDetails__container container">
 
-        <div class="movie__info-movieDetails">
+        <div class="movie__header-movieDetails">
             <div class="movie__poster-movieDetails">
                 <img src="<?= $movieDetails["poster"] ?>" alt="Movie poster's of <?= $movieDetails["title"] ?>">
             </div>
-            <div class="movie__edit-movieDetails">
 
+            <div class="movie__edit-movieDetails">
                 <a href="index.php?action=editMovie&id=<?= $movieDetails["idMovie"] ?>">
                     <i class="fa-solid fa-pencil"></i>
                 </a>
 
                 <a href="index.php?action=addCasting&id=<?= $movieDetails["idMovie"] ?>">
-                    <i class="fa-solid fa-people-group"></i>
+                    <i class="fa-solid fa-user-plus"></i>
                 </a>
 
-                <a href="index.php?action=editCasting&id=<?= $movieDetails["idMovie"] ?>">
-                    <i class="fa-solid fa-user-pen"></i>
+                <a id="delete-button" href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">
+                    <i class="fa-solid fa-delete-left"></i>
                 </a>
-
-
-
             </div>
+
         </div>
+
+        <div class="movie__information-movieDetails">
+            <h3><?= $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")" ?></h3>
+
+            <div class="movie__themes-movieDetails">
+                <?php
+                foreach ($requestMovieThemes->fetchAll() as $themes) {
+                    echo "Theme(s) : " . $themes["theme"] . "<br>";
+                }
+                ?>
+            </div>
+
+            <p>Duration : <?= $movieDetails["duration"] . " minutes" ?></p>
+
+            <p>Note : <?= $movieDetails["note"] ?></p>
+
+        </div>
+
+        <hr>
 
         <div class="movie__description-movieDetails">
-            <h3>Synopsis</h3>
-            <p><?= $movieDetails["synopsis"] ?></p>
+
+            <div id="synopsis" class="movie__synopsis-movieDetails">
+                <h3>Synopsis :</h3>
+                <p><?= $movieDetails["synopsis"] ?></p>
+            </div>
+            <button id="synopsis-btn">Read more</button>
+
         </div>
 
-        <?php
-        echo $movieDetails["title"] . " " . $movieDetails["releaseYear"] . " " . $movieDetails["duration"] . " " . $movieDetails["note"] . " " . $movieDetails["synopsis"] . "<br>";
+        <hr>
 
-        foreach ($requestMovieThemes->fetchAll() as $themes) {
-            echo "Theme(s) : " . $themes["theme"] . "<br>";
-        }
+        <h3>Casting :</h3>
+        <div class="movie__casting-movieDetails">
+            <?php
+            foreach ($moviesCasting as $movieCasting) {
+            ?>
+                <figure class="movie__castingcard-movieDetails">
+                    <div class="castingcard__header-movieDetails">
+                        <a href=href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><img src="<?= $movieCasting["picture"] ?>" alt=""></a>
+                    </div>
 
-        foreach ($moviesCasting as $movieCasting) {
-        ?>
-            <a href=" index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a> as <?= $movieCasting["roleName"] ?>
-            <a class="delBtn" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>"><i class="fa-solid fa-xmark"></i></a><br>
-        <?php
-        }
-        ?>
+                    <div class="castingcard__description-movieDetails">
+                        <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a> as <?= $movieCasting["roleName"] ?>
+                    </div>
 
+                    <div class="castingcard__edit-movieDetails">
+                        <a onclick="checker()" class="delBtn" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>"><i class="fa-solid fa-user-xmark"></i></a>
+                    </div>
+
+                </figure>
+            <?php
+            }
+            ?>
+
+        </div>
 
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <button class="main__button list__button"><a onclick="checker()" href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Delete this movie</a></button>
+    </div>
 
 </section>
 
-<script>
-    function checker() {
-        var result = confirm('Are you sure ?');
-        if (result == false) {
-            event.preventDefault();
-        }
-    }
-</script>
+
+
 
 <?php
 

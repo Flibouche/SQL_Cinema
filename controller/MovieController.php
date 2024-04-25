@@ -37,7 +37,7 @@ class MovieController
             $requestmovieDetails->execute(["id" => $id]);
 
             $requestMoviesCasting = $pdo->prepare("
-            SELECT person.idPerson, actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex
+            SELECT person.idPerson, actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex, person.picture
             FROM play
             INNER JOIN movie ON play.idMovie = movie.idMovie
             INNER JOIN actor ON play.idActor = actor.idActor
@@ -98,7 +98,7 @@ class MovieController
 
                 // Tableau des extensions qu'on autorise
                 $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
-                $maxSize = 100000;
+                $maxSize = 100000000;
 
                 if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
 

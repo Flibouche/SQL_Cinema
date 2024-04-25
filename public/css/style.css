@@ -680,20 +680,51 @@ textarea {
   border-radius: 20px 20px 0px 0px;
 }
 
+#synopsis {
+  overflow: hidden;
+  height: 3.6em;
+  line-height: 1.2em;
+  width: 200px;
+}
+
 /* ==================================================== */
 /* ===================== DETAILS ====================== */
 /* ==================================================== */
 
-.movie__info-movieDetails {
-  display: flex;
-  flex-wrap: wrap;
+.movie__header-movieDetails {
+  display: grid;
   justify-content: center;
   margin: 3rem 0rem;
+}
+
+.movie__edit-movieDetails {
+  display: flex;
+  justify-content: space-between;
 }
 
 .movie__poster-movieDetails img {
   width: 250px;
   height: 350px;
+}
+
+.movie__casting-movieDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.movie__castingcard-movieDetails {
+  text-align: center;
+  font-family: var(--nav-text-font);
+  width: 150px;
+  height: 230px;
+  margin-bottom: 30px;
+}
+
+.movie__castingcard-movieDetails img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 20px 0px 0px;
 }
 
 /* ==================================================== */

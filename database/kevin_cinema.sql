@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `actor` (
   CONSTRAINT `FK1_actor_person` FOREIGN KEY (`idPerson`) REFERENCES `person` (`idPerson`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.actor : ~13 rows (environ)
+-- Listage des données de la table kevin_cinema.actor : ~11 rows (environ)
 INSERT INTO `actor` (`idActor`, `idPerson`) VALUES
 	(1, 1),
 	(2, 2),
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `movie` (
   PRIMARY KEY (`idMovie`),
   KEY `idDirector` (`idDirector`),
   CONSTRAINT `FK1_movie_director` FOREIGN KEY (`idDirector`) REFERENCES `director` (`idDirector`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.movie : ~9 rows (environ)
+-- Listage des données de la table kevin_cinema.movie : ~8 rows (environ)
 INSERT INTO `movie` (`idMovie`, `title`, `releaseYear`, `duration`, `note`, `synopsis`, `poster`, `idDirector`) VALUES
 	(1, 'Le Seigneur des anneaux : la communauté de l\'anneau', '2001', 178, 4.5, 'Dans ce chapitre de la trilogie, le jeune et timide Hobbit, Frodon Sacquet, hérite d\'un anneau. Bien loin d\'être une simple babiole, il s\'agit de l\'Anneau Unique, un instrument de pouvoir absolu qui permettrait à Sauron, le Seigneur des ténèbres, de régner sur la Terre du Milieu et de réduire en esclavage ses peuples. À moins que Frodon, aidé d\'une Compagnie constituée de Hobbits, d\'Hommes, d\'un Magicien, d\'un Nain, et d\'un Elfe, ne parvienne à emporter l\'Anneau à travers la Terre du Milieu jusqu\'à la Crevasse du Destin, lieu où il a été forgé, et à le détruire pour toujours. Un tel périple signifie s\'aventurer très loin en Mordor, les terres du Seigneur des ténèbres, où est rassemblée son armée d\'Orques maléfiques... La Compagnie doit non seulement combattre les forces extérieures du mal mais aussi les dissensions internes et l\'influence corruptrice qu\'exerce l\'Anneau lui-même.\r\n\r\nL\'issue de l\'histoire à venir est intimement liée au sort de la Compagnie.\r\n', 'https://www.affiche-cine.com/images/thumb-518x690/0/37290643774763633692.jpg', 1),
 	(2, 'X-Men', '2000', 105, 3.9, '1944, dans un camp de concentration. Séparé par la force de ses parents, le jeune Erik Magnus Lehnsherr se découvre d\'étranges pouvoirs sous le coup de la colère : il peut contrôler les métaux. C\'est un mutant. Soixante ans plus tard, l\'existence des mutants est reconnue mais provoque toujours un vif émoi au sein de la population. Puissant télépathe, le professeur Charles Xavier dirige une école destinée à recueillir ces êtres différents, souvent rejetés par les humains, et accueille un nouveau venu solitaire au passé mystérieux : Logan, alias Wolverine. En compagnie de Cyclope, Tornade et Jean Grey, les deux hommes forment les X-Men et vont affronter les sombres mutants ralliés à la cause de Erik Lehnsherr / Magnéto, en guerre contre l\'humanité.', 'https://www.affiche-cine.com/images/thumb-518x690/33/affiche-cine-83190.jpg', 2),
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `movie_theme` (
   CONSTRAINT `FK2_movie_theme_theme` FOREIGN KEY (`idTheme`) REFERENCES `theme` (`idTheme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.movie_theme : ~16 rows (environ)
+-- Listage des données de la table kevin_cinema.movie_theme : ~15 rows (environ)
 INSERT INTO `movie_theme` (`idMovie`, `idTheme`) VALUES
 	(1, 1),
 	(1, 2),
@@ -167,12 +167,9 @@ INSERT INTO `play` (`idMovie`, `idActor`, `idRole`) VALUES
 	(2, 6, 7),
 	(3, 7, 11),
 	(3, 8, 8),
-	(3, 9, 9),
 	(3, 10, 10),
-	(4, 9, 12),
 	(4, 11, 13),
 	(4, 12, 14),
-	(5, 9, 16),
 	(5, 13, 15),
 	(5, 12, 17),
 	(1, 13, 5);
