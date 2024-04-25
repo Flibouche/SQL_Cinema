@@ -73,6 +73,7 @@ html {
 }
 
 body {
+  background: url(../img/testfond.svg) repeat-y;
   background-color: var(--background-color);
 }
 
@@ -128,6 +129,7 @@ textarea {
 #wrapper {
   display: flex;
   justify-content: center;
+  /* background: url(../img/testfond.svg) repeat-y; */
 }
 
 .main {
