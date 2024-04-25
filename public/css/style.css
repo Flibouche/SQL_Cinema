@@ -693,7 +693,12 @@ textarea {
 .movie__edit-movieDetails {
   display: flex;
   justify-content: space-between;
+  padding-top: 10px;
 }
+
+.movie__edit-movieDetails i:hover {
+  color: var(--yellow-color);
+} 
 
 .movie__poster-movieDetails img {
   width: 250px;
@@ -720,8 +725,19 @@ textarea {
   border-radius: 20px 20px 0px 0px;
 }
 
-.movie__information-movieDetails {
-padding-bottom: 15px;
+.movie__information-movieDetails h3,
+.movie__information-movieDetails,
+.movie__synopsis-movieDetails h3 {
+padding-bottom: 10px;
+}
+
+.movie__description-movieDetails,
+.movie__casting-movieDetails {
+padding: 10px 0px;
+}
+
+#movie__castingh3-movieDetails {
+  padding-top: 10px;
 }
 
 #synopsis {
@@ -755,9 +771,8 @@ padding-bottom: 15px;
   100% { transform: translateY(0) }
 }
 
-.movie__description-movieDetails,
-.movie__casting-movieDetails {
-padding: 15px 0px;
+.castingcard__edit-movieDetails {
+  padding-top: 5px;
 }
 
 /* ==================================================== */

@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Hôte:                         127.0.0.1
--- Version du serveur:           8.0.30 - MySQL Community Server - GPL
--- SE du serveur:                Win64
+-- Version du serveur:           8.0.36 - MySQL Community Server - GPL
+-- SE du serveur:                Linux
 -- HeidiSQL Version:             12.6.0.6765
 -- --------------------------------------------------------
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `actor` (
   CONSTRAINT `FK1_actor_person` FOREIGN KEY (`idPerson`) REFERENCES `person` (`idPerson`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.actor : ~11 rows (environ)
+-- Listage des données de la table kevin_cinema.actor : ~13 rows (environ)
 INSERT INTO `actor` (`idActor`, `idPerson`) VALUES
 	(1, 1),
 	(2, 2),
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `movie` (
   PRIMARY KEY (`idMovie`),
   KEY `idDirector` (`idDirector`),
   CONSTRAINT `FK1_movie_director` FOREIGN KEY (`idDirector`) REFERENCES `director` (`idDirector`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table kevin_cinema.movie : ~8 rows (environ)
 INSERT INTO `movie` (`idMovie`, `title`, `releaseYear`, `duration`, `note`, `synopsis`, `poster`, `idDirector`) VALUES
@@ -84,7 +84,8 @@ INSERT INTO `movie` (`idMovie`, `title`, `releaseYear`, `duration`, `note`, `syn
 	(5, 'Django Unchained', '2013', 164, 4.5, 'Dans le sud des États-Unis, deux ans avant la guerre de Sécession, le Dr King Schultz, un chasseur de primes allemand, fait l’acquisition de Django, un esclave qui peut l’aider à traquer les frères Brittle, les meurtriers qu’il recherche. Schultz promet à Django de lui rendre sa liberté lorsqu’il aura capturé les Brittle – morts ou vifs.\r\n\r\nAlors que les deux hommes pistent les dangereux criminels, Django n’oublie pas que son seul but est de retrouver Broomhilda, sa femme, dont il fut séparé à cause du commerce des esclaves…\r\n\r\nLorsque Django et Schultz arrivent dans l’immense plantation du puissant Calvin Candie, ils éveillent les soupçons de Stephen, un esclave qui sert Candie et a toute sa confiance. Le moindre de leurs mouvements est désormais épié par une dangereuse organisation de plus en plus proche… Si Django et Schultz veulent espérer s’enfuir avec Broomhilda, ils vont devoir choisir entre l’indépendance et la solidarité, entre le sacrifice et la survie…\r\n', 'https://www.affiche-cine.com/images/thumb-518x690/17/41835872524580589780.jpg', 3),
 	(30, 'Le Seigneur des anneaux : les deux tours', '2002', 179, 4.5, 'Apr&egrave;s la mort de Boromir et la disparition de Gandalf, la Communaut&eacute; s&#039;est scind&eacute;e en trois. Perdus dans les collines d&#039;Emyn Muil, Frodon et Sam d&eacute;couvrent qu&#039;ils sont suivis par Gollum, une cr&eacute;ature versatile corrompue par l&#039;Anneau. Celui-ci promet de conduire les Hobbits jusqu&#039;&agrave; la Porte Noire du Mordor. A travers la Terre du Milieu, Aragorn, Legolas et Gimli font route vers le Rohan, le royaume assi&eacute;g&eacute; de Theoden. Cet ancien grand roi, manipul&eacute; par l&#039;espion de Saroumane, le sinistre Langue de Serpent, est d&eacute;sormais tomb&eacute; sous la coupe du malfaisant Magicien. Eowyn, la ni&egrave;ce du Roi, reconna&icirc;t en Aragorn un meneur d&#039;hommes. Entretemps, les Hobbits Merry et Pippin, prisonniers des Uruk-hai, se sont &eacute;chapp&eacute;s et ont d&eacute;couvert dans la myst&eacute;rieuse For&ecirc;t de Fangorn un alli&eacute; inattendu : Sylvebarbe, gardien des arbres, repr&eacute;sentant d&#039;un ancien peuple v&eacute;g&eacute;tal dont Saroumane a d&eacute;cim&eacute; la for&ecirc;t...', 'https://www.affiche-cine.com/images/thumb-518x690/2/37641624377511007566.jpg', 1),
 	(31, 'Le Seigneur des anneaux : le retour du roi', '2003', 201, 4.5, '\r\n\r\nLes arm&eacute;es de Sauron ont attaqu&eacute; Minas Tirith, la capitale de Gondor. Jamais ce royaume autrefois puissant n&#039;a eu autant besoin de son roi. Mais Aragorn trouvera-t-il en lui la volont&eacute; d&#039;accomplir sa destin&eacute;e ?\r\n\r\nTandis que Gandalf s&#039;efforce de soutenir les forces bris&eacute;es de Gondor, Th&eacute;oden exhorte les guerriers de Rohan &agrave; se joindre au combat. Mais malgr&eacute; leur courage et leur loyaut&eacute;, les forces des Hommes ne sont pas de taille &agrave; lutter contre les innombrables l&eacute;gions d&#039;ennemis qui s&#039;abattent sur le royaume...\r\n\r\nChaque victoire se paye d&#039;immenses sacrifices. Malgr&eacute; ses pertes, la Communaut&eacute; se jette dans la bataille pour la vie, ses membres faisant tout pour d&eacute;tourner l&#039;attention de Sauron afin de donner &agrave; Frodon une chance d&#039;accomplir sa qu&ecirc;te.\r\n\r\nVoyageant &agrave; travers les terres ennemies, ce dernier doit se reposer sur Sam et Gollum, tandis que l&#039;Anneau continue de le tenter...', 'https://www.affiche-cine.com/images/thumb-518x690/3/37992676957328273784.jpg', 1),
-	(40, 'Tenet', '2000', 150, 5, 'Azerty', './public/img/movies/66225985e1e4e5.65253426.webp', 1);
+	(40, 'Tenet', '2000', 150, 5, 'Azerty', './public/img/movies/66225985e1e4e5.65253426.webp', 1),
+	(48, 'aze', '2000', 150, 5, '123', 'public/img/movies/662a60b0948f91.95529544.webp', 1);
 
 -- Listage de la structure de la table kevin_cinema. movie_theme
 CREATE TABLE IF NOT EXISTS `movie_theme` (
@@ -112,7 +113,8 @@ INSERT INTO `movie_theme` (`idMovie`, `idTheme`) VALUES
 	(31, 2),
 	(40, 5),
 	(3, 7),
-	(3, 6);
+	(3, 6),
+	(48, 5);
 
 -- Listage de la structure de la table kevin_cinema. person
 CREATE TABLE IF NOT EXISTS `person` (
@@ -181,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   PRIMARY KEY (`idRole`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table kevin_cinema.role : ~0 rows (environ)
+-- Listage des données de la table kevin_cinema.role : ~17 rows (environ)
 INSERT INTO `role` (`idRole`, `roleName`) VALUES
 	(1, 'Frodon Sacquet'),
 	(2, 'Sam Gamegie'),

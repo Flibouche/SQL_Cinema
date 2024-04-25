@@ -61,7 +61,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 
         <hr>
 
-        <h3>Casting :</h3>
+        <h3 id="movie__castingh3-movieDetails">Casting :</h3>
         <div class="movie__casting-movieDetails">
             <?php
             foreach ($moviesCasting as $movieCasting) {
@@ -72,7 +72,8 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
                     </div>
 
                     <div class="castingcard__description-movieDetails">
-                        <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a> as <?= $movieCasting["roleName"] ?>
+                        <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a>
+                        <p>as <?= $movieCasting["roleName"] ?></p>
                     </div>
 
                     <div class="castingcard__edit-movieDetails">
