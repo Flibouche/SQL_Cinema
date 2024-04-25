@@ -105,23 +105,23 @@ class MovieController
                     $uniqueName = uniqid('', true);
                     $file = $uniqueName . '.' . $extension;
 
-                    move_uploaded_file($tmpName, "./public/img/movies/" . $file);
+                    move_uploaded_file($tmpName, "public/img/movies/" . $file);
 
                     // Conversion en webp
                     // Création de mon image en doublon en chaine de caractères
-                    $posterSource = imagecreatefromstring(file_get_contents("./public/img/movies/" . $file));
+                    $posterSource = imagecreatefromstring(file_get_contents("public/img/movies/" . $file));
                     // Récupération du chemin de l'image
-                    $webpPath = "./public/img/movies/" . $uniqueName . ".webp";
+                    $webpPath = "public/img/movies/" . $uniqueName . ".webp";
                     // Conversion en format webp
                     imagewebp($posterSource, $webpPath);
                     // Suppression de l'ancienne image
-                    unlink("./public/img/movies/" . $file);
+                    unlink("public/img/movies/" . $file);
                 } else {
                     echo "Wrong extension or file size too large or error !";
                 }
             }
 
-            $poster = isset($webpPath) ? $webpPath : "./public/img/movies/default.webp";
+            $poster = isset($webpPath) ? $webpPath : "public/img/movies/default.webp";
 
             $requestAddMovie = $pdo->prepare("
             INSERT INTO movie (title, releaseYear, duration, note, synopsis, poster, idDirector)
@@ -156,7 +156,7 @@ class MovieController
             }
 
             // Redirection vers la page 'index.php?action=listMovies' après le traitement du formulaire
-            header("Location:index.php?action=listMovies");
+            header("Location:index.php?action=listMovies");die;
         }
 
         require "view/movies/addMovie.php";
@@ -227,7 +227,7 @@ class MovieController
 
                     // Tableau des extensions qu'on autorise
                     $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
-                    $maxSize = 1000000;
+                    $maxSize = 100000000;
 
                     if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
 
@@ -248,17 +248,12 @@ class MovieController
                             unlink($linkPoster['poster']);
                         }
 
-                        move_uploaded_file($tmpName, "./public/img/movies/" . $file);
-
-                        // Conversion en webp
-                        // Création de mon image en doublon
-                        $posterSource = imagecreatefromstring(file_get_contents("./public/img/movies/" . $file));
-                        // Récupération du chemin de l'image
-                        $webpPath = "./public/img/movies/" . $uniqueName . ".webp";
-                        // Conversion en format webp
+                        // On récupère l'image de notre forumulaire via la superglobale file, on prend le chemin et on crée l'image
+                        $posterSource = imagecreatefromstring(file_get_contents($tmpName));
+                        // Récupération du chemin cible de l'image
+                        $webpPath = "public/img/movies/" . $uniqueName . ".webp";
+                        // Conversion en format webp (on prend l'image et on la colle dans le dossier de destination)
                         imagewebp($posterSource, $webpPath);
-                        // Suppression de l'ancienne image
-                        unlink("./public/img/movies/" . $file);
 
                         $requestNewPoster = $pdo->prepare("
                     UPDATE movie
@@ -271,8 +266,10 @@ class MovieController
                             "id" => $id
                         ]);
                     } else {
-                        echo "Wrong extension or file size too large or error !";
+                        echo "Wrong extension or file size too large or error !";exit;
                     }
+                } else {
+                    echo "voila";exit;
                 }
 
                 $requestEditMovie = $pdo->prepare("
@@ -314,7 +311,7 @@ class MovieController
                     ]);
                 }
 
-                header("Location:index.php?action=editMovie&id=$id");
+                header("Location:index.php?action=editMovie&id=$id");die;
             }
 
             require "view/movies/editMovie.php";
@@ -424,3 +421,4 @@ class MovieController
         header("Location:index.php?action=listMovies");
     }
 }
+?>

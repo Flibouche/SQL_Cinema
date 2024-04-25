@@ -52,7 +52,10 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
                 <h3>Synopsis :</h3>
                 <p><?= $movieDetails["synopsis"] ?></p>
             </div>
-            <button id="synopsis-btn">Read more</button>
+            <div class="read-btn">
+                <i id="read-more-btn" class="fa-solid fa-arrow-down"></i>
+                <i id="read-less-btn" class="fa-solid fa-arrow-up"></i>
+            </div>
 
         </div>
 

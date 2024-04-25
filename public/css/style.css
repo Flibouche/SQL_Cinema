@@ -680,13 +680,6 @@ textarea {
   border-radius: 20px 20px 0px 0px;
 }
 
-#synopsis {
-  overflow: hidden;
-  height: 3.6em;
-  line-height: 1.2em;
-  width: 200px;
-}
-
 /* ==================================================== */
 /* ===================== DETAILS ====================== */
 /* ==================================================== */
@@ -725,6 +718,46 @@ textarea {
   width: 100%;
   height: 100%;
   border-radius: 20px 20px 0px 0px;
+}
+
+.movie__information-movieDetails {
+padding-bottom: 15px;
+}
+
+#synopsis {
+  max-width: 954px;
+  line-height: 1.2em;
+}
+
+.read-btn {
+  display: flex;
+  justify-content: center;
+}
+
+#read-more-btn,
+#read-less-btn {
+  padding: 20px 0px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#read-more-btn:hover,
+#read-less-btn:hover {
+  color: var(--yellow-color);
+  animation: vertical-shaking 0.35s infinite;
+}
+
+@keyframes vertical-shaking {
+  0% { transform: translateY(0) }
+  25% { transform: translateY(5px) }
+  50% { transform: translateY(-5px) }
+  75% { transform: translateY(5px) }
+  100% { transform: translateY(0) }
+}
+
+.movie__description-movieDetails,
+.movie__casting-movieDetails {
+padding: 15px 0px;
 }
 
 /* ==================================================== */
