@@ -870,6 +870,11 @@ textarea {
     background-color: var(--background-color);
   }
 
+  body.hide-bg {
+    background: none;
+    background-color: var(--background-color);
+  }
+
   .nav {
     width: 50vw;
     left: 25%;

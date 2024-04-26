@@ -175,6 +175,7 @@ class PersonController
 
             // Redirection vers la page 'index.php?action=addPerson' après le traitement du formulaire
             header("Location:index.php?action=addPerson");
+            exit;
         }
 
         require "view/persons/addPerson.php";
@@ -237,17 +238,12 @@ class PersonController
                             unlink($linkPicture['picture']);
                         }
 
-                        move_uploaded_file($tmpName, "./public/img/persons/" . $file);
-
-                        // Conversion en webp
-                        // Création de mon image en doublon
-                        $pictureSource = imagecreatefromstring(file_get_contents("./public/img/persons/" . $file));
-                        // Récupération du chemin de l'image
+                        // On récupère l'image de notre forumulaire via la superglobale file, on prend le chemin et on crée l'image
+                        $pictureSource = imagecreatefromstring(file_get_contents($tmpName));
+                        // Récupération du chemin cible de l'image
                         $webpPath = "./public/img/persons/" . $uniqueName . ".webp";
-                        // Conversion en format webp
+                        // Conversion en format webp (on prend l'image et on la colle dans le dossier de destination)
                         imagewebp($pictureSource, $webpPath);
-                        // Suppression de l'ancienne image
-                        unlink("./public/img/persons/" . $file);
 
                         $requestNewPicture = $pdo->prepare("
                     UPDATE person
@@ -272,6 +268,7 @@ class PersonController
                 $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "id" => $id]);
 
                 header("Location:index.php?action=editPerson&id=$id");
+                exit;
             }
 
             require "view/persons/editPerson.php";

@@ -14,7 +14,8 @@
     <title><?= $title ?></title>
 </head>
 
-<body>
+<body class="<?php echo $hideBgImage ? 'hide-bg' : ''; ?>">
+
     <!--========================== HEADER ===========================-->
     <header class="header" id="header">
 

@@ -1,4 +1,5 @@
 <?php ob_start();
+$hideBgImage = true;
 ?>
 
 <section class="main section" id="main">
