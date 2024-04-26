@@ -37,13 +37,22 @@ btn.addEventListener("click", function checker(event) {
   }
 });
 
+const castingBtn = document.querySelectorAll(".delete-casting");
+
+castingBtn.addEventListener("click", function checker(event) {
+  var result = confirm("Are you sure you want to delete this item ?");
+  if (result == false) {
+    event.preventDefault();
+  }
+});
+
 /*=============== SEE MORE SYNOPSIS/DESCRIPTION ===============*/
 const synopsis = document.querySelector('#synopsis');
 const readMoreBtn = document.querySelector('#read-more-btn');
 const readLessBtn = document.querySelector('#read-less-btn');
 
-synopsis.style.overflow = 'hidden';
-synopsis.style.height = '100px';
+synopsis.style.overflow = 'hidden'; 
+synopsis.style.height = '2em';
 synopsis.style.textOverflow = 'ellipsis';
 readLessBtn.style.display = 'none';
 
@@ -54,7 +63,7 @@ readMoreBtn.addEventListener('click', () => {
 });
 
 readLessBtn.addEventListener('click', () => {
-  synopsis.style.height = '100px';
-  readLessBtn.style.display = 'none'; 
+  synopsis.style.height = '2em';
+  readLessBtn.style.display = 'none';
   readMoreBtn.style.display = 'flex';
 });

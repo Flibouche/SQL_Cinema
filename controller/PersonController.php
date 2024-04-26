@@ -53,17 +53,17 @@ class PersonController
 
             $pdo = Connect::toLogIn();
 
-            $requestpersonDetails = $pdo->prepare("
+            $requestPersonDetails = $pdo->prepare("
         SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture, actor.idActor, director.idDirector
         FROM person
         LEFT JOIN actor ON person.idPerson = actor.idPerson
         LEFT JOIN director ON person.idPerson = director.idPerson
         WHERE person.idPerson = :id
         ");
-            $requestpersonDetails->execute(["id" => $id]);
+            $requestPersonDetails->execute(["id" => $id]);
 
             $requestActorsFilmography = $pdo->prepare("
-        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
+        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, movie.poster, person.firstname, person.surname, role.roleName
         FROM play
         INNER JOIN movie ON play.idMovie = movie.idMovie
         INNER JOIN role ON play.idRole = role.idRole
@@ -75,7 +75,7 @@ class PersonController
             $requestActorsFilmography->execute(["id" => $id]);
 
             $requestDirectorsFilmography = $pdo->prepare("
-        SELECT director.idDirector, movie.idMovie, person.firstname, person.surname, movie.title, movie.releaseYear
+        SELECT director.idDirector, movie.idMovie, movie.title, movie.releaseYear, movie.poster, person.firstname, person.surname
         FROM director
         INNER JOIN person ON director.idPerson = person.idPerson
         INNER JOIN movie ON director.idDirector = movie.idDirector

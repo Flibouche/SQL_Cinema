@@ -77,7 +77,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
                     </div>
 
                     <div class="castingcard__edit-movieDetails">
-                        <a onclick="checker()" class="delBtn" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>"><i class="fa-solid fa-user-xmark"></i></a>
+                        <a class="delete-casting" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>"><i class="fa-solid fa-user-xmark"></i></a>
                     </div>
 
                 </figure>
@@ -89,12 +89,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 
     </div>
 
-    </div>
-
 </section>
-
-
-
 
 <?php
 
