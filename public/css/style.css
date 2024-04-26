@@ -120,15 +120,13 @@ textarea {
 /*========================== REUSABLE CSS CLASSES ======================*/
 
 .container {
-  max-width: 954px;
+  width: clamp(360px, 100vw, 954px);
   margin-inline: 0.7rem;
-  /* margin-inline: 15.188rem; */
 }
 
 #wrapper {
   display: flex;
   justify-content: center;
-  /* background: url(../img/testfond.svg) repeat-y; */
 }
 
 .main {
@@ -656,7 +654,8 @@ textarea {
   gap: 30px;
 }
 
-.card__description-listMovies {
+.card__description-listMovies,
+.filmographycard__description-personDetails {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -685,34 +684,40 @@ textarea {
 /* ===================== DETAILS ====================== */
 /* ==================================================== */
 
-.movie__header-movieDetails {
+.movie__header-movieDetails,
+.person__header-personDetails {
   display: grid;
   justify-content: center;
   margin: 3rem 0rem;
 }
 
-.movie__edit-movieDetails {
+.movie__edit-movieDetails,
+.person__edit-personDetails {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
 }
 
-.movie__edit-movieDetails i:hover {
+.movie__edit-movieDetails i:hover,
+.person__edit-personDetails i:hover {
   color: var(--yellow-color);
 } 
 
-.movie__poster-movieDetails img {
+.movie__poster-movieDetails img,
+.person__picture-personDetails img {
   width: 250px;
   height: 350px;
 }
 
-.movie__casting-movieDetails {
+.movie__casting-movieDetails,
+.person__filmography-personDetails {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
 }
 
-.movie__castingcard-movieDetails {
+.movie__castingcard-movieDetails,
+.person__filmographycard-personDetails {
   text-align: center;
   font-family: var(--nav-text-font);
   width: 150px;
@@ -720,7 +725,8 @@ textarea {
   margin-bottom: 30px;
 }
 
-.movie__castingcard-movieDetails img {
+.movie__castingcard-movieDetails img,
+.person__filmographycard-personDetails img {
   width: 100%;
   height: 100%;
   border-radius: 20px 20px 0px 0px;
@@ -728,16 +734,22 @@ textarea {
 
 .movie__information-movieDetails h3,
 .movie__information-movieDetails,
-.movie__synopsis-movieDetails h3 {
+.movie__synopsis-movieDetails h3,
+.person__information-personDetails h3,
+.person__information-personDetails,
+.person__description-personDetails {
 padding-bottom: 10px;
 }
 
 .movie__description-movieDetails,
-.movie__casting-movieDetails {
+.movie__casting-movieDetails,
+.person__description-personDetails,
+.person__filmography-personDetails {
 padding: 10px 0px;
 }
 
-#movie__castingh3-movieDetails {
+#movie__castingh3-movieDetails,
+.person__filmographyh3-personDetails {
   padding-top: 10px;
 }
 

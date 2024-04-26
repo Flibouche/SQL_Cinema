@@ -192,6 +192,8 @@ class PersonController
             $requestPerson = $pdo->prepare("
         SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture
         FROM person
+        LEFT JOIN actor ON person.idPerson = actor.idPerson
+        LEFT JOIN director ON person.idPerson = director.idPerson
         WHERE person.idPerson = :id        
         ");
             $requestPerson->execute(["id" => $id]);
@@ -246,8 +248,6 @@ class PersonController
                         imagewebp($pictureSource, $webpPath);
                         // Suppression de l'ancienne image
                         unlink("./public/img/persons/" . $file);
-
-
 
                         $requestNewPicture = $pdo->prepare("
                     UPDATE person
