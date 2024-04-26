@@ -11,37 +11,25 @@
   --yellow-color: #d9a849;
   --text-color: #ffffff;
   --gradient-top: linear-gradient(90deg, #d9a849 0%, #a2520d 100%);
-  --gradient-left: linear-gradient(
-    90deg,
-    rgba(162, 82, 13, 0.5) 0%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  --gradient-right: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(162, 82, 13, 0.5) 100%
-  );
-  --gradient-bottom: linear-gradient(
-    359.4deg,
-    rgba(162, 82, 13, 0.5) 0.52%,
-    rgba(0, 0, 0, 0.5) 99.48%
-  );
-  --button-gradient: linear-gradient(
-    90deg,
-    rgba(217, 168, 73, 1) 0%,
-    rgba(162, 82, 13, 1) 100%
-  );
-  --hypertext-underline-gradient: linear-gradient(
-    0deg,
-    #d9a849 0%,
-    #a2520d 100%
-  );
-  --background-gradient: radial-gradient(
-    131.8% 131.8% at 50% -31.8%,
-    #d9a849 23%,
-    #471d07 72.5%,
-    #000000 100%
-  );
+  --gradient-left: linear-gradient(90deg,
+      rgba(162, 82, 13, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+  --gradient-right: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(162, 82, 13, 0.5) 100%);
+  --gradient-bottom: linear-gradient(359.4deg,
+      rgba(162, 82, 13, 0.5) 0.52%,
+      rgba(0, 0, 0, 0.5) 99.48%);
+  --button-gradient: linear-gradient(90deg,
+      rgba(217, 168, 73, 1) 0%,
+      rgba(162, 82, 13, 1) 100%);
+  --hypertext-underline-gradient: linear-gradient(0deg,
+      #d9a849 0%,
+      #a2520d 100%);
+  --background-gradient: radial-gradient(131.8% 131.8% at 50% -31.8%,
+      #d9a849 23%,
+      #471d07 72.5%,
+      #000000 100%);
 
   /*========== Fonts & typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
@@ -120,7 +108,7 @@ textarea {
 /*========================== REUSABLE CSS CLASSES ======================*/
 
 .container {
-  width: clamp(360px, 100vw, 954px);
+  width: clamp(330px, 80vw, 954px);
   margin-inline: 0.7rem;
 }
 
@@ -139,19 +127,17 @@ textarea {
 
 .nav__logo img,
 .footer__logo img {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(126deg)
-    brightness(110%) contrast(101%);
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(126deg) brightness(110%) contrast(101%);
 }
 
 .nav__logo img:hover,
 .footer__logo img:hover {
-  filter: invert(67%) sepia(34%) saturate(706%) hue-rotate(1deg) brightness(97%)
-    contrast(90%);
+  filter: invert(67%) sepia(34%) saturate(706%) hue-rotate(1deg) brightness(97%) contrast(90%);
 }
 
 .main__separator hr {
   margin: 100px 20%;
-  max-width: 466px;
+  max-width: clamp(330px, 80vw, 954px);
   border-radius: 50%;
   background: var(--yellow-color);
 }
@@ -224,6 +210,7 @@ textarea {
 .nav {
   position: relative;
   height: var(--header-height);
+  width: 95vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -320,7 +307,7 @@ textarea {
 .main__background {
   position: absolute;
   justify-content: center;
-  background-image: var(--background-gradient);
+  background: var(--background-gradient);
   left: 0;
   width: 100%;
   height: 500px;
@@ -444,7 +431,7 @@ textarea {
   object-position: center;
 }
 
-.carousel .carousel-item > img {
+.carousel .carousel-item>img {
   width: 100%;
 }
 
@@ -465,11 +452,14 @@ textarea {
 }
 
 .carousel-item.active:hover .carousel-description p {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid var(--yellow-color); /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid var(--yellow-color);
+  /* The typwriter cursor */
+  white-space: nowrap;
+  /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em;
+  /* Adjust as needed */
   animation: typing 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
@@ -478,6 +468,7 @@ textarea {
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
@@ -485,10 +476,12 @@ textarea {
 
 /* The typewriter cursor effect */
 @keyframes blink-caret {
+
   from,
   to {
     border-color: transparent;
   }
+
   50% {
     border-color: var(--yellow-color);
   }
@@ -654,6 +647,11 @@ textarea {
   gap: 30px;
 }
 
+.listRoles__container,
+.listThemes__container {
+  line-height: 2rem;
+}
+
 .card__description-listMovies,
 .filmographycard__description-personDetails {
   white-space: nowrap;
@@ -678,6 +676,19 @@ textarea {
   width: 100%;
   height: 100%;
   border-radius: 20px 20px 0px 0px;
+  transition: .7s;
+}
+
+.listMovies__container:hover .movie__card-listMovies img,
+.listActors__container:hover .actor__card-listActors img,
+.listDirectors__container:hover .director__card-listDirectors img {
+  filter: grayscale(1)
+}
+
+.listMovies__container .movie__card-listMovies img:hover,
+.listActors__container .actor__card-listActors img:hover,
+.listDirectors__container .director__card-listDirectors img:hover {
+  filter: grayscale(0);
 }
 
 /* ==================================================== */
@@ -701,7 +712,7 @@ textarea {
 .movie__edit-movieDetails i:hover,
 .person__edit-personDetails i:hover {
   color: var(--yellow-color);
-} 
+}
 
 .movie__poster-movieDetails img,
 .person__picture-personDetails img {
@@ -716,8 +727,17 @@ textarea {
   gap: 30px;
 }
 
+.role__casting-roleDetails,
+.theme__movie-themeDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .movie__castingcard-movieDetails,
-.person__filmographycard-personDetails {
+.person__filmographycard-personDetails,
+.role__castingcard-roleDetails,
+.theme__moviecard-themeDetails {
   text-align: center;
   font-family: var(--nav-text-font);
   width: 150px;
@@ -726,7 +746,9 @@ textarea {
 }
 
 .movie__castingcard-movieDetails img,
-.person__filmographycard-personDetails img {
+.person__filmographycard-personDetails img,
+.role__castingcard-roleDetails img,
+.theme__moviecard-themeDetails img {
   width: 100%;
   height: 100%;
   border-radius: 20px 20px 0px 0px;
@@ -738,14 +760,14 @@ textarea {
 .person__information-personDetails h3,
 .person__information-personDetails,
 .person__description-personDetails {
-padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .movie__description-movieDetails,
 .movie__casting-movieDetails,
 .person__description-personDetails,
 .person__filmography-personDetails {
-padding: 10px 0px;
+  padding: 10px 0px;
 }
 
 #movie__castingh3-movieDetails,
@@ -782,15 +804,44 @@ padding: 10px 0px;
 }
 
 @keyframes vertical-shaking {
-  0% { transform: translateY(0) }
-  25% { transform: translateY(5px) }
-  50% { transform: translateY(-5px) }
-  75% { transform: translateY(5px) }
-  100% { transform: translateY(0) }
+  0% {
+    transform: translateY(0)
+  }
+
+  25% {
+    transform: translateY(5px)
+  }
+
+  50% {
+    transform: translateY(-5px)
+  }
+
+  75% {
+    transform: translateY(5px)
+  }
+
+  100% {
+    transform: translateY(0)
+  }
 }
 
 .castingcard__edit-movieDetails {
   padding-top: 5px;
+}
+
+.role__header-roleDetails,
+.theme__header-themeDetails {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  column-gap: 25px;
+}
+
+.castingcard__descriptionMovie-roleDetails,
+.moviecard__descriptionMovie-themeDetails {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* ==================================================== */
@@ -819,6 +870,11 @@ padding: 10px 0px;
     background-color: var(--background-color);
   }
 
+  .nav {
+    width: 50vw;
+    left: 25%;
+  }
+
   .nav__list {
     display: flex;
     flex-direction: row;
@@ -839,9 +895,7 @@ padding: 10px 0px;
 }
 
 /* For extra large devices */
-@media screen and (min-width: 1200px) {
-}
+@media screen and (min-width: 1200px) {}
 
 /* For extra extra large devices */
-@media screen and (min-width: 1400px) {
-}
+@media screen and (min-width: 1400px) {}

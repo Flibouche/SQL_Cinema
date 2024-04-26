@@ -93,7 +93,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 
 <?php
 
-$title = "Movie's details";
+$title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
 $secondary_title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
 $content = ob_get_clean();
 require "view/template.php";

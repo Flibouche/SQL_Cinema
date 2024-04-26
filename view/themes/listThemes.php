@@ -14,13 +14,13 @@ $themes = $requestThemes->fetchAll();
         ?>
     </div>
 
-    <a href="index.php?action=addTheme">Add a theme</a>
+    <button class="main__button list__button"><a href="index.php?action=addTheme">Add a theme</a></button>
 
 </section>
 
 <?php
 
-$title = "Themes's List";
-$secondary_title = "Themes' List";
+$title = "Themes's List (" . $requestThemes->rowCount() . ")";
+$secondary_title = "Themes's List (" . $requestThemes->rowCount() . ")";
 $content = ob_get_clean();
 require "view/template.php";

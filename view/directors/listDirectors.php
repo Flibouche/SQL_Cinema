@@ -3,7 +3,6 @@ $directors = $requestDirectors->fetchAll();
 ?>
 
 <section class="listDirectors section" id="listDirectors">
-    <p>There's <?= $requestDirectors->rowCount() ?> directors</p>
     <div class="listDirectors__container container">
 
         <?php
@@ -24,7 +23,7 @@ $directors = $requestDirectors->fetchAll();
 
 <?php
 
-$title = "Directors's List ";
-$secondary_title = "Directors's List";
+$title = "Directors's List (" . $requestDirectors->rowCount() . ")";
+$secondary_title = "Directors's List (" . $requestDirectors->rowCount() . ")";
 $content = ob_get_clean();
 require "view/template.php";

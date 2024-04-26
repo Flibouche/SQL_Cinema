@@ -3,7 +3,6 @@ $actors = $requestActors->fetchAll();
 ?>
 
 <section class="listActors section" id="listActors">
-    <p>There's <?= $requestActors->rowCount() ?> actors</p>
     <div class="listActors__container container">
 
         <?php
@@ -25,7 +24,7 @@ $actors = $requestActors->fetchAll();
 
 <?php
 
-$title = "Actor's list";
-$secondary_title = "Actor's list";
+$title = "Actor's list (" . $requestActors->rowCount() . ")";
+$secondary_title = "Actor's list (" . $requestActors->rowCount() . ")";
 $content = ob_get_clean();
 require "view/template.php";

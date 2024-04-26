@@ -37,18 +37,18 @@ class ThemeController
             $pdo = Connect::toLogIn();
 
             // Exécution de la requête SQL pour récupérer les détails d'un thème spécifique
-            $requestthemeDetails = $pdo->prepare("
-            SELECT theme.idTheme, theme.typeName, movie.idMovie, movie.title
+            $requestThemeDetails = $pdo->prepare("
+            SELECT theme.idTheme, theme.typeName, movie.idMovie, movie.title, movie.releaseYear, movie.poster
             FROM movie_theme
             INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
             INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
             WHERE theme.idTheme = :id
         ");
-            $requestthemeDetails->execute(["id" => $id]);
+            $requestThemeDetails->execute(["id" => $id]);
 
             // Exécution de la requête SQL pour récupérer l'ID du thème spécifique
             $requestThemeID = $pdo->prepare("
-            SELECT theme.idTheme
+            SELECT theme.idTheme, theme.typeName
             FROM theme
             WHERE theme.idTheme = :id
         ");

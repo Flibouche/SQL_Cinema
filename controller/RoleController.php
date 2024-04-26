@@ -37,8 +37,8 @@ class RoleController
             $pdo = Connect::toLogIn();
 
             // Exécution de la requête SQL pour récupérer les détails d'un rôle spécifique
-            $requestroleDetails = $pdo->prepare("
-            SELECT person.idPerson, role.idRole, actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, role.roleName
+            $requestRoleDetails = $pdo->prepare("
+            SELECT person.idPerson, role.idRole, actor.idActor, movie.idMovie, movie.title, movie.releaseYear, person.firstname, person.surname, person.picture, role.roleName
             FROM play
             INNER JOIN movie ON play.idMovie = movie.idMovie
             INNER JOIN role ON play.idRole = role.idRole
@@ -46,11 +46,11 @@ class RoleController
             INNER JOIN person ON actor.idPerson = person.idPerson
             WHERE role.idRole = :id
         ");
-            $requestroleDetails->execute(["id" => $id]);
+            $requestRoleDetails->execute(["id" => $id]);
 
             // Exécution de la requête SQL pour récupérer l'ID du rôle spécifique
             $requestRoleID = $pdo->prepare("
-            SELECT role.idRole
+            SELECT role.idRole, role.roleName
             FROM role
             WHERE role.idRole = :id
         ");

@@ -60,6 +60,11 @@
                 </div>
             </div>
 
+            <!-- <div class="nav__user">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-user"></i>
+            </div> -->
+
             <div class="nav__actions">
                 <!-- Toggle Button -->
                 <div class="nav__toggle" id="nav-toggle">

@@ -3,7 +3,6 @@ $movies = $requestMovies->fetchAll();
 ?>
 
 <section class="listMovies section" id="listMovies">
-    <p>There's <?= $requestMovies->rowCount() ?> movies</p>
     <div class="listMovies__container container">
 
         <?php
@@ -33,7 +32,7 @@ $movies = $requestMovies->fetchAll();
 
 <?php
 
-$title = "Movies' List";
-$secondary_title = "Movies' List";
+$title = "Movies' List (" . $requestMovies->rowCount() . ")";
+$secondary_title = "Movies' List (" . $requestMovies->rowCount() . ")" ;
 $content = ob_get_clean();
 require "view/template.php";

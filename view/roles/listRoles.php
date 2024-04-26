@@ -22,7 +22,7 @@ $roles = $requestRoles->fetchAll();
 
 <?php
 
-$title = "Roles' List";
-$secondary_title = "Roles' List";
+$title = "Roles' List (" . $requestRoles->rowCount() . ")";
+$secondary_title = "Roles' List (" . $requestRoles->rowCount() . ")";
 $content = ob_get_clean();
 require "view/template.php";
