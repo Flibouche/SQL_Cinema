@@ -27,24 +27,49 @@ const linkAction = () => {
 };
 navLink.forEach((n) => n.addEventListener("click", linkAction));
 
-/*=============== DELETE ITEM ===============*/
-const btn = document.querySelector("#delete-button");
+/*=============== DELETE MODAL ===============*/
+/* Movie Modal */
+const modalMovie = document.querySelector(".modal-movie");
+const overlay = document.querySelector(".overlay");
+const openModalMovieBtn = document.querySelector(".btn-openModalMovie");
+const closeModalBtn = document.querySelector(".btn-close");
+const closeModalBtn2 = document.querySelector(".btn-close2");
 
-btn.addEventListener("click", function checker(event) {
-  var result = confirm("Are you sure you want to delete this item ?");
-  if (result == false) {
-    event.preventDefault();
-  }
-});
+const openModalMovie = function () {
+  modalMovie.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
 
-const castingBtn = document.querySelectorAll(".delete-casting");
+openModalMovieBtn.addEventListener("click", openModalMovie);
 
-castingBtn.addEventListener("click", function checker(event) {
-  var result = confirm("Are you sure you want to delete this item ?");
-  if (result == false) {
-    event.preventDefault();
-  }
-});
+const closeModalMovie = function () {
+  modalMovie.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+closeModalBtn.addEventListener("click", closeModalMovie);
+closeModalBtn2.addEventListener("click", closeModalMovie);
+
+overlay.addEventListener("click", closeModalMovie);
+
+
+// const btn = document.querySelector("#delete-button");
+
+// btn.addEventListener("click", function checker(event) {
+//   var result = confirm("Are you sure you want to delete this item ?");
+//   if (result == false) {
+//     event.preventDefault();
+//   }
+// });
+
+// const castingBtn = document.querySelectorAll(".delete-casting");
+
+// castingBtn.addEventListener("click", function checker(event) {
+//   var result = confirm("Are you sure you want to delete this item ?");
+//   if (result == false) {
+//     event.preventDefault();
+//   }
+// });
 
 /*=============== SEE MORE SYNOPSIS/DESCRIPTION ===============*/
 const synopsis = document.querySelector('#synopsis');
