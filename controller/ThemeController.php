@@ -78,6 +78,7 @@ class ThemeController
 
             // Redirection vers la page 'index.php?action=addTheme' après le traitement du formulaire
             header("Location:index.php?action=addTheme");
+            exit;
         }
 
         // Inclusion du fichier de vue pour afficher le formulaire d'ajout de thème
@@ -118,6 +119,7 @@ class ThemeController
 
                 // Redirection vers la page 'index.php?action=listThemes' après la modification du thème
                 header("Location:index.php?action=listThemes");
+                exit;
             }
 
             // Inclusion du fichier de vue pour afficher le formulaire de modification de thème
@@ -140,5 +142,6 @@ class ThemeController
 
         // Redirection vers la page 'index.php?action=listThemes' après la suppression du thème
         header("Location:index.php?action=listThemes");
+        exit;
     }
 }

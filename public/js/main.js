@@ -27,6 +27,16 @@ const linkAction = () => {
 };
 navLink.forEach((n) => n.addEventListener("click", linkAction));
 
+/*=============== SHOW SCROLL UP ===============*/
+const scrollUp = () => {
+  const scrollUp = document.getElementById("scroll-up");
+  // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
+  this.scrollY >= 350
+    ? scrollUp.classList.add("show-scroll")
+    : scrollUp.classList.remove("show-scroll");
+};
+window.addEventListener("scroll", scrollUp);
+
 /*=============== DELETE MODAL ===============*/
 /* Movie Modal */
 const modalMovie = document.querySelector(".modal-movie");
@@ -40,7 +50,7 @@ const openModalMovie = function () {
   overlay.classList.remove("hidden");
 };
 
-openModalMovieBtn.addEventListener("click", openModalMovie);
+// openModalMovieBtn.addEventListener("click", openModalMovie);
 
 const closeModalMovie = function () {
   modalMovie.classList.add("hidden");
@@ -52,43 +62,24 @@ closeModalBtn2.addEventListener("click", closeModalMovie);
 
 overlay.addEventListener("click", closeModalMovie);
 
-
-// const btn = document.querySelector("#delete-button");
-
-// btn.addEventListener("click", function checker(event) {
-//   var result = confirm("Are you sure you want to delete this item ?");
-//   if (result == false) {
-//     event.preventDefault();
-//   }
-// });
-
-// const castingBtn = document.querySelectorAll(".delete-casting");
-
-// castingBtn.addEventListener("click", function checker(event) {
-//   var result = confirm("Are you sure you want to delete this item ?");
-//   if (result == false) {
-//     event.preventDefault();
-//   }
-// });
-
 /*=============== SEE MORE SYNOPSIS/DESCRIPTION ===============*/
-const synopsis = document.querySelector('#synopsis');
-const readMoreBtn = document.querySelector('#read-more-btn');
-const readLessBtn = document.querySelector('#read-less-btn');
+const synopsis = document.querySelector("#synopsis");
+const readMoreBtn = document.querySelector("#read-more-btn");
+const readLessBtn = document.querySelector("#read-less-btn");
 
-synopsis.style.overflow = 'hidden'; 
-synopsis.style.height = '2em';
-synopsis.style.textOverflow = 'ellipsis';
-readLessBtn.style.display = 'none';
+synopsis.style.overflow = "hidden";
+synopsis.style.height = "4em";
+synopsis.style.textOverflow = "ellipsis";
+readLessBtn.style.display = "none";
 
-readMoreBtn.addEventListener('click', () => {
-  synopsis.style.height = 'auto';
-  readMoreBtn.style.display = 'none';
-  readLessBtn.style.display = 'flex'; 
+readMoreBtn.addEventListener("click", () => {
+  synopsis.style.height = "auto";
+  readMoreBtn.style.display = "none";
+  readLessBtn.style.display = "flex";
 });
 
-readLessBtn.addEventListener('click', () => {
-  synopsis.style.height = '2em';
-  readLessBtn.style.display = 'none';
-  readMoreBtn.style.display = 'flex';
+readLessBtn.addEventListener("click", () => {
+  synopsis.style.height = "4em";
+  readLessBtn.style.display = "none";
+  readMoreBtn.style.display = "flex";
 });

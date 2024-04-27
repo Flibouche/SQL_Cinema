@@ -3,7 +3,6 @@ $movieDetails = $requestmovieDetails->fetch();
 $moviesCasting = $requestMoviesCasting->fetchAll();
 ?>
 
-
 <section class="modal-movie hidden">
     <div class="flex">
         <button class="btn-close">
@@ -21,10 +20,6 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 <div class="overlay hidden"></div>
 
 <section class="movieDetails section" id="listMovies">
-
-
-
-
 
     <div class="movieDetails__container container">
 
@@ -52,6 +47,8 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
         <div class="movie__information-movieDetails">
             <h3><?= $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")" ?></h3>
 
+            <p>By : <a href="index.php?action=personDetails&id=<?= $movieDetails["idPerson"] ?>"><?= $movieDetails["firstname"] . " " . $movieDetails["surname"] ?></a></p>
+            
             <div class="movie__themes-movieDetails">
                 <?php
                 foreach ($requestMovieThemes->fetchAll() as $themes) {
@@ -63,6 +60,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
             <p>Duration : <?= $movieDetails["duration"] . " minutes" ?></p>
 
             <p>Note : <?= $movieDetails["note"] ?></p>
+
 
         </div>
 

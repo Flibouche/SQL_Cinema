@@ -86,7 +86,7 @@ a {
 h2 {
   font-family: var(--h2-font);
   font-size: 1.5rem;
-  padding-left: 0.7rem;
+  /* padding-left: 0.7rem; */
   padding-bottom: 0.5rem;
 }
 
@@ -123,6 +123,11 @@ textarea {
 
 .secondary-title {
   margin-top: 90px;
+  margin-bottom: 20px;
+}
+
+.fa-backward-step:hover {
+  color: var(--yellow-color);
 }
 
 .nav__logo img,
@@ -603,10 +608,6 @@ textarea {
   padding: 10px 0px;
 }
 
-.footer__hr {
-  background: var(--text-color);
-}
-
 .footer__content {
   display: grid;
   padding-top: 10px;
@@ -780,10 +781,6 @@ textarea {
   overflow: hidden;
 }
 
-#synopsis p {
-  white-space: pre-wrap;
-}
-
 .read-btn {
   display: flex;
   justify-content: center;
@@ -872,6 +869,7 @@ textarea {
   }
 
   .modal-movie {
+    width: 420px;
     left: 20%;
   }
 }
@@ -938,7 +936,9 @@ textarea {
 
 /* For extra extra large devices */
 @media screen and (min-width: 1400px) {
-
+  .container {
+    min-height: 310px;
+  }
 }
 
 /* Modal */
@@ -1003,4 +1003,63 @@ textarea {
 
 .hidden {
   display: none;
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar {
+  width: .7rem;
+  background-color: hsl(228, 4%, 15%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(228, 4%, 25%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(228, 4%, 35%);
+}
+
+/*=============== SCROLL UP ===============*/
+.scrollup {
+  position: fixed;
+  right: 3rem;
+  bottom: -50%;
+  color: var(--text-color);
+  display: inline-flex;
+  padding: 15px;
+  font-size: 1.5rem;
+  z-index: var(--z-tooltip);
+  transition: bottom .4s, transform .4s;
+}
+
+@keyframes vertical-shaking {
+  0% {
+      transform: translateY(0)
+  }
+
+  25% {
+      transform: translateY(5px)
+  }
+
+  50% {
+      transform: translateY(-5px)
+  }
+
+  75% {
+      transform: translateY(5px)
+  }
+
+  100% {
+      transform: translateY(0)
+  }
+}
+
+.scrollup:hover {
+  transform: translateY(-.5rem);
+  color: var(--yellow-color);
+  animation: vertical-shaking .35s infinite;
+}
+
+.show-scroll {
+  bottom: 3rem;
 }

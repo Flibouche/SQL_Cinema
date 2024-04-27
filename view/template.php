@@ -50,14 +50,6 @@
                         <a href="index.php?action=listThemes">Themes</a>
                     </li>
 
-                    <li class="nav__item">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </li>
-
-                    <li class="nav__item">
-                        <i class="fa-solid fa-user"></i>
-                    </li>
-
                     <!-- <li class="nav__item">
                         <a href="index.php?action=listSubmissions">Submission</a>
                     </li> -->
@@ -69,12 +61,10 @@
                 </div>
             </div>
 
-            <!-- <div class="nav__user">
+            <div class="nav__actions">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <i class="fa-solid fa-user"></i>
-            </div> -->
 
-            <div class="nav__actions">
                 <!-- Toggle Button -->
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="fa-solid fa-bars"></i>
@@ -130,8 +120,6 @@
                 </div>
             </div>
 
-            <hr class="footer__hr">
-
             <div class="footer__content">
                 <div>
                     <h3 class="footer__title">COMPANY</h3>
@@ -181,6 +169,11 @@
             </a>
         </div>
     </footer>
+
+    <!--========================== SCROLL UP ==========================-->
+    <a href="#content" class="scrollup" id="scroll-up">
+        <i class="fa-solid fa-jet-fighter-up"></i>
+    </a>
 
     <!--========================== JQUERY & MATERIALIZE ==========================-->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>

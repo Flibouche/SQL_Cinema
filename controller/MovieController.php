@@ -30,8 +30,10 @@ class MovieController
 
             $pdo = Connect::toLogIn();
             $requestmovieDetails = $pdo->prepare("
-            SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
+            SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, person.idPerson, person.firstname, person.surname
             FROM movie
+            INNER JOIN director ON movie.idDirector = director.idDirector
+            INNER JOIN person ON director.idPerson = person.idPerson
             WHERE movie.idMovie = :id
             ");
             $requestmovieDetails->execute(["id" => $id]);
@@ -312,7 +314,8 @@ class MovieController
                     ]);
                 }
 
-                header("Location:index.php?action=editMovie&id=$id");die;
+                header("Location:index.php?action=editMovie&id=$id");
+                exit;
             }
 
             require "view/movies/editMovie.php";
@@ -368,6 +371,7 @@ class MovieController
                 $requestAddCasting->execute(["idMovie" => $movie, "idActor" => $actor, "idRole" => $role]);
 
                 header("Location:index.php?action=movieDetails&id=$id");
+                exit;
             }
 
             require "view/movies/addCasting.php";
@@ -394,6 +398,7 @@ class MovieController
         $requestDelCasting->execute(["id" => $id]);
 
         header("Location:index.php?action=movieDetails&id=$idMovie");
+        exit;
     }
 
     public function delMovie($id)
@@ -420,6 +425,7 @@ class MovieController
         $requestDelMovie->execute(["id" => $id]);
 
         header("Location:index.php?action=listMovies");
+        exit;
     }
 }
 ?>

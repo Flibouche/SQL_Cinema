@@ -80,6 +80,7 @@ class RoleController
 
             // Redirection vers la page 'index.php?action=addRole' après le traitement du formulaire
             header("Location:index.php?action=addRole");
+            exit;
         }
 
         // Inclusion du fichier de vue pour afficher le formulaire d'ajout de rôle
@@ -120,6 +121,7 @@ class RoleController
 
                 // Redirection vers la page 'index.php?action=listRoles' après la modification du rôle
                 header("Location:index.php?action=listRoles");
+                exit;
             }
 
             // Inclusion du fichier de vue pour afficher le formulaire de modification de rôle
@@ -142,5 +144,6 @@ class RoleController
 
         // Redirection vers la page 'index.php?action=listRoles' après la suppression du rôle
         header("Location: index.php?action=listRoles");
+        exit;
     }
 }

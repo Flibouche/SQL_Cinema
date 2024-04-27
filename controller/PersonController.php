@@ -293,6 +293,7 @@ class PersonController
         $requestDelActor->execute(["id" => $id]);
 
         header("Location:index.php?action=listActors");
+        exit;
     }
 
     public function delDirector($id)
@@ -314,5 +315,6 @@ class PersonController
         $requestDelDirector->execute(["id" => $id]);
 
         header("Location:index.php?action=listDirectors");
+        exit;
     }
 }
