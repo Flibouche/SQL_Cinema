@@ -4,22 +4,27 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 ?>
 
 
+<section class="modal-movie hidden">
+    <div class="flex">
+        <button class="btn-close">
+            <p>X</p>
+        </button>
+    </div>
+    <div>
+        <h3>Are you sure you want to delete this movie ?</h3>
+    </div>
+
+    <button class="main__button btn"><a href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Yes</a></button>
+    <button class="main__button btn-close2">Nevermind</button>
+</section>
+
+<div class="overlay hidden"></div>
 
 <section class="movieDetails section" id="listMovies">
 
-    <section class="modal-movie hidden">
-        <div class="flex">
-            <button class="btn-close"><p>X</p></button>
-        </div>
-        <div>
-            <h3>Are you sure you want to delete this movie ?</h3>
-        </div>
 
-        <button class="main__button btn"><a href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Yes</a></button>
-        <button class="main__button btn-close2">Nevermind</button>
-    </section>
 
-    <div class="overlay hidden"></div>
+
 
     <div class="movieDetails__container container">
 
@@ -94,7 +99,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
                     </div>
 
                     <div class="castingcard__edit-movieDetails">
-                        <a id="<?= $movieCasting["idPerson"] ?>" class="btn-openModalCasting">
+                        <a class="delete-casting" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>">
                             <i class="fa-solid fa-user-xmark"></i>
                         </a>
                     </div>

@@ -19,7 +19,7 @@
     <!--========================== HEADER ===========================-->
     <header class="header" id="header">
 
-        <nav class="nav container">
+        <nav class="nav">
             <a href="index.php" class="nav__logo">
                 <img src="public/img/bxs-planet.svg" alt="Logo CineDune"><span>CinE<span class="nav__span">DunE</span></span>
             </a>
@@ -27,7 +27,7 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="index.php">Home Page</a>
+                        <a href="index.php">Main</a>
                     </li>
 
                     <li class="nav__item">
@@ -48,6 +48,14 @@
 
                     <li class="nav__item">
                         <a href="index.php?action=listThemes">Themes</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </li>
+
+                    <li class="nav__item">
+                        <i class="fa-solid fa-user"></i>
                     </li>
 
                     <!-- <li class="nav__item">
