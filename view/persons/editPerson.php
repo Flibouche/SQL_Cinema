@@ -2,58 +2,52 @@
 $personDetails = $requestPerson->fetch();
 ?>
 
-<h1>Edit this person</h1>
+<section class="editPerson section" id="editPerson">
 
-<form action="" method="post" enctype="multipart/form-data">
+    <div class="editPerson__container container">
 
-    <div>
-        <label class="">
-            Person's firstname :
-            <input class="" type="text" name="firstname" value="<?= $personDetails['firstname'] ?>">
-        </label>
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <div class="form__group">
+                <label class="firstname">Person's firstname : *</label>
+                <input class="" type="text" name="firstname" value="<?= $personDetails['firstname'] ?>" required>
+            </div>
+
+            <div class="form__group">
+                <label for="surname">Person's surname : *</label>
+                <input type="text" name="surname" value="<?= $personDetails['surname'] ?>" required>
+            </div>
+
+            <div class="form__group">
+                <label class="sex">Sex : *</label>
+                <select name="sex" id="sex__select" placeholder="Please choose a sex" value="<?= $personDetails['sex'] ?>" required>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+
+            <div class="form__group">
+                <label for="birthdate">Birthdate : *</label>
+                <input type="date" id="" name="birthdate" value="<?= $personDetails['birthdate'] ?>" required>
+            </div>
+
+            <div class="form__group">
+                <label for="file">Picture upload :</label>
+                <input type="file" name="file">
+                <img class="editPerson-picture" src="<?= $personDetails['picture'] ?>" alt="Person's picture">
+            </div>
+
+            <button class="main__button form" type="submit" name="submit" value="Edit person"><span>Edit Person</span></button>
+
+        </form>
+
     </div>
 
-    <div>
-        <label for="">
-            Person's surname :
-            <input type="text" name="surname" value="<?= $personDetails['surname'] ?>">
-        </label>
-    </div>
-
-    <div>
-        <label class="">
-            Sex :
-            <select name="sex" id="sex__select" placeholder="Please choose a sex" value="<?= $personDetails['sex'] ?>">
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
-        </label>
-    </div>
-
-    <div>
-        <label for="">
-            Birthdate :
-            <input type="date" id="" name="birthdate" value="<?= $personDetails['birthdate'] ?>" />
-        </label>
-    </div>
-
-    <div>
-        <label for="">
-            Picture upload :
-            <input type="file" name="file">
-            <img src="<?= $personDetails['picture'] ?>" alt="Person's picture">
-        </label>
-    </div>
-
-    <div>
-        <input class="" type="submit" name="submit" value="Edit person">
-    </div>
-
-</form>
+</section>
 
 <?php
 
-$title = "Edit a person";
-$secondary_title = "Edit a person";
+$title = "Edit the person : " . $personDetails["firstname"] . " " . $personDetails["surname"];
+$secondary_title = "Edit the person : " . $personDetails["firstname"] . " " . $personDetails["surname"];
 $content = ob_get_clean();
 require "view/template.php";

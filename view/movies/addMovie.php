@@ -74,8 +74,6 @@
 
 </section>
 
-
-
 <?php
 
 $title = "Add a movie";

@@ -1,21 +1,22 @@
 <?php ob_start();
 ?>
 
-<h1>Add a theme</h1>
-<form action="" method="post">
+<section class="addTheme section" id="addTheme">
 
-    <label class="">
-        Movie theme name :
-        <input class="" type="text" name="theme">
-    </label>
+    <div class="addTheme__container container">
 
-    <input class="" type="submit" name="submit" value="Add theme">
+        <form action="" method="post">
 
-</form>
+            <div class="form__group">
+                <label class="theme">Movie theme name : *</label>
+                <input class="" type="text" name="theme" placeholder="Enter name" required>
+            </div>
 
+            <button class="main__button form" type="submit" name="submit" value="Add theme"><span>Add Theme</span></button </form>
 
+    </div>
 
-
+</section>
 
 <?php
 

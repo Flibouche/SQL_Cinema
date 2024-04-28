@@ -2,25 +2,28 @@
 $editRoleName = $requestRoleID->fetch();
 ?>
 
-<h1>Edit this role : <?= $editRoleName["roleName"]?></h1>
-<form action="" method="post">
+<section class="editMovie section" id="editMovie">
 
-    <label class="">
-        Rename this role :
-        <input class="" type="text" name="roleName">
-    </label>
+    <div class="editMovie__container container">
 
-    <input class="" type="submit" name="submit" value="Rename">
+        <form action="" method="post">
 
-</form>
+        <div class="form__group">
+            <label class="roleName">Rename this role : *</label>
+            <input type="text" name="roleName" required>
+        </div>
 
+            <button class="main__button form" type="submit" name="submit" value="Rename"><span>Rename</span></button>
 
+        </form>
 
+    </div>
 
+</section>
 
 <?php
 
-$title = "Edit a role";
-$secondary_title = "Edit a role";
+$title = "Edit this role : " . $editRoleName["roleName"];
+$secondary_title = "Edit this role : " . $editRoleName["roleName"];
 $content = ob_get_clean();
 require "view/template.php";

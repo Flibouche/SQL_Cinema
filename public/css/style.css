@@ -122,6 +122,7 @@ textarea {
 }
 
 .secondary-title {
+  margin-left: .7rem;
   margin-top: 90px;
   margin-bottom: 20px;
 }
@@ -585,8 +586,13 @@ textarea {
 }
 
 /*========================== FOOTER ======================*/
+
 .footer {
   position: relative;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  min-height: 55vh;
   background-color: var(--brown-color);
   padding-block: 1rem 2rem;
   margin-top: 100px;
@@ -854,13 +860,23 @@ textarea {
 /* ==================================================== */
 
 .addMovie__container,
-.addPerson__container {
+.addPerson__container,
+.addRole__container,
+.addTheme__container,
+.editMovie__container,
+.editPerson__container,
+.editTheme__container {
   display: flex;
   justify-content: center;
 }
 
 .addMovie__container label,
-.addPerson__container label {
+.addPerson__container label,
+.addRole__container label,
+.addTheme__container label,
+.editMovie__container label,
+.editPerson__container label,
+.editTheme__container label {
   text-align: center;
   font-family: var(--nav-text-font);
   margin-bottom: 5px;
@@ -886,6 +902,13 @@ textarea {
 input[type=checkbox],
 input[type=radio] {
   accent-color: var(--yellow-color);
+}
+
+.editMovie-poster,
+.editPerson-picture {
+  margin-top: 15px;
+  width: 160px;
+  height: 230px;
 }
 
 /* ==================================================== */
@@ -1070,7 +1093,9 @@ input[type=radio] {
   position: fixed;
   right: 3rem;
   bottom: -50%;
-  color: var(--text-color);
+  color: var(--background-color);
+  background-color: var(--yellow-color);
+  border-radius: 50%;
   display: inline-flex;
   padding: 15px;
   font-size: 1.5rem;
@@ -1103,6 +1128,7 @@ input[type=radio] {
 .scrollup:hover {
   transform: translateY(-.5rem);
   color: var(--yellow-color);
+  background-color: var(--background-color);
   animation: vertical-shaking .35s infinite;
 }
 

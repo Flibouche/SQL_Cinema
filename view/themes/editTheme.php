@@ -2,25 +2,28 @@
 $editThemeName = $requestThemeID->fetch();
 ?>
 
-<h1>Edit this theme : <?= $editThemeName["typeName"] ?></h1>
-<form action="" method="post">
+<section class="editTheme section" id="editTheme">
 
-    <label class="">
-        Rename this theme :
-        <input class="" type="text" name="typeName" value="<?= $editThemeName['typeName']?>">
-    </label>
+    <div class="editTheme__container container">
 
-    <input class="" type="submit" name="submit" value="Rename">
+        <form action="" method="post">
 
-</form>
+            <div class="form__group">
+                <label class="typeName">Rename this theme : *</label>
+                <input class="" type="text" name="typeName" value="<?= $editThemeName['typeName'] ?>">
+            </div>
 
+            <button class="main__button form" type="submit" name="submit" value="Rename"><span>Rename</span></button>
 
+        </form>
 
+    </div>
 
+</section>
 
 <?php
 
-$title = "Edit a theme";
-$secondary_title = "Edit a theme";
+$title = "Edit this theme : " . $editThemeName["typeName"];
+$secondary_title = "Edit this theme : " . $editThemeName["typeName"];
 $content = ob_get_clean();
 require "view/template.php";

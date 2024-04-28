@@ -1,19 +1,24 @@
 <?php ob_start();
 ?>
 
-<h1>Add a role</h1>
-<form action="" method="post">
+<section class="addRole section" id="addRole">
 
-    <label class="">
-        Role name :
-        <input class="" type="text" name="role">
-    </label>
+    <div class="addRole__container container">
 
-    <div>
-        <input class="" type="submit" name="submit" value="Add role">
+        <form action="" method="post">
+
+            <div class="form__group">
+                <label class="role">Role name : *</label>
+                <input class="" type="text" name="role" placeholder="Enter name" required>
+            </div>
+
+            <button class="main__button form" type="submit" name="submit" value="Add role"><span>Add role</span></button>
+
+        </form>
+
     </div>
 
-</form>
+</section>
 
 <?php
 
