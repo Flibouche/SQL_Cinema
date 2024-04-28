@@ -39,47 +39,48 @@ window.addEventListener("scroll", scrollUp);
 
 /*=============== DELETE MODAL ===============*/
 /* Movie Modal */
-const modalMovie = document.querySelector(".modal-movie");
+const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const openModalMovieBtn = document.querySelector(".btn-openModalMovie");
+const openModalBtn = document.querySelector(".btn-openModal");
 const closeModalBtn = document.querySelector(".btn-close");
 const closeModalBtn2 = document.querySelector(".btn-close2");
 
-const openModalMovie = function () {
-  modalMovie.classList.remove("hidden");
+const openModal = function () {
+  modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 };
 
-// openModalMovieBtn.addEventListener("click", openModalMovie);
+openModalBtn.addEventListener("click", openModal);
 
-const closeModalMovie = function () {
-  modalMovie.classList.add("hidden");
+const closeModal = function () {
+  modal.classList.add("hidden");
   overlay.classList.add("hidden");
 };
 
-closeModalBtn.addEventListener("click", closeModalMovie);
-closeModalBtn2.addEventListener("click", closeModalMovie);
+closeModalBtn.addEventListener("click", closeModal);
+closeModalBtn2.addEventListener("click", closeModal);
 
-overlay.addEventListener("click", closeModalMovie);
+overlay.addEventListener("click", closeModal);
 
-/*=============== SEE MORE SYNOPSIS/DESCRIPTION ===============*/
-const synopsis = document.querySelector("#synopsis");
+/*=============== SEE MORE description/BIOGRAPHY ===============*/
+const description = document.querySelector("#description");
 const readMoreBtn = document.querySelector("#read-more-btn");
 const readLessBtn = document.querySelector("#read-less-btn");
 
-synopsis.style.overflow = "hidden";
-synopsis.style.height = "4em";
-synopsis.style.textOverflow = "ellipsis";
+description.style.overflow = "hidden";
+description.style.height = "4em";
+description.style.textOverflow = "ellipsis";
 readLessBtn.style.display = "none";
 
 readMoreBtn.addEventListener("click", () => {
-  synopsis.style.height = "auto";
+  description.style.height = "auto";
   readMoreBtn.style.display = "none";
   readLessBtn.style.display = "flex";
 });
 
 readLessBtn.addEventListener("click", () => {
-  synopsis.style.height = "4em";
+  description.style.height = "4em";
   readLessBtn.style.display = "none";
   readMoreBtn.style.display = "flex";
 });
+

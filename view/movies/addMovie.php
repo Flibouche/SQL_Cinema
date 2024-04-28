@@ -52,7 +52,7 @@
                     foreach ($requestThemes->fetchAll() as $theme) {
                     ?>
                         <div class="checkbox-grid">
-                            <input type="checkbox" id="" name="theme[]" value="<?= $theme["idTheme"] ?> " required>
+                            <input type="checkbox" id="" name="theme[]" value="<?= $theme["idTheme"] ?> ">
                             <label for="" value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></label>
                         </div>
                     <?php

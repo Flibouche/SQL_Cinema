@@ -3,6 +3,24 @@ $themeDetails = $requestThemeDetails->fetchAll();
 $themeID = $requestThemeID->fetch();
 ?>
 
+<section class="modal hidden">
+    <div class="flex">
+        <button class="btn-close">
+            <p>X</p>
+        </button>
+    </div>
+
+    <div>
+        <h3>Are you sure you want to delete this theme ?</h3>
+    </div>
+
+    <button class="main__button btn"><a href="index.php?action=delTheme&id=<?= $themeID["idTheme"] ?>" type="submit" name="submit">Delete theme</a></button>
+    <button class="main__button btn-close2"><span>Nevermind</span></button>
+
+</section>
+
+<div class="overlay hidden"></div>
+
 <section class="themeDetails section" id="themeDetails">
     <div class="themeDetails__container container">
 
@@ -45,7 +63,7 @@ $themeID = $requestThemeID->fetch();
 
             </div>
 
-            <button class="main__button list__button"><a href="index.php?action=delTheme&id=<?= $themeID["idTheme"] ?>" type="submit" name="submit">Delete theme</a></button>
+            <button class="main__button list__button"><a id="delete-button" class="btn-openModal">Delete theme</a></button>
 
     </div>
 </section>

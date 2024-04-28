@@ -37,6 +37,11 @@ $personDetails = $requestPerson->fetch();
                 <img class="editPerson-picture" src="<?= $personDetails['picture'] ?>" alt="Person's picture">
             </div>
 
+            <div class="form__group">
+                <label for="biography">Biography :</label>
+                <textarea name="biography" rows="4" cols="50"><?= $personDetails['biography'] ?></textarea>
+            </div>
+
             <button class="main__button form" type="submit" name="submit" value="Edit person"><span>Edit Person</span></button>
 
         </form>

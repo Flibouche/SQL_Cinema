@@ -77,7 +77,8 @@ class ThemeController
             $requestAddTheme->execute(["theme" => $theme]);
 
             // Redirection vers la page 'index.php?action=addTheme' après le traitement du formulaire
-            header("Location:index.php?action=addTheme");
+            $_SESSION['message'] = "<p> Test </p>";
+            header("Location:index.php?action=listThemes");
             exit;
         }
 

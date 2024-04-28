@@ -36,6 +36,11 @@
             </div>
 
             <div class="form__group">
+                <label for="biography">Biography :</label>
+                <textarea name="biography" rows="4" cols="45" placeholder="Enter a biography"></textarea>
+            </div>
+
+            <div class="form__group">
                 <label for="job">Select a job : *</label>
                 <fieldset required>
 

@@ -2,6 +2,29 @@
 $personDetails = $requestPersonDetails->fetch();
 ?>
 
+<section class="modal hidden">
+    <div class="flex">
+        <button class="btn-close">
+            <p>X</p>
+        </button>
+    </div>
+    <div>
+        <?php if (!empty($personDetails["idDirector"]) && $personDetails["idDirector"]) { ?>
+            <h3>Are you sure you want to delete this director ?</h3>
+            <button class="main__button btn"><a href="index.php?action=delDirector&id=<?= $personDetails['idDirector'] ?>">Yes</a></button>
+            <button class="main__button btn-close2"><span>Nevermind</span></button>
+        <?php } ?>
+        <?php if (!empty($personDetails["idActor"])) { ?>
+            <h3>Are you sure you want to delete this actor ?</h3>
+            <button class="main__button btn"><a href="index.php?action=delActor&id=<?= $personDetails['idActor'] ?>">Yes</a></button>
+            <button class="main__button btn-close2"><span>Nevermind</span></button>
+        <?php } ?>
+    </div>
+
+</section>
+
+<div class="overlay hidden"></div>
+
 <section class="personDetails section" id="listPersons">
     <div class="personDetails__container container">
 
@@ -14,16 +37,9 @@ $personDetails = $requestPersonDetails->fetch();
                 <a href="index.php?action=editPerson&id=<?= $personDetails['idPerson'] ?>">
                     <i class="fa-solid fa-pencil"></i>
                 </a>
-                <?php if (!empty($personDetails["idDirector"])) { ?>
-                    <a href="index.php?action=delDirector&id=<?= $personDetails['idDirector'] ?>">
-                        <i class="fa-solid fa-user-xmark"> D</i>
-                    </a>
-                <?php } ?>
-                <?php if (!empty($personDetails["idActor"])) { ?>
-                    <a href="index.php?action=delActor&id=<?= $personDetails['idActor'] ?>">
-                        <i class="fa-solid fa-user-xmark"> A</i>
-                    </a>
-                <?php } ?>
+                <a id="delete-button" class="btn-openModal">
+                    <i class="fa-solid fa-user-xmark"></i>
+                </a>
             </div>
 
         </div>
@@ -42,7 +58,12 @@ $personDetails = $requestPersonDetails->fetch();
         <div class="person__description-personDetails">
 
             <div id="description">
-                <h3>Description :</h3>
+                <h3>Biography :</h3>
+                <p><?= $personDetails["biography"] ?></p>
+            </div>
+            <div class="read-btn">
+                <i id="read-more-btn" class="fa-solid fa-arrow-down"></i>
+                <i id="read-less-btn" class="fa-solid fa-arrow-up"></i>
             </div>
 
         </div>

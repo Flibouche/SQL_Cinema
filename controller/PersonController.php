@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use FilterIterator;
 use Model\Connect;
 use Model\Service;
 
@@ -54,7 +55,7 @@ class PersonController
             $pdo = Connect::toLogIn();
 
             $requestPersonDetails = $pdo->prepare("
-        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture, actor.idActor, director.idDirector
+        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture, person.biography, actor.idActor, director.idDirector
         FROM person
         LEFT JOIN actor ON person.idPerson = actor.idPerson
         LEFT JOIN director ON person.idPerson = director.idPerson
@@ -98,6 +99,7 @@ class PersonController
             $surname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $sex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $birthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $biography = filter_input(INPUT_POST, "biography", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $job = filter_input(INPUT_POST, "job", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if (isset($_FILES['file'])) {
@@ -138,12 +140,12 @@ class PersonController
             $picture = isset($webpPath) ? $webpPath : "./public/img/persons/default.webp";
 
             $requestAddPerson = $pdo->prepare("
-                        INSERT INTO person (firstname, surname, sex, birthdate, picture)
-                        VALUES (:firstname, :surname, :sex, :birthdate, :picture)
+                        INSERT INTO person (firstname, surname, sex, birthdate, picture, biography)
+                        VALUES (:firstname, :surname, :sex, :birthdate, :picture, :biography)
                         ");
 
             // $webpPath doit être ajouté dans l'execute.
-            $requestAddPerson->execute(["firstname" => $firstname, "surname" => $surname, "sex" => $sex, "birthdate" => $birthdate, "picture" => $picture]);
+            $requestAddPerson->execute(["firstname" => $firstname, "surname" => $surname, "sex" => $sex, "birthdate" => $birthdate, "picture" => $picture, "biography" => $biography]);
 
             $personId = $pdo->lastInsertId();
 
@@ -191,7 +193,7 @@ class PersonController
 
             $pdo = Connect::toLogIn();
             $requestPerson = $pdo->prepare("
-        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture
+        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.biography, person.picture
         FROM person
         LEFT JOIN actor ON person.idPerson = actor.idPerson
         LEFT JOIN director ON person.idPerson = director.idPerson
@@ -205,9 +207,9 @@ class PersonController
                 $newSurname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $newSex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $newBirthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $job = filter_input(INPUT_POST, "job", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $newBiography = filter_input(INPUT_POST, "biography", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-                if (isset($_FILES['file'])) {
+                if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
                     $tmpName = $_FILES['file']['tmp_name'];
                     $name = $_FILES['file']['name'];
                     $size = $_FILES['file']['size'];
@@ -233,6 +235,7 @@ class PersonController
                     ");
                         $requestPicture->execute(["id" => $id]);
 
+                        // Permet de récupérer l'image du poster du film et de la supprimer en passant par la variable et le tableau "poster", autrement on pourrait faire une variable pour récupérer directement le tableau
                         $linkPicture = $requestPicture->fetch();
 
                         if ($linkPicture) {
@@ -247,10 +250,10 @@ class PersonController
                         imagewebp($pictureSource, $webpPath);
 
                         $requestNewPicture = $pdo->prepare("
-                    UPDATE person
-                    SET picture = :picture
-                    WHERE idPerson = :id
-                    ");
+                        UPDATE person
+                        SET picture = :picture
+                        WHERE idPerson = :id
+                        ");
 
                         $requestNewPicture->execute([
                             "picture" => $webpPath,
@@ -262,11 +265,11 @@ class PersonController
                 }
 
                 $requestEditPerson = $pdo->prepare("
-            UPDATE person
-            SET firstname = :firstname, surname = :surname, sex = :sex, birthdate = :birthdate
-            WHERE idPerson = :id
-            ");
-                $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "id" => $id]);
+                UPDATE person
+                SET firstname = :firstname, surname = :surname, sex = :sex, birthdate = :birthdate, biography = :biography
+                WHERE idPerson = :id
+                ");
+                $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "biography" => $newBiography, "id" => $id]);
 
                 header("Location:index.php?action=editPerson&id=$id");
                 exit;

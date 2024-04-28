@@ -5,6 +5,7 @@ $movies = $requestMovies->fetchAll();
 <section class="listMovies section" id="listMovies">
     <div class="listMovies__container container">
 
+
         <?php
         foreach ($movies as $movie) {
         ?>
@@ -12,6 +13,9 @@ $movies = $requestMovies->fetchAll();
 
                 <div class="card__header-listMovies">
                     <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
+                    <div class="bg-card-hover">
+                        <p class="text-hover"><?= $movie["note"] ?>/5</p>
+                    </div>
                 </div>
 
                 <div class="card__description-listMovies">

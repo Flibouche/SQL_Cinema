@@ -1,4 +1,5 @@
-<?php ob_start();
+<?php
+ob_start();
 $themes = $requestThemes->fetchAll();
 ?>
 <section class="listThemes section" id="listRoles">
@@ -15,6 +16,14 @@ $themes = $requestThemes->fetchAll();
     </div>
 
     <button class="main__button list__button"><a href="index.php?action=addTheme">Add a theme</a></button>
+
+    <?php
+    if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+    }
+    ?>
+
 
 </section>
 

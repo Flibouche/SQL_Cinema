@@ -29,14 +29,14 @@ class MovieController
         } else {
 
             $pdo = Connect::toLogIn();
-            $requestmovieDetails = $pdo->prepare("
+            $requestMovieDetails = $pdo->prepare("
             SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, person.idPerson, person.firstname, person.surname
             FROM movie
-            INNER JOIN director ON movie.idDirector = director.idDirector
-            INNER JOIN person ON director.idPerson = person.idPerson
+            LEFT JOIN director ON movie.idDirector = director.idDirector
+            LEFT JOIN person ON director.idPerson = person.idPerson
             WHERE movie.idMovie = :id
             ");
-            $requestmovieDetails->execute(["id" => $id]);
+            $requestMovieDetails->execute(["id" => $id]);
 
             $requestMoviesCasting = $pdo->prepare("
             SELECT person.idPerson, actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex, person.picture
@@ -218,7 +218,7 @@ class MovieController
                 $newSynopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $newDirector = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_NUMBER_INT);
 
-                if (isset($_FILES['file'])) {
+                if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
                     $tmpName = $_FILES['file']['tmp_name'];
                     $name = $_FILES['file']['name'];
                     $size = $_FILES['file']['size'];
@@ -238,10 +238,10 @@ class MovieController
                         $file = $uniqueName . '.' . $extension;
 
                         $requestPoster = $pdo->prepare("
-                    SELECT movie.poster
-                    FROM movie
-                    WHERE movie.idMovie = :id
-                    ");
+                        SELECT movie.poster
+                        FROM movie
+                        WHERE movie.idMovie = :id
+                        ");
                         $requestPoster->execute(["id" => $id]);
 
                         // Permet de récupérer l'image du poster du film et de la supprimer en passant par la variable et le tableau "poster", autrement on pourrait faire une variable pour récupérer directement le tableau
@@ -259,27 +259,26 @@ class MovieController
                         imagewebp($posterSource, $webpPath);
 
                         $requestNewPoster = $pdo->prepare("
-                    UPDATE movie
-                    SET poster = :poster
-                    WHERE idMovie = :id
-                    ");
+                        UPDATE movie
+                        SET poster = :poster
+                        WHERE idMovie = :id
+                        ");
 
                         $requestNewPoster->execute([
                             "poster" => $webpPath,
                             "id" => $id
                         ]);
                     } else {
-                        echo "Wrong extension or file size too large or error !";exit;
+                        echo "Wrong extension or file size too large or error !";
+                        exit;
                     }
-                } else {
-                    echo "voila";exit;
                 }
 
                 $requestEditMovie = $pdo->prepare("
-            UPDATE movie
-            SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis, idDirector = :idDirector
-            WHERE idMovie = :id
-            ");
+                UPDATE movie
+                SET title = :title, releaseYear = :releaseYear, duration = :duration, note = :note, synopsis = :synopsis, idDirector = :idDirector
+                WHERE idMovie = :id
+                ");
                 $requestEditMovie->execute([
                     "title" => $newTitle,
                     "releaseYear" => $newReleaseYear,
@@ -293,9 +292,9 @@ class MovieController
                 $theme = filter_input(INPUT_POST, "idTheme", FILTER_VALIDATE_INT);
 
                 $requestPurgeMovieTheme = $pdo->prepare("
-            DELETE FROM movie_theme
-            WHERE idMovie = :idMovie
-            ");
+                DELETE FROM movie_theme
+                WHERE idMovie = :idMovie
+                ");
 
                 $requestPurgeMovieTheme->execute([
                     "idMovie" => $id
@@ -428,4 +427,3 @@ class MovieController
         exit;
     }
 }
-?>

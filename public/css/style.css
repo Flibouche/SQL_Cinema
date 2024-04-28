@@ -39,8 +39,6 @@
   --step--1: clamp(0.8681rem, 0.4rem + 2.8793cqi, 1.5rem);
   --step--2: clamp(1.3021rem, 0.273rem + 4.5735cqi, 3rem);
   --step--3: clamp(1.0851rem, 0.8926rem + 0.8555cqi, 1.4rem);
-  /* --h1-font-size: 1.5rem;
-    --h2-font-size: 1.5rem; */
   /*========== Z Index ==========*/
   --z-tooltip: 10;
   --z-fixed: 100;
@@ -122,6 +120,7 @@ textarea {
 }
 
 .secondary-title {
+  max-width: 954px;
   margin-left: .7rem;
   margin-top: 90px;
   margin-bottom: 20px;
@@ -239,7 +238,7 @@ textarea {
 .nav__toggle,
 .nav__actions {
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   color: var(--text-color);
   cursor: pointer;
 }
@@ -679,9 +678,8 @@ textarea {
 .director__card-listDirectors {
   text-align: center;
   font-family: var(--nav-text-font);
-  /* font-size: var(--step--1); */
   width: 150px;
-  height: 200px;
+  height: 205px;
   margin-bottom: 30px;
 }
 
@@ -689,7 +687,7 @@ textarea {
 .actor__card-listActors img,
 .director__card-listDirectors img {
   width: 100%;
-  height: 100%;
+  max-height: 205px;
   border-radius: 20px 20px 0px 0px;
   transition: .7s;
 }
@@ -704,6 +702,33 @@ textarea {
 .listActors__container .actor__card-listActors img:hover,
 .listDirectors__container .director__card-listDirectors img:hover {
   filter: grayscale(0);
+}
+
+.card__header-listMovies {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-card-hover {
+  position: absolute;
+  top: 80%;
+  width: 150px;
+  height: 205px;
+  color: var(--background-color);
+  background-color: var(--background-color);
+  opacity: 0%;
+  transition: .7s;
+}
+
+.card__header-listMovies:hover .bg-card-hover {
+  opacity: 100%;
+}
+
+.text-hover {
+  color: var(--text-color);
+  text-align: left;
+  padding-left: 5px;
+  font-size: 1rem;
 }
 
 /* ==================================================== */
@@ -756,7 +781,7 @@ textarea {
   text-align: center;
   font-family: var(--nav-text-font);
   width: 150px;
-  height: 230px;
+  height: 200px;
   margin-bottom: 30px;
 }
 
@@ -764,9 +789,20 @@ textarea {
 .person__filmographycard-personDetails img,
 .role__castingcard-roleDetails img,
 .theme__moviecard-themeDetails img {
-  width: 100%;
-  height: 100%;
+  width: 150px;
+  height: 200px;
   border-radius: 20px 20px 0px 0px;
+  transition: .7s;
+}
+
+.movie__casting-movieDetails:hover .movie__castingcard-movieDetails img,
+.person__filmography-personDetails:hover .person__filmographycard-personDetails img {
+  filter: grayscale(1)
+}
+
+.movie__casting-movieDetails .movie__castingcard-movieDetails img:hover,
+.person__filmography-personDetails .person__filmographycard-personDetails img:hover {
+  filter: grayscale(0);
 }
 
 .movie__information-movieDetails h3,
@@ -790,7 +826,7 @@ textarea {
   padding-top: 10px;
 }
 
-#synopsis {
+#description {
   max-width: 954px;
   line-height: 1.2em;
   overflow: hidden;
@@ -917,7 +953,7 @@ input[type=radio] {
 
 /* Responsive Modal*/
 @media screen and (min-width: 360px) {
-  .modal-movie {
+  .modal {
     display: flex;
     position: absolute;
     flex-direction: column;
@@ -939,7 +975,7 @@ input[type=radio] {
     perspective: 300px;
   }
 
-  .modal-movie {
+  .modal {
     width: 420px;
     left: 20%;
   }
@@ -955,7 +991,7 @@ input[type=radio] {
     perspective: 500px;
   }
 
-  .modal-movie {
+  .modal {
     left: 30%;
   }
 }
@@ -995,7 +1031,7 @@ input[type=radio] {
     perspective: 700px;
   }
 
-  .modal-movie {
+  .modal {
     left: 40%;
   }
 }
@@ -1012,13 +1048,13 @@ input[type=radio] {
 
 /* Modal */
 
-.modal-movie .flex {
+.modal .flex {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.modal-movie h3 {
+.modal h3 {
   color: var(--text-color);
   padding-bottom: 15px;
 }
@@ -1027,7 +1063,7 @@ input[type=radio] {
   color: var(--text-color);
 }
 
-.btn-openModalMovie {
+.btn-openModal {
   cursor: pointer;
 }
 
@@ -1055,6 +1091,12 @@ input[type=radio] {
 
 .btn-close:hover p {
   color: var(--background-color);
+}
+
+.modal .btn,
+.modal .btn-close2 {
+  width: 250px;
+  margin-bottom: 15px;
 }
 
 .overlay {
