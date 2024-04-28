@@ -153,6 +153,7 @@ textarea {
   padding: 10px 50px;
   font-family: var(--nav-text-font);
   font-size: 20px;
+  color: var(--text-color);
   background: none;
   left: 50%;
   transform: translateX(-50%);
@@ -187,7 +188,15 @@ textarea {
   transition: 0.5s;
 }
 
+.main__button span {
+  transition: 0.5s;
+}
+
 .main__button:hover a {
+  color: var(--yellow-color);
+}
+
+.main__button:hover span {
   color: var(--yellow-color);
 }
 
@@ -841,6 +850,45 @@ textarea {
 }
 
 /* ==================================================== */
+/* ====================== FORMS ======================= */
+/* ==================================================== */
+
+.addMovie__container,
+.addPerson__container {
+  display: flex;
+  justify-content: center;
+}
+
+.addMovie__container label,
+.addPerson__container label {
+  text-align: center;
+  font-family: var(--nav-text-font);
+  margin-bottom: 5px;
+}
+
+.form__group {
+  display: grid;
+  margin-bottom: 15px;
+}
+
+.themeLabel {
+  display: grid;
+}
+
+.checkbox-container {
+  display: grid;
+  grid-template-columns: 150px 150px;
+  grid-auto-rows: 20px;
+  grid-gap: 5px;
+  padding-top: 10px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  accent-color: var(--yellow-color);
+}
+
+/* ==================================================== */
 /* ================== MEDIA QUERIES =================== */
 /* ==================================================== */
 
@@ -878,7 +926,7 @@ textarea {
 @media screen and (min-width: 768px) {
   .nav__menu {
     width: 50%;
-}
+  }
 
   .carousel {
     perspective: 500px;
@@ -903,7 +951,7 @@ textarea {
   }
 
   .nav {
-      margin-inline: auto;
+    margin-inline: auto;
   }
 
   .nav__list {
@@ -930,9 +978,7 @@ textarea {
 }
 
 /* For extra large devices */
-@media screen and (min-width: 1200px) {
-
-}
+@media screen and (min-width: 1200px) {}
 
 /* For extra extra large devices */
 @media screen and (min-width: 1400px) {
@@ -1034,23 +1080,23 @@ textarea {
 
 @keyframes vertical-shaking {
   0% {
-      transform: translateY(0)
+    transform: translateY(0)
   }
 
   25% {
-      transform: translateY(5px)
+    transform: translateY(5px)
   }
 
   50% {
-      transform: translateY(-5px)
+    transform: translateY(-5px)
   }
 
   75% {
-      transform: translateY(5px)
+    transform: translateY(5px)
   }
 
   100% {
-      transform: translateY(0)
+    transform: translateY(0)
   }
 }
 

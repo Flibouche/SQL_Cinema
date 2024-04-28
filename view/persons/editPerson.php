@@ -46,34 +46,6 @@ $personDetails = $requestPerson->fetch();
     </div>
 
     <div>
-        <label for="">
-            Job :
-            <select name="job" id="">
-                <?php if (!empty($personDetails['idActor']) && !empty($personDetails['idDirector'])) { ?>
-
-                    <option value="actor">Actor</option>
-                    <option value="director">Director</option>
-                    <option value="both" selected>Both</option>
-
-                <?php } elseif (!empty($personDetails['idActor'])) { ?>
-
-                    <option value="actor" selected>Actor</option>
-                    <option value="director">Director</option>
-                    <option value="both">Both</option>
-
-                <?php } elseif (!empty($personDetails['idDirector'])) { ?>
-
-                    <option value="actor">Actor</option>
-                    <option value="director" selected>Director</option>
-                    <option value="both">Both</option>
-
-                <?php } ?>
-
-            </select>
-        </label>
-    </div>
-
-    <div>
         <input class="" type="submit" name="submit" value="Edit person">
     </div>
 
