@@ -109,7 +109,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
             ?>
                     <figure class="movie__castingcard-movieDetails">
                         <div class="castingcard__header-movieDetails">
-                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><img src="<?= $movieCasting["picture"] ?>" alt=""></a>
+                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><img src="<?= $movieCasting["picture"] ?>" alt="<?= "Picture of " . $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>" title="<?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?> "></a>
                         </div>
 
                         <div class="castingcard__description-movieDetails">

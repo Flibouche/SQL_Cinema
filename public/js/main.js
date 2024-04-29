@@ -37,7 +37,7 @@ const scrollUp = () => {
 };
 window.addEventListener("scroll", scrollUp);
 
-/*=============== DELETE MODAL ===============*/
+/*=============== MODALS ===============*/
 /* Movie Modal */
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -49,18 +49,53 @@ const openModal = function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 };
-
-openModalBtn.addEventListener("click", openModal);
+if (openModalBtn) {
+  openModalBtn.addEventListener("click", openModal);
+}
 
 const closeModal = function () {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
 };
 
-closeModalBtn.addEventListener("click", closeModal);
-closeModalBtn2.addEventListener("click", closeModal);
+if (closeModalBtn) {
+  closeModalBtn.addEventListener("click", closeModal);
+}
+if (closeModalBtn2) {
+  closeModalBtn2.addEventListener("click", closeModal);
+}
 
-overlay.addEventListener("click", closeModal);
+if (overlay) {
+  overlay.addEventListener("click", closeModal);
+}
+
+/* Register/Login Modal*/
+const modal2 = document.querySelector(".modal2");
+const overlay2 = document.querySelector(".overlay2");
+const openModalBtn2 = document.querySelector(".btn-openModal2");
+const closeModalBtn3 = document.querySelector(".btn-close3");
+
+const openLogModal = function () {
+  modal2.classList.remove("hidden");
+  overlay2.classList.remove("hidden");
+};
+
+if (openModalBtn2) {
+  openModalBtn2.addEventListener("click", openLogModal);
+}
+
+const closeModal2 = function () {
+  modal2.classList.add("hidden");
+  overlay2.classList.add("hidden");
+};
+
+if (closeModalBtn3) {
+  closeModalBtn3.addEventListener("click", closeModal2);
+}
+
+if (overlay2) {
+  overlay2.addEventListener("click", closeModal2);
+}
 
 /*=============== SEE MORE description/BIOGRAPHY ===============*/
 const description = document.querySelector("#description");
@@ -72,15 +107,18 @@ description.style.height = "4em";
 description.style.textOverflow = "ellipsis";
 readLessBtn.style.display = "none";
 
-readMoreBtn.addEventListener("click", () => {
-  description.style.height = "auto";
-  readMoreBtn.style.display = "none";
-  readLessBtn.style.display = "flex";
-});
+if (readMoreBtn) {
+  readMoreBtn.addEventListener("click", () => {
+    description.style.height = "auto";
+    readMoreBtn.style.display = "none";
+    readLessBtn.style.display = "flex";
+  });
+}
 
-readLessBtn.addEventListener("click", () => {
-  description.style.height = "4em";
-  readLessBtn.style.display = "none";
-  readMoreBtn.style.display = "flex";
-});
-
+if (readLessBtn) {
+  readLessBtn.addEventListener("click", () => {
+    description.style.height = "4em";
+    readLessBtn.style.display = "none";
+    readMoreBtn.style.display = "flex";
+  });
+}

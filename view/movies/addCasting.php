@@ -2,60 +2,56 @@
 $movie = $requestMovies->fetch();
 ?>
 
-<h1>Add a casting</h1>
+<section class="addCasting section" id="addCasting">
 
-<form action="" method="post">
+    <div class="addCasting__container container">
 
-    <div>
-        <label for="">
-            Movie :
-            <select name="idMovie" id="">
-                <option value="<?= $movie["idMovie"] ?>" ><?= $movie["title"] ?></option>
-            </select>
-        </label>
+        <form action="" method="post">
+
+            <div class="form__group">
+                <label for="title"> Movie : *</label>
+                <select name="idMovie" id="title">
+                    <option value="<?= $movie["idMovie"] ?>" selected required><?= $movie["title"] ?></option>
+                </select>
+            </div>
+
+            <div class="form__group">
+                <label for="actor">Actors : *</label>
+                <select name="idActor" id="actor">
+                    <?php
+                    foreach ($requestActors->fetchAll() as $actor) {
+                    ?>
+                        <option value="<?= $actor["idActor"] ?>" required><?= $actor["firstname"] . " " . $actor["surname"] ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form__group">
+                <label for="role">Role : *</label>
+                <select name="idRole" id="role">
+                    <?php
+                    foreach ($requestRoles->fetchAll() as $role) {
+                    ?>
+                        <option value="<?= $role["idRole"] ?>" required><?= $role["roleName"] ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <button class="main__button form" type="submit" name="submit" value="Add casting"><span>Add to cast</span></button>
+
+        </form>
+
     </div>
 
-    <div>
-        <label for="">
-            Actors :
-            <select name="idActor" id="">
-                <?php
-                foreach ($requestActors->fetchAll() as $actor) {
-                ?>
-                    <option value="<?= $actor["idActor"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] ?></option>
-                <?php
-                }
-                ?>
-            </select>
-        </label>
-    </div>
-
-    <div>
-        <label for="">
-            Role :
-            <select name="idRole" id="">
-                <?php
-                foreach ($requestRoles->fetchAll() as $role) {
-                ?>
-                    <option value="<?= $role["idRole"] ?>"><?= $role["roleName"] ?></option>
-                <?php
-                }
-                ?>
-            </select>
-        </label>
-    </div>
-
-    <div>
-        <input class="" type="submit" name="submit" value="Add casting">
-    </div>
-
-
-</form>
-
+</section>
 
 <?php
 
-$title = "Add a casting";
-$secondary_title = "Add a casting";
+$title = "Add a casting to the movie : " . $movie["title"];
+$secondary_title = "Add a casting to the movie : " . $movie["title"];
 $content = ob_get_clean();
 require "view/template.php";

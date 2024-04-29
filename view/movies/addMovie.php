@@ -14,7 +14,7 @@
 
             <div class="form__group">
                 <label for="releaseYear">Release Year : *</label>
-                <input type="text" id="" name="releaseYear" placeholder="Enter release year" required>
+                <input type="text" name="releaseYear" placeholder="Enter release year" required>
             </div>
 
             <div class="form__group">

@@ -821,6 +821,10 @@ textarea {
   padding: 10px 0px;
 }
 
+.movie__casting-movieDetails {
+  padding-bottom: 40px;
+}
+
 #movie__castingh3-movieDetails,
 .person__filmographyh3-personDetails {
   padding-top: 10px;
@@ -899,9 +903,12 @@ textarea {
 .addPerson__container,
 .addRole__container,
 .addTheme__container,
+.addCasting__container,
 .editMovie__container,
 .editPerson__container,
-.editTheme__container {
+.editTheme__container,
+.login__container,
+.register__container {
   display: flex;
   justify-content: center;
 }
@@ -910,9 +917,12 @@ textarea {
 .addPerson__container label,
 .addRole__container label,
 .addTheme__container label,
+.addCasting__container label,
 .editMovie__container label,
 .editPerson__container label,
-.editTheme__container label {
+.editTheme__container label,
+.login__container label,
+.register__container label {
   text-align: center;
   font-family: var(--nav-text-font);
   margin-bottom: 5px;
@@ -947,13 +957,19 @@ input[type=radio] {
   height: 230px;
 }
 
+.showPassword {
+  margin-right: 10px;
+  margin-bottom: 25px;
+}
+
 /* ==================================================== */
 /* ================== MEDIA QUERIES =================== */
 /* ==================================================== */
 
 /* Responsive Modal*/
 @media screen and (min-width: 360px) {
-  .modal {
+  .modal,
+  .modal2 {
     display: flex;
     position: absolute;
     flex-direction: column;
@@ -975,7 +991,8 @@ input[type=radio] {
     perspective: 300px;
   }
 
-  .modal {
+  .modal,
+  .modal2 {
     width: 420px;
     left: 20%;
   }
@@ -991,7 +1008,8 @@ input[type=radio] {
     perspective: 500px;
   }
 
-  .modal {
+  .modal,
+  .modal2 {
     left: 30%;
   }
 }
@@ -1031,7 +1049,8 @@ input[type=radio] {
     perspective: 700px;
   }
 
-  .modal {
+  .modal,
+  .modal2 {
     left: 40%;
   }
 }
@@ -1048,26 +1067,31 @@ input[type=radio] {
 
 /* Modal */
 
-.modal .flex {
+.modal .flex,
+.modal2 .flex2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.modal h3 {
+.modal h3,
+.modal2 h3 {
   color: var(--text-color);
   padding-bottom: 15px;
 }
 
-.btn-close2 {
+.btn-close2,
+.btn-close3 {
   color: var(--text-color);
 }
 
-.btn-openModal {
+.btn-openModal,
+.btn-openModal2 {
   cursor: pointer;
 }
 
-.btn-close {
+.btn-close,
+.btn-close3 {
   position: absolute;
   top: 5%;
   left: 92%;
@@ -1081,25 +1105,30 @@ input[type=radio] {
   transition: .7s;
 }
 
-.btn-close:hover {
+.btn-close:hover,
+.btn-close3:hover {
   background-color: #d9a849;
 }
 
-.btn-close p {
+.btn-close p,
+.btn-close3 p {
   transition: .7s;
 }
 
-.btn-close:hover p {
+.btn-close:hover p,
+.btn-close3:hover p {
   color: var(--background-color);
 }
 
 .modal .btn,
-.modal .btn-close2 {
+.modal .btn-close2,
+.modal2 .btn2 {
   width: 250px;
   margin-bottom: 15px;
 }
 
-.overlay {
+.overlay,
+.overlay2 {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1113,6 +1142,10 @@ input[type=radio] {
 }
 
 .hidden {
+  display: none;
+}
+
+.hidden2 {
   display: none;
 }
 

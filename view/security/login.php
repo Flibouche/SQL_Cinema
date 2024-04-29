@@ -5,25 +5,43 @@ ob_start();
 <section class="login section" id="register">
     <div class="login__container container grid">
 
-        <h1>Se connecter</h1>
         <form action="index.php?action=login" method="POST">
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email"><br>
+            <div class="form__group">
+                <label for="email">Enter your email</label>
+                <input type="email" name="email" id="email">
+            </div>
 
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password"><br>
+            <div class="form__group">
+                <label for="password">Enter your password</label>
+                <input type="password" name="password" id="password">
+            </div class="form__group">
+            
+            <div>
+                <input class="showPassword"type="checkbox" onclick="showPassword()"><span>Show Password</span>
+            </div>
 
-            <input type="submit" name="submit" value="Se connecter">
+            <button class="main__button form" type="submit" name="submit" value="Sign In"><span>Sign In</span></button>
 
         </form>
 
     </div>
 </section>
 
+<script>
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+
 <?php
 
-$title = "Login";
-$secondary_title = "Login";
+$title = "Sign In";
+$secondary_title = "Sign In";
 $content = ob_get_clean();
 require "view/template.php";

@@ -67,16 +67,19 @@
                 <?php
                 // Si je suis connecté
                 if (isset($_SESSION["user"])) { ?>
-                    <a href="index.php?action=logout">Se déconnecter</a>
-                    <a href="index.php?action=profile">Mon profil</a>
+                    <a href="index.php?action=profile">
+                        <i class="fa-solid fa-address-card"></i>
+                    </a>
+
+                    <a href="index.php?action=logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
                 <?php } else { ?>
-                    <a href="index.php?action=login">Se connecter</a>
-                    <a href="index.php?action=register">S'inscrire</a>
+                    <a id="open-logs" class="btn-openModal2">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
                 <?php } ?>
 
-                <a href="index.php?action=register">
-                    <i class="fa-solid fa-user"></i>
-                </a>
 
                 <!-- Toggle Button -->
                 <div class="nav__toggle" id="nav-toggle">
@@ -96,6 +99,20 @@
                     <h2 class="secondary-title"><?= $secondary_title ?></h2>
                 <?php endif; ?>
                 <?= $content ?>
+
+                <section class="modal2 hidden">
+                    <div class="flex2">
+                        <button class="btn-close3">
+                            <p>X</p>
+                        </button>
+                    </div>
+
+                    <button class="main__button btn2"><a href="index.php?action=login">Sign In</a></button>
+                    <button class="main__button btn2"><a href="index.php?action=register">Register</a></button>
+                </section>
+
+                <div class="overlay2 hidden"></div>
+
                 <?php
                 if (isset($_SESSION['message'])) {
                     echo $_SESSION['message'];
@@ -103,10 +120,8 @@
                 }
                 ?>
                 <?php
-                
+
                 ?>
-
-
             </div>
 
         </main>
