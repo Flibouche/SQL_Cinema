@@ -78,6 +78,7 @@ class ThemeController
 
             // Redirection vers la page 'index.php?action=addTheme' après le traitement du formulaire
             $_SESSION['message'] = "<p> Test </p>";
+            
             header("Location:index.php?action=listThemes");
             exit;
         }

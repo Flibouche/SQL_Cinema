@@ -17,12 +17,7 @@ $themes = $requestThemes->fetchAll();
 
     <button class="main__button list__button"><a href="index.php?action=addTheme">Add a theme</a></button>
 
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    }
-    ?>
+   
 
 
 </section>

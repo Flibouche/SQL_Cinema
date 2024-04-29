@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Utilisation de l'espace de noms et inclusion des contrôleurs
 use Controller\MainController;
 use Controller\MovieController;
@@ -7,7 +9,8 @@ use Controller\PersonController;
 use Controller\RoleController;
 use Controller\ThemeController;
 use Controller\SubmissionController;
-
+use Controller\SecurityController;
+use Service\Session;
 
 // Autoloading des classes pour charger automatiquement les fichiers de classe
 spl_autoload_register(function ($class_name) {
@@ -21,7 +24,9 @@ $ctrlPerson = new PersonController();
 $ctrlRole = new RoleController();
 $ctrlTheme = new ThemeController();
 $ctrlSubmission = new SubmissionController();
+$ctrlSecurity = new SecurityController();
 
+$session = new Session();
 
 // Récupération de l'ID et de l'action à partir des paramètres GET
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
@@ -58,6 +63,11 @@ if(isset($_GET["action"])){
         case "addTheme" : $ctrlTheme->addTheme(); break; // Ajout d'un thème
         case "editTheme" : $ctrlTheme->editTheme($id); break; // Modification d'un thème
         case "delTheme" : $ctrlTheme->delTheme($id); break; // Suppression d'un thème
+
+        case "register" : $ctrlSecurity->register(); break;
+        case "login" : $ctrlSecurity->login(); break;
+        case "profile" : $ctrlSecurity->profile(); break;
+        case "logout" : $ctrlSecurity->logout(); break;
 
         case "listSubmissions" : $ctrlSubmission->listSubmissions(); break; // Affichage de la liste des soumissions
 

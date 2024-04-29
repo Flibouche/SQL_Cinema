@@ -63,7 +63,20 @@
 
             <div class="nav__actions">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <i class="fa-solid fa-user"></i>
+
+                <?php
+                // Si je suis connecté
+                if (isset($_SESSION["user"])) { ?>
+                    <a href="index.php?action=logout">Se déconnecter</a>
+                    <a href="index.php?action=profile">Mon profil</a>
+                <?php } else { ?>
+                    <a href="index.php?action=login">Se connecter</a>
+                    <a href="index.php?action=register">S'inscrire</a>
+                <?php } ?>
+
+                <a href="index.php?action=register">
+                    <i class="fa-solid fa-user"></i>
+                </a>
 
                 <!-- Toggle Button -->
                 <div class="nav__toggle" id="nav-toggle">
@@ -83,7 +96,19 @@
                     <h2 class="secondary-title"><?= $secondary_title ?></h2>
                 <?php endif; ?>
                 <?= $content ?>
+                <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    // unset($_SESSION['message']);
+                }
+                ?>
+                <?php
+                
+                ?>
+
+
             </div>
+
         </main>
     </div>
 

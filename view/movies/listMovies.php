@@ -30,13 +30,16 @@ $movies = $requestMovies->fetchAll();
         ?>
     </div>
 
-    <button class="main__button list__button"><a href="index.php?action=addMovie">Add a movie</a></button>
+    <?php
+    if($session->isAdmin()) { ?>
+        <button class="main__button list__button"><a href="index.php?action=addMovie">Add a movie</a></button>
+    <?php } ?>
 
 </section>
 
 <?php
 
 $title = "Movies' List (" . $requestMovies->rowCount() . ")";
-$secondary_title = "Movies' List (" . $requestMovies->rowCount() . ")" ;
+$secondary_title = "Movies' List (" . $requestMovies->rowCount() . ")";
 $content = ob_get_clean();
 require "view/template.php";
