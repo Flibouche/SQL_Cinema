@@ -12,9 +12,12 @@ $movies = $requestMovies->fetchAll();
             <figure class="movie__card-listMovies">
 
                 <div class="card__header-listMovies">
-                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["poster"]?>" title="<?= $movie["title"] . " (" . $movie["releaseYear"] .")" ?>"></a>
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["poster"] ?>" title="<?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?>"></a>
                     <div class="bg-card-hover">
-                        <p class="text-hover"><?= $movie["note"] ?>/5</p>
+                        <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>">
+                            <p class="text-hover">By : <?= $movie["firstname"] . " " . $movie["surname"] ?></p>
+                            <p class="text-hover"><?= $movie["note"] ?>/5</p>
+                        </a>
                     </div>
                 </div>
 
@@ -31,7 +34,7 @@ $movies = $requestMovies->fetchAll();
     </div>
 
     <?php
-    if($session->isAdmin()) { ?>
+    if ($session->isAdmin()) { ?>
         <button class="main__button list__button"><a href="index.php?action=addMovie">Add a movie</a></button>
     <?php } ?>
 

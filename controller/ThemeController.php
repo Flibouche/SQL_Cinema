@@ -77,9 +77,8 @@ class ThemeController
             $requestAddTheme->execute(["theme" => $theme]);
 
             // Redirection vers la page 'index.php?action=addTheme' après le traitement du formulaire
-            $_SESSION['message'] = "<p> Test </p>";
-            
             header("Location:index.php?action=listThemes");
+            $_SESSION['message'] = "<div class='alert'>Theme added successfully !</div>";
             exit;
         }
 
@@ -144,6 +143,7 @@ class ThemeController
 
         // Redirection vers la page 'index.php?action=listThemes' après la suppression du thème
         header("Location:index.php?action=listThemes");
+        $_SESSION['message'] = "<div class='alert'>Theme deleted successfully !</div>";
         exit;
     }
 }

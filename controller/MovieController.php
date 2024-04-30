@@ -14,8 +14,10 @@ class MovieController
 
         $pdo = Connect::toLogIn();
         $requestMovies = $pdo->query("
-        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster
+        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, person.firstname, person.surname
         FROM movie
+        LEFT JOIN director ON movie.idDirector = director.idDirector
+        LEFT JOIN person ON director.idPerson = person.idPerson
         ORDER BY movie.title
         ");
 
@@ -162,6 +164,7 @@ class MovieController
 
             // Redirection vers la page 'index.php?action=listMovies' après le traitement du formulaire
             header("Location:index.php?action=listMovies");
+            $_SESSION['message'] = "<div class='alert'>Movie added successfully !</div>";
             exit;
         }
 
@@ -250,7 +253,7 @@ class MovieController
                         // Permet de récupérer l'image du poster du film et de la supprimer en passant par la variable et le tableau "poster", autrement on pourrait faire une variable pour récupérer directement le tableau
                         $linkPoster = $requestPoster->fetch();
 
-                        if ($linkPoster) {
+                        if (!$linkPoster == "./public/img/movies/default.webp") {
                             unlink($linkPoster['poster']);
                         }
 
@@ -317,6 +320,7 @@ class MovieController
                 }
 
                 header("Location:index.php?action=editMovie&id=$id");
+                $_SESSION['message'] = "<div class='alert'>This movie has been edited successfully !</div>";
                 exit;
             }
 
@@ -373,6 +377,7 @@ class MovieController
                 $requestAddCasting->execute(["idMovie" => $movie, "idActor" => $actor, "idRole" => $role]);
 
                 header("Location:index.php?action=movieDetails&id=$id");
+                $_SESSION['message'] = "<div class='alert'>This person has been added to the cast successfully !</div>";
                 exit;
             }
 
@@ -400,6 +405,7 @@ class MovieController
         $requestDelCasting->execute(["id" => $id]);
 
         header("Location:index.php?action=movieDetails&id=$idMovie");
+        $_SESSION['message'] = "<div class='alert'>This person has been deleted from the cast successfully !</div>";
         exit;
     }
 
@@ -427,6 +433,7 @@ class MovieController
         $requestDelMovie->execute(["id" => $id]);
 
         header("Location:index.php?action=listMovies");
+        $_SESSION['message'] = "<div class='alert'>Movie deleted successfully !</div>";
         exit;
     }
 }

@@ -17,9 +17,6 @@ $themes = $requestThemes->fetchAll();
 
     <button class="main__button list__button"><a href="index.php?action=addTheme">Add a theme</a></button>
 
-   
-
-
 </section>
 
 <?php

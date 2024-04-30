@@ -57,15 +57,25 @@ $personDetails = $requestPersonDetails->fetch();
 
         <div class="person__description-personDetails">
 
-            <div id="description">
-                <h3>Biography :</h3>
-                <p><?= $personDetails["biography"] ?></p>
+            <div id="description" class="person__biography-personDetails">
+                <?php
+                if (!$personDetails["biography"] == null) {
+                ?>
+                    <h3>Biography :</h3>
+                    <p><?= $personDetails["biography"] ?></p>
             </div>
             <div class="read-btn">
                 <i id="read-more-btn" class="fa-solid fa-arrow-down"></i>
                 <i id="read-less-btn" class="fa-solid fa-arrow-up"></i>
             </div>
-
+        <?php
+                } else {
+        ?>
+            <h3>Biography :</h3>
+            <p>This person does not have a biography yet</p>
+        <?php
+                }
+        ?>
         </div>
 
         <hr>
@@ -78,10 +88,12 @@ $personDetails = $requestPersonDetails->fetch();
                 <?php
                 $directorFilmography = $requestDirectorsFilmography->fetchAll();
                 if (empty($directorFilmography)) {
-                    echo "No filmography found for this director.";
+                ?>
+                    <p>This person does not have a director's filmography yet</p>
+                    <?php
                 } else {
                     foreach ($directorFilmography as $filmography) {
-                ?>
+                    ?>
                         <figure class="person__filmographycard-personDetails" title="<?= $filmography["title"] ?>">
                             <div class="filmographycard__header-personDetails">
                                 <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt=""></a>
@@ -109,10 +121,12 @@ $personDetails = $requestPersonDetails->fetch();
                 <?php
                 $actorFilmography = $requestActorsFilmography->fetchAll();
                 if (empty($actorFilmography)) {
-                    echo "No filmography found for this director.";
+                ?>
+                    <p>This person does not have an actor's filmography yet</p>
+                    <?php
                 } else {
                     foreach ($actorFilmography as $filmography) {
-                ?>
+                    ?>
                         <figure class="person__filmographycard-personDetails">
                             <div class="filmographycard__header-personDetails">
                                 <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt=""></a>
@@ -141,6 +155,7 @@ $personDetails = $requestPersonDetails->fetch();
 <?php
 
 $title = $personDetails["firstname"] . " " . $personDetails["surname"];
+$metaDescription = "Discover the filmography of " . $personDetails["firstname"] . " " . $personDetails["surname"] . ", born on " . $personDetails["birthdate"] . ". Learn more about his life and biography.";
 $secondary_title = $personDetails["firstname"] . " " . $personDetails["surname"];
 $content = ob_get_clean();
 require "view/template.php";

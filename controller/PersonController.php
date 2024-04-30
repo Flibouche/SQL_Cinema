@@ -238,7 +238,7 @@ class PersonController
                         // Permet de récupérer l'image du poster du film et de la supprimer en passant par la variable et le tableau "poster", autrement on pourrait faire une variable pour récupérer directement le tableau
                         $linkPicture = $requestPicture->fetch();
 
-                        if ($linkPicture) {
+                        if (!$linkPicture == "./public/img/persons/default.webp") {
                             unlink($linkPicture['picture']);
                         }
 

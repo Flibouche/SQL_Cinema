@@ -96,6 +96,7 @@ class SecurityController
 
     public function profile()
     {
+        
         require "view/security/profile.php";
     }
 

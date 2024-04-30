@@ -97,15 +97,39 @@ if (overlay2) {
   overlay2.addEventListener("click", closeModal2);
 }
 
+/*=============== SESSIONS MESSAGES ===============*/
+function fadeOutEffect() {
+  const alert = document.querySelector(".alert");
+  if (alert != null) {
+    var fadeEffect = setInterval(function () {
+      if (!alert.style.opacity) {
+        alert.style.opacity = 2.5;
+      }
+      if (alert.style.opacity > 0) {
+        alert.style.opacity -= 0.1;
+      } else {
+        clearInterval(fadeEffect);
+      }
+    }, 200);
+  }
+}
+
+fadeOutEffect();
+
 /*=============== SEE MORE description/BIOGRAPHY ===============*/
 const description = document.querySelector("#description");
 const readMoreBtn = document.querySelector("#read-more-btn");
 const readLessBtn = document.querySelector("#read-less-btn");
 
-description.style.overflow = "hidden";
-description.style.height = "4em";
-description.style.textOverflow = "ellipsis";
-readLessBtn.style.display = "none";
+if (description.style) {
+  description.style.overflow = "hidden";
+  description.style.height = "4em";
+  description.style.textOverflow = "ellipsis";
+}
+
+if (readLessBtn) {
+  readLessBtn.style.display = "none";
+}
 
 if (readMoreBtn) {
   readMoreBtn.addEventListener("click", () => {

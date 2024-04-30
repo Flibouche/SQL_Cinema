@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="public/css/style.css" />
 
     <title><?= $title ?></title>
+    <meta name="description" content="<?= isset($metaDescription) ? $metaDescription : 'Default meta description'; ?>">
 </head>
 
 <body class="<?php echo $hideBgImage ? 'hide-bg' : ''; ?>">
@@ -66,8 +67,11 @@
 
                 <?php
                 // Si je suis connecté
-                if (isset($_SESSION["user"])) { ?>
-                    <a href="index.php?action=profile">
+                if (isset($_SESSION["user"])) {
+                    $infosSession = $_SESSION["user"];
+                ?>
+                    <a class="nav__profile-picture" href="index.php?action=profile">
+                        <img src="<?= $infosSession["profilePicture"] ?>" alt="">
                         <i class="fa-solid fa-address-card"></i>
                     </a>
 
@@ -116,7 +120,7 @@
                 <?php
                 if (isset($_SESSION['message'])) {
                     echo $_SESSION['message'];
-                    // unset($_SESSION['message']);
+                    unset($_SESSION['message']);
                 }
                 ?>
                 <?php

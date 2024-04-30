@@ -13,6 +13,8 @@ ob_start();
 
         <p>Pseudo : <?= $infosSession["pseudo"] ?></p>
         <p>Email : <?= $infosSession["email"] ?></p>
+        <p>Profile picture :</p>
+        <img src="<?= $infosSession["profilePicture"] ?>" alt="">
 
     </div>
 </section>

@@ -105,6 +105,10 @@ textarea {
 
 /*========================== REUSABLE CSS CLASSES ======================*/
 
+/* section {
+  min-height: 450px;
+} */
+
 .container {
   width: clamp(330px, 80vw, 954px);
   margin-inline: 0.7rem;
@@ -256,7 +260,7 @@ textarea {
 }
 
 .nav__logo span {
-  transition: 0.5s;
+  transition: 0.7s;
 }
 
 .nav__logo span:hover {
@@ -277,6 +281,33 @@ textarea {
   font-size: 1.25rem;
   column-gap: 0.5rem;
   align-items: center;
+}
+
+.nav__actions i {
+  transition: .7s;
+}
+
+.nav__actions i:hover {
+color: var(--yellow-color);
+}
+
+.nav__profile-picture {
+  overflow: hidden;
+  filter: grayscale(1);
+  border-radius: 50%;
+  width: 33px;
+  height: 33px;
+  transition: .7s;
+}
+
+.nav__profile-picture img {
+  object-fit: cover;
+  width: 33px;
+  height: 33px;
+}
+
+.nav__profile-picture:hover {
+  filter: grayscale(0);
 }
 
 /* Navigation for mobile devices */
@@ -589,9 +620,9 @@ textarea {
 .footer {
   position: relative;
   left: 0px;
-  bottom: 0px;
+  bottom: 0%;
   width: 100%;
-  min-height: 55vh;
+  /* min-height: 55vh; */
   background-color: var(--brown-color);
   padding-block: 1rem 2rem;
   margin-top: 100px;
@@ -679,15 +710,16 @@ textarea {
   text-align: center;
   font-family: var(--nav-text-font);
   width: 150px;
-  height: 205px;
+  height: 200px;
   margin-bottom: 30px;
 }
 
 .movie__card-listMovies img,
 .actor__card-listActors img,
 .director__card-listDirectors img {
-  width: 100%;
-  max-height: 205px;
+  object-fit: fill;
+  width: 150px;
+  height: 200px;
   border-radius: 20px 20px 0px 0px;
   transition: .7s;
 }
@@ -810,7 +842,8 @@ textarea {
 .movie__synopsis-movieDetails h3,
 .person__information-personDetails h3,
 .person__information-personDetails,
-.person__description-personDetails {
+.person__description-personDetails,
+.person__biography-personDetails h3 {
   padding-bottom: 10px;
 }
 
