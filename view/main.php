@@ -138,6 +138,7 @@
 <?php
 
 $title = "CineDune";
+$metaDescription = "Explore a comprehensive cinema wiki featuring a vast collection of movies, actors, directors, roles, and genres. Discover a world of cinematic wonders with random showcases of films, actors, and directors on the homepage. Delve into the magic of cinema today !";
 $content = ob_get_clean();
 $hideBgImage = true;
 require "template.php";

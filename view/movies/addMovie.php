@@ -77,6 +77,7 @@
 <?php
 
 $title = "Add a movie";
+$metaDescription = "Here is the form where you can add a movie to the database";
 $secondary_title = "Add a movie";
 $content = ob_get_clean();
 $hideBgImage = false;

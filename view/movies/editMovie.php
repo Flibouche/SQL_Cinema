@@ -81,6 +81,7 @@ $movieDetails = $requestMovie->fetch();
 <?php
 
 $title = "Edit the movie : " . $movieDetails["title"];
+$metaDescription = "Here is the form where you can edit the informations of the movie '" . $movieDetails["title"] . "'";
 $secondary_title = "Edit the movie : " . $movieDetails["title"];
 $content = ob_get_clean();
 $hideBgImage = false;

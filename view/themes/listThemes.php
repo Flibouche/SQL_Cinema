@@ -8,7 +8,21 @@ $themes = $requestThemes->fetchAll();
         <?php
         foreach ($themes as $theme) {
         ?>
-            <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>" title="<?= $theme["typeName"] ?>"><?= $theme["typeName"] . "<br>" ?></a>
+            <figure class="theme__card-listThemes" title="<?= $theme["typeName"] ?>">
+                <div class="card__header-listThemes">
+                    <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>"><img src="<?= $theme["illustration"] ?>" alt="Illustration of the theme <?= $theme["typeName"] ?>"></a>
+                    <div class="bg-card-hover">
+                        <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>">
+                            <p class="text-hover">Test</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card__description-listThemes">
+                    <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>"><?= $theme["typeName"] ?></a>
+                </div>
+
+            </figure>
         <?php
         }
 
@@ -24,5 +38,6 @@ $themes = $requestThemes->fetchAll();
 $title = "Themes's List (" . $requestThemes->rowCount() . ")";
 $secondary_title = "Themes's List (" . $requestThemes->rowCount() . ")";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

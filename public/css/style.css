@@ -686,14 +686,14 @@ color: var(--yellow-color);
 
 .listMovies__container,
 .listActors__container,
-.listDirectors__container {
+.listDirectors__container,
+.listThemes__container {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
 }
 
-.listRoles__container,
-.listThemes__container {
+.listRoles__container {
   line-height: 2rem;
 }
 
@@ -706,7 +706,8 @@ color: var(--yellow-color);
 
 .movie__card-listMovies,
 .actor__card-listActors,
-.director__card-listDirectors {
+.director__card-listDirectors,
+.theme__card-listThemes {
   text-align: center;
   font-family: var(--nav-text-font);
   width: 150px;
@@ -716,7 +717,8 @@ color: var(--yellow-color);
 
 .movie__card-listMovies img,
 .actor__card-listActors img,
-.director__card-listDirectors img {
+.director__card-listDirectors img,
+.theme__card-listThemes img {
   object-fit: fill;
   width: 150px;
   height: 200px;
@@ -726,19 +728,22 @@ color: var(--yellow-color);
 
 .listMovies__container:hover .movie__card-listMovies img,
 .listActors__container:hover .actor__card-listActors img,
-.listDirectors__container:hover .director__card-listDirectors img {
+.listDirectors__container:hover .director__card-listDirectors img,
+.listThemes__container:hover .theme__card-listThemes img {
   filter: grayscale(1)
 }
 
 .listMovies__container .movie__card-listMovies img:hover,
 .listActors__container .actor__card-listActors img:hover,
-.listDirectors__container .director__card-listDirectors img:hover {
+.listDirectors__container .director__card-listDirectors img:hover,
+.listThemes__container .theme__card-listThemes img:hover {
   filter: grayscale(0);
 }
 
 .card__header-listMovies,
 .card__header-listActors,
-.card__header-listDirectors {
+.card__header-listDirectors,
+.card__header-listThemes {
   position: relative;
   overflow: hidden;
 }
@@ -756,7 +761,8 @@ color: var(--yellow-color);
 
 .card__header-listMovies:hover .bg-card-hover,
 .card__header-listActors:hover .bg-card-hover,
-.card__header-listDirectors:hover .bg-card-hover {
+.card__header-listDirectors:hover .bg-card-hover,
+.card__header-listThemes:hover .bg-card-hover {
   opacity: 100%;
 }
 
@@ -797,17 +803,17 @@ color: var(--yellow-color);
 }
 
 .movie__casting-movieDetails,
-.person__filmography-personDetails {
+.person__filmography-personDetails,
+.theme__movie-themeDetails {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
 }
 
-.role__casting-roleDetails,
-.theme__movie-themeDetails {
+.role__casting-roleDetails {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 }
 
 .movie__castingcard-movieDetails,
@@ -832,12 +838,16 @@ color: var(--yellow-color);
 }
 
 .movie__casting-movieDetails:hover .movie__castingcard-movieDetails img,
-.person__filmography-personDetails:hover .person__filmographycard-personDetails img {
+.person__filmography-personDetails:hover .person__filmographycard-personDetails img,
+.role__casting-roleDetails:hover .role__castingcard-roleDetails img,
+.theme__movie-themeDetails:hover .theme__moviecard-themeDetails img {
   filter: grayscale(1)
 }
 
 .movie__casting-movieDetails .movie__castingcard-movieDetails img:hover,
-.person__filmography-personDetails .person__filmographycard-personDetails img:hover {
+.person__filmography-personDetails .person__filmographycard-personDetails img:hover,
+.role__casting-roleDetails .role__castingcard-roleDetails img:hover,
+.theme__movie-themeDetails .theme__moviecard-themeDetails img:hover {
   filter: grayscale(0);
 }
 
@@ -988,7 +998,8 @@ input[type=radio] {
 }
 
 .editMovie-poster,
-.editPerson-picture {
+.editPerson-picture,
+.editTheme-picture {
   margin-top: 15px;
   width: 160px;
   height: 230px;

@@ -73,6 +73,7 @@
 <?php
 
 $title = "Add a person";
+$metaDescription = "Here is the form where you can add a person to the database and decided which job the person has.";
 $secondary_title = "Add a person";
 $content = ob_get_clean();
 $hideBgImage = false;

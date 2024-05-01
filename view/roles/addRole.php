@@ -23,6 +23,7 @@
 <?php
 
 $title = "Add a role";
+$metaDescription = "Here is the form where you can add a role to the database.";
 $secondary_title = "Add a role";
 $content = ob_get_clean();
 $hideBgImage = false;

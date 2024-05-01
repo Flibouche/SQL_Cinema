@@ -51,6 +51,7 @@ ob_start();
 <?php
 
 $title = "Register";
+$metaDescription = "Here is the registration page of the site.";
 $secondary_title = "Register";
 $content = ob_get_clean();
 $hideBgImage = false;

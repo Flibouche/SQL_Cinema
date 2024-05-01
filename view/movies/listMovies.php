@@ -43,6 +43,7 @@ $movies = $requestMovies->fetchAll();
 <?php
 
 $title = "Movies' List (" . $requestMovies->rowCount() . ")";
+$metaDescription = "Here is the list of the different movie(s). There are currently " . $requestMovies->rowCount() . " movie(s) in our database.";
 $secondary_title = "Movies' List (" . $requestMovies->rowCount() . ")";
 $content = ob_get_clean();
 $hideBgImage = false;

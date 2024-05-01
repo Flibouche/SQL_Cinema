@@ -52,6 +52,7 @@ $movie = $requestMovies->fetch();
 <?php
 
 $title = "Add a casting to the movie : " . $movie["title"];
+$metaDescription = "Here is the form where you can add an actor to the cast of the movie '" . $movie["title"] . "'";
 $secondary_title = "Add a casting to the movie : " . $movie["title"];
 $content = ob_get_clean();
 $hideBgImage = false;

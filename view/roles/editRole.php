@@ -24,6 +24,7 @@ $editRoleName = $requestRoleID->fetch();
 <?php
 
 $title = "Edit this role : " . $editRoleName["roleName"];
+$metaDescription = "Here is the form where you can edit the informations of the role '" . $editRoleName["roleName"] . "'";
 $secondary_title = "Edit this role : " . $editRoleName["roleName"];
 $content = ob_get_clean();
 $hideBgImage = false;

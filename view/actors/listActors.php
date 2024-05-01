@@ -37,6 +37,7 @@ $actors = $requestActors->fetchAll();
 <?php
 
 $title = "Actor's list (" . $requestActors->rowCount() . ")";
+$metaDescription = "Here is the list of the different actor(s). There are currently " . $requestActors->rowCount() . " actor(s) in our database.";
 $secondary_title = "Actor's list (" . $requestActors->rowCount() . ")";
 $content = ob_get_clean();
 $hideBgImage = false;

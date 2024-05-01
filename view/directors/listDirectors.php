@@ -37,6 +37,7 @@ $directors = $requestDirectors->fetchAll();
 <?php
 
 $title = "Directors's List (" . $requestDirectors->rowCount() . ")";
+$metaDescription = "Here is the list of the different director(s). There are currently " . $requestDirectors->rowCount() . " director(s) in our database.";
 $secondary_title = "Directors's List (" . $requestDirectors->rowCount() . ")";
 $content = ob_get_clean();
 $hideBgImage = false;

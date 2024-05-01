@@ -72,6 +72,7 @@ $roleID = $requestRoleID->fetch();
 <?php
 
 $title = $roleID["roleName"];
+$metaDescription = "Discover the different actor(s) who play the role of " . $roleID["roleName"] . ". Learn more about this role by clicking on an actor.";
 $secondary_title = $roleID["roleName"];
 $content = ob_get_clean();
 $hideBgImage = false;

@@ -145,6 +145,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 <?php
 
 $title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
+$metaDescription = "Discover the world of " . $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . "). Learn more about his director, themes, duration, note, synopsis and the cast.";
 $secondary_title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
 $content = ob_get_clean();
 $hideBgImage = false;

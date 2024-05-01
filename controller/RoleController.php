@@ -80,6 +80,7 @@ class RoleController
 
             // Redirection vers la page 'index.php?action=addRole' après le traitement du formulaire
             header("Location:index.php?action=addRole");
+            $_SESSION['message'] = "<div class='alert'>Role added successfully !</div>";
             exit;
         }
 
@@ -121,6 +122,7 @@ class RoleController
 
                 // Redirection vers la page 'index.php?action=listRoles' après la modification du rôle
                 header("Location:index.php?action=listRoles");
+                $_SESSION['message'] = "<div class='alert'>Role edited successfully !</div>";
                 exit;
             }
 
@@ -144,6 +146,7 @@ class RoleController
 
         // Redirection vers la page 'index.php?action=listRoles' après la suppression du rôle
         header("Location: index.php?action=listRoles");
+        $_SESSION['message'] = "<div class='alert'>Role deleted successfully !</div>";
         exit;
     }
 }

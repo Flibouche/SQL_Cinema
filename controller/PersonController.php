@@ -2,7 +2,6 @@
 
 namespace Controller;
 
-use FilterIterator;
 use Model\Connect;
 use Model\Service;
 
@@ -177,6 +176,7 @@ class PersonController
 
             // Redirection vers la page 'index.php?action=addPerson' après le traitement du formulaire
             header("Location:index.php?action=addPerson");
+            $_SESSION['message'] = "<div class='alert'>Person added successfully !</div>";
             exit;
         }
 
@@ -193,12 +193,12 @@ class PersonController
 
             $pdo = Connect::toLogIn();
             $requestPerson = $pdo->prepare("
-        SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.biography, person.picture
-        FROM person
-        LEFT JOIN actor ON person.idPerson = actor.idPerson
-        LEFT JOIN director ON person.idPerson = director.idPerson
-        WHERE person.idPerson = :id        
-        ");
+            SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.biography, person.picture
+            FROM person
+            LEFT JOIN actor ON person.idPerson = actor.idPerson
+            LEFT JOIN director ON person.idPerson = director.idPerson
+            WHERE person.idPerson = :id        
+            ");
             $requestPerson->execute(["id" => $id]);
 
             if (isset($_POST['submit'])) {
@@ -229,30 +229,31 @@ class PersonController
                         $file = $uniqueName . '.' . $extension;
 
                         $requestPicture = $pdo->prepare("
-                    SELECT person.picture
-                    FROM person
-                    WHERE person.idPerson = :id
-                    ");
+                        SELECT person.picture
+                        FROM person
+                        WHERE person.idPerson = :id
+                        ");
                         $requestPicture->execute(["id" => $id]);
 
                         // Permet de récupérer l'image du poster du film et de la supprimer en passant par la variable et le tableau "poster", autrement on pourrait faire une variable pour récupérer directement le tableau
                         $linkPicture = $requestPicture->fetch();
 
-                        if (!$linkPicture == "./public/img/persons/default.webp") {
+                        if (!$linkPicture === "./public/img/persons/default.webp") {
                             unlink($linkPicture['picture']);
                         }
 
-                        // On récupère l'image de notre forumulaire via la superglobale file, on prend le chemin et on crée l'image
+                        // On récupère l'image de notre formulaire via la superglobale file, on prend le chemin et on crée l'image
                         $pictureSource = imagecreatefromstring(file_get_contents($tmpName));
                         // Récupération du chemin cible de l'image
                         $webpPath = "./public/img/persons/" . $uniqueName . ".webp";
                         // Conversion en format webp (on prend l'image et on la colle dans le dossier de destination)
                         imagewebp($pictureSource, $webpPath);
 
+
                         $requestNewPicture = $pdo->prepare("
                         UPDATE person
                         SET picture = :picture
-                        WHERE idPerson = :id
+                        WHERE person.idPerson = :id
                         ");
 
                         $requestNewPicture->execute([
@@ -271,7 +272,8 @@ class PersonController
                 ");
                 $requestEditPerson->execute(["firstname" => $newFirstname, "surname" => $newSurname, "sex" => $newSex, "birthdate" => $newBirthdate, "biography" => $newBiography, "id" => $id]);
 
-                header("Location:index.php?action=editPerson&id=$id");
+                header("Location:index.php?action=personDetails&id=$id");
+                $_SESSION['message'] = "<div class='alert'>Person edited successfully !</div>";
                 exit;
             }
 
@@ -297,6 +299,7 @@ class PersonController
         $requestDelActor->execute(["id" => $id]);
 
         header("Location:index.php?action=listActors");
+        $_SESSION['message'] = "<div class='alert'>Actor deleted successfully !</div>";
         exit;
     }
 
@@ -319,7 +322,7 @@ class PersonController
         $requestDelDirector->execute(["id" => $id]);
 
         header("Location:index.php?action=listDirectors");
+        $_SESSION['message'] = "<div class='alert'>Director deleted successfully !</div>";
         exit;
     }
 }
-?>

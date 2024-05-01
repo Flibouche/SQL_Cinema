@@ -23,6 +23,7 @@ $roles = $requestRoles->fetchAll();
 <?php
 
 $title = "Roles' List (" . $requestRoles->rowCount() . ")";
+$metaDescription = "Here is the list of the different role(s). There are currently " . $requestRoles->rowCount() . " role(s) in our database.";
 $secondary_title = "Roles' List (" . $requestRoles->rowCount() . ")";
 $content = ob_get_clean();
 $hideBgImage = false;

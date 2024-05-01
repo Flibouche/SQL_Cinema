@@ -15,7 +15,7 @@ class ThemeController
 
         // Exécution de la requête SQL pour récupérer les informations sur les thèmes
         $requestThemes = $pdo->query("
-            SELECT theme.idTheme, theme.typeName
+            SELECT theme.idTheme, theme.typeName, theme.illustration
             FROM theme
             ORDER BY typeName
         ");
@@ -69,12 +69,49 @@ class ThemeController
             // Récupération et filtrage des données du formulaire
             $theme = filter_input(INPUT_POST, "theme", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Récupère et filtre le nom du thème
 
+            if (isset($_FILES['file'])) {
+                $tmpName = $_FILES['file']['tmp_name'];
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+                $type = $_FILES['file']['type'];
+
+                $tabExtension = explode('.', $name);
+                $extension = strtolower(end($tabExtension));
+
+                // Tableau des extensions qu'on autorise
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $maxSize = 100000000;
+
+                if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
+
+                    $uniqueName = uniqid('', true);
+                    $file = $uniqueName . '.' . $extension;
+
+                    move_uploaded_file($tmpName, "public/img/themes/" . $file);
+
+                    // Conversion en webp
+                    // Création de mon image en doublon en chaine de caractères
+                    $posterSource = imagecreatefromstring(file_get_contents("public/img/themes/" . $file));
+                    // Récupération du chemin de l'image
+                    $webpPath = "public/img/themes/" . $uniqueName . ".webp";
+                    // Conversion en format webp
+                    imagewebp($posterSource, $webpPath);
+                    // Suppression de l'ancienne image
+                    unlink("public/img/themes/" . $file);
+                } else {
+                    echo "Wrong extension or file size too large or error !";
+                }
+            }
+
+            $illustration = isset($webpPath) ? $webpPath : "public/img/themes/default.webp";
+
             // Exécution de la requête SQL pour ajouter le nouveau thème à la base de données
             $requestAddTheme = $pdo->prepare("
-                INSERT INTO theme (typeName)
-                VALUES (:theme)
+                INSERT INTO theme (typeName, illustration)
+                VALUES (:theme, :illustration)
             ");
-            $requestAddTheme->execute(["theme" => $theme]);
+            $requestAddTheme->execute(["theme" => $theme, "illustration" => $illustration]);
 
             // Redirection vers la page 'index.php?action=addTheme' après le traitement du formulaire
             header("Location:index.php?action=listThemes");
@@ -100,7 +137,7 @@ class ThemeController
 
             // Exécution de la requête SQL pour récupérer les informations du thème à modifier
             $requestThemeID = $pdo->prepare("
-            SELECT theme.idTheme, theme.typeName
+            SELECT theme.idTheme, theme.typeName, theme.illustration
             FROM theme
             WHERE idTheme = :id
         ");
@@ -109,6 +146,61 @@ class ThemeController
             if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
                 // Récupération et filtrage des données du formulaire
                 $newTypeName = filter_input(INPUT_POST, "typeName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $name = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
+                    $error = $_FILES['file']['error'];
+                    $type = $_FILES['file']['type'];
+
+                    $tabExtension = explode('.', $name);
+                    $extension = strtolower(end($tabExtension));
+
+                    // Tableau des extensions qu'on autorise
+                    $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                    $maxSize = 100000000;
+
+                    if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
+
+                        $uniqueName = uniqid('', true);
+                        $file = $uniqueName . '.' . $extension;
+
+                        $requestIllustration = $pdo->prepare("
+                        SELECT theme.illustration
+                        FROM theme
+                        WHERE theme.idTheme = :id
+                        ");
+                        $requestIllustration->execute(["id" => $id]);
+
+                        $linkIllustration = $requestIllustration->fetch();
+
+                        if (!$linkIllustration == "./public/img/themes/default.webp") {
+                            unlink($linkIllustration['illustration']);
+                        }
+
+                        // On récupère l'image de notre forumulaire via la superglobale file, on prend le chemin et on crée l'image
+                        $illustrationSource = imagecreatefromstring(file_get_contents($tmpName));
+                        // Récupération du chemin cible de l'image
+                        $webpPath = "public/img/themes/" . $uniqueName . ".webp";
+                        // Conversion en format webp (on prend l'image et on la colle dans le dossier de destination)
+                        imagewebp($illustrationSource, $webpPath);
+
+                        $requestNewIllustration = $pdo->prepare("
+                        UPDATE theme
+                        SET illustration = :illustration
+                        WHERE idTheme = :id
+                        ");
+
+                        $requestNewIllustration->execute([
+                            "illustration" => $webpPath,
+                            "id" => $id
+                        ]);
+                    } else {
+                        echo "Wrong extension or file size too large or error !";
+                        exit;
+                    }
+                }
 
                 // Exécution de la requête SQL pour modifier le nom du thème dans la base de données
                 $requestEditTheme = $pdo->prepare("
@@ -120,6 +212,7 @@ class ThemeController
 
                 // Redirection vers la page 'index.php?action=listThemes' après la modification du thème
                 header("Location:index.php?action=listThemes");
+                $_SESSION['message'] = "<div class='alert'>Theme edited successfully !</div>";
                 exit;
             }
 

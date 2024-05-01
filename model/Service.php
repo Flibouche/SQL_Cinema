@@ -11,7 +11,12 @@ abstract class Service {
         $primaryKey = ucfirst($table);
 
         $pdo = Connect::toLogIn();
-        $req = $pdo->prepare("SELECT * FROM $table WHERE id$primaryKey = :id");
+
+        $req = $pdo->prepare("
+        SELECT *
+        FROM $table
+        WHERE id$primaryKey = :id"
+        );
         $req->execute(["id" => $id]);
         return $req->fetch();
     }

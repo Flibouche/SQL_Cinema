@@ -8,60 +8,73 @@ use Service\Session;
 
 class MovieController
 {
+    // Méthode pour lister tous les films
     public function listMovies()
     {
+        // Initialisation de la session
         $session = new Session();
 
+        // Connexion à la base de données
         $pdo = Connect::toLogIn();
+
+        // Requête pour récupérer les détails des films avec les réalisateurs associés
         $requestMovies = $pdo->query("
-        SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, person.firstname, person.surname
-        FROM movie
-        LEFT JOIN director ON movie.idDirector = director.idDirector
-        LEFT JOIN person ON director.idPerson = person.idPerson
-        ORDER BY movie.title
-        ");
-
-        require "view/movies/listMovies.php";
-    }
-
-    public function movieDetails($id)
-    {
-
-        if (!Service::exists("movie", $id)) {
-            header("Location:index.php?action=listMovies");
-            exit;
-        } else {
-
-            $pdo = Connect::toLogIn();
-            $requestMovieDetails = $pdo->prepare("
-            SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, person.idPerson, person.firstname, person.surname
+            SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, person.firstname, person.surname
             FROM movie
             LEFT JOIN director ON movie.idDirector = director.idDirector
             LEFT JOIN person ON director.idPerson = person.idPerson
-            WHERE movie.idMovie = :id
+            ORDER BY movie.title
+        ");
+
+        // Inclusion de la vue pour afficher la liste des films
+        require "view/movies/listMovies.php";
+    }
+
+    // Méthode pour afficher les détails d'un film
+    public function movieDetails($id)
+    {
+        // Vérification de l'existence du film
+        if (!Service::exists("movie", $id)) {
+            // Redirection vers la liste des films si le film n'existe pas
+            header("Location:index.php?action=listMovies");
+            exit;
+        } else {
+            // Connexion à la base de données
+            $pdo = Connect::toLogIn();
+
+            // Requête pour récupérer les détails du film spécifié par son ID
+            $requestMovieDetails = $pdo->prepare("
+                SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, person.idPerson, person.firstname, person.surname
+                FROM movie
+                LEFT JOIN director ON movie.idDirector = director.idDirector
+                LEFT JOIN person ON director.idPerson = person.idPerson
+                WHERE movie.idMovie = :id
             ");
             $requestMovieDetails->execute(["id" => $id]);
 
+            // Requête pour récupérer les acteurs et leurs rôles dans le film
             $requestMoviesCasting = $pdo->prepare("
-            SELECT person.idPerson, actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex, person.picture
-            FROM play
-            INNER JOIN movie ON play.idMovie = movie.idMovie
-            INNER JOIN actor ON play.idActor = actor.idActor
-            INNER JOIN role ON play.idRole = role.idRole
-            INNER JOIN person ON actor.idPerson = person.idPerson
-            WHERE play.idMovie = :id
+                SELECT person.idPerson, actor.idActor, movie.idMovie, role.idRole, role.roleName, movie.title, person.firstname, person.surname, person.sex, person.picture
+                FROM play
+                INNER JOIN movie ON play.idMovie = movie.idMovie
+                INNER JOIN actor ON play.idActor = actor.idActor
+                INNER JOIN role ON play.idRole = role.idRole
+                INNER JOIN person ON actor.idPerson = person.idPerson
+                WHERE play.idMovie = :id
             ");
             $requestMoviesCasting->execute(["id" => $id]);
 
+            // Requête pour récupérer les thèmes associés au film
             $requestMovieThemes = $pdo->prepare("
-            SELECT GROUP_CONCAT(theme.typeName SEPARATOR ', ') AS theme
-            FROM movie_theme
-            INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
-            INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
-            WHERE movie.idMovie = :id
+                SELECT GROUP_CONCAT(theme.typeName SEPARATOR ', ') AS theme
+                FROM movie_theme
+                INNER JOIN theme ON movie_theme.idTheme = theme.idTheme
+                INNER JOIN movie ON movie_theme.idMovie = movie.idMovie
+                WHERE movie.idMovie = :id
             ");
             $requestMovieThemes->execute(["id" => $id]);
 
+            // Inclusion de la vue pour afficher les détails du film
             require "view/movies/movieDetails.php";
         }
     }

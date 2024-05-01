@@ -53,6 +53,7 @@ $personDetails = $requestPerson->fetch();
 <?php
 
 $title = "Edit the person : " . $personDetails["firstname"] . " " . $personDetails["surname"];
+$metaDescription = "Here is the form where you can edit the informations of the person '" . $personDetails["firstname"] . " " . $personDetails["surname"] . "'";
 $secondary_title = "Edit the person : " . $personDetails["firstname"] . " " . $personDetails["surname"];
 $content = ob_get_clean();
 $hideBgImage = false;

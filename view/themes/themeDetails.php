@@ -73,5 +73,6 @@ $themeID = $requestThemeID->fetch();
 $title = $themeID["typeName"];
 $secondary_title = $themeID["typeName"];
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

@@ -42,6 +42,7 @@ ob_start();
 <?php
 
 $title = "Sign In";
+$metaDescription = "This is the login page of the site.";
 $secondary_title = "Sign In";
 $content = ob_get_clean();
 $hideBgImage = false;

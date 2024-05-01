@@ -22,6 +22,7 @@ ob_start();
 <?php
 
 $title = "Profile";
+$metaDescription = "Here is you're personnal profile page ! Welcome home ". $infosSession["pseudo"] . " !";
 $secondary_title = "Profile";
 $content = ob_get_clean();
 $hideBgImage = false;
