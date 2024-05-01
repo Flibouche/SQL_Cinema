@@ -3,6 +3,9 @@ $actors = $requestActors->fetchAll();
 ?>
 
 <section class="listActors section" id="listActors">
+
+    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for an actor.." title="Type in a name">
+
     <div class="listActors__container container">
 
         <?php
@@ -33,6 +36,29 @@ $actors = $requestActors->fetchAll();
     <button class="main__button list__button"><a href="index.php?action=addPerson">Add a person</a></button>
 
 </section>
+
+<script>
+    // Tuto W3Schools
+    function myFunction() {
+        var input, filter, container, figure, title, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        container = document.getElementsByClassName("listActors__container")[0];
+        figure = container.getElementsByTagName("figure");
+
+        for (i = 0; i < figure.length; i++) {
+            title = figure[i].getElementsByTagName("span")[0];
+            if (title) {
+                txtValue = title.textContent || title.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    figure[i].style.display = "";
+                } else {
+                    figure[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
 <?php
 

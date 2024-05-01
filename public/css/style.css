@@ -288,7 +288,7 @@ textarea {
 }
 
 .nav__actions i:hover {
-color: var(--yellow-color);
+  color: var(--yellow-color);
 }
 
 .nav__profile-picture {
@@ -773,6 +773,22 @@ color: var(--yellow-color);
   font-size: 1rem;
 }
 
+.listRoles__container a,
+.card__description-listActors a,
+.card__description-listMovies a,
+.card__description-listDirectors a,
+.card__description-listThemes a {
+  transition: .7s;
+}
+
+.listRoles__container a:hover,
+.card__description-listActors a:hover,
+.card__description-listMovies a:hover,
+.card__description-listDirectors a:hover,
+.card__description-listThemes a:hover {
+  color: var(--yellow-color);
+}
+
 /* ==================================================== */
 /* ===================== DETAILS ====================== */
 /* ==================================================== */
@@ -1016,6 +1032,7 @@ input[type=radio] {
 
 /* Responsive Modal*/
 @media screen and (min-width: 360px) {
+
   .modal,
   .modal2 {
     display: flex;
@@ -1257,4 +1274,18 @@ input[type=radio] {
 
 .show-scroll {
   bottom: 3rem;
+}
+
+/*=============== SEARCH BAR ===============*/
+#searchInput {
+  background-image: url('/public/img/magnifying-glass-solid.svg');
+  background-position: 4px 3px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 4px 20px 4px 40px;
+  border: 2px solid var(--orange-color);
+  margin-left: 10px;
+  margin-bottom: 35px;
 }
