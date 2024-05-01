@@ -10,14 +10,14 @@ $movie = $requestMovies->fetch();
 
             <div class="form__group">
                 <label for="title"> Movie : *</label>
-                <select name="idMovie" id="title">
+                <select id="title" name="idMovie" id="title">
                     <option value="<?= $movie["idMovie"] ?>" selected required><?= $movie["title"] ?></option>
                 </select>
             </div>
 
             <div class="form__group">
-                <label for="actor">Actors : *</label>
-                <select name="idActor" id="actor">
+                <label for="actor">Actor : *</label>
+                <select id="actor" name="idActor" id="actor">
                     <?php
                     foreach ($requestActors->fetchAll() as $actor) {
                     ?>
@@ -30,7 +30,7 @@ $movie = $requestMovies->fetch();
 
             <div class="form__group">
                 <label for="role">Role : *</label>
-                <select name="idRole" id="role">
+                <select id="role" name="idRole">
                     <?php
                     foreach ($requestRoles->fetchAll() as $role) {
                     ?>
@@ -55,3 +55,4 @@ $title = "Add a casting to the movie : " . $movie["title"];
 $secondary_title = "Add a casting to the movie : " . $movie["title"];
 $content = ob_get_clean();
 require "view/template.php";
+?>

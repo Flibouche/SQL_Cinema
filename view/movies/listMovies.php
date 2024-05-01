@@ -9,10 +9,10 @@ $movies = $requestMovies->fetchAll();
         <?php
         foreach ($movies as $movie) {
         ?>
-            <figure class="movie__card-listMovies">
+            <figure class="movie__card-listMovies" title="<?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?>">
 
                 <div class="card__header-listMovies">
-                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["poster"] ?>" title="<?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?>"></a>
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["poster"] ?>"></a>
                     <div class="bg-card-hover">
                         <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>">
                             <p class="text-hover">By : <?= $movie["firstname"] . " " . $movie["surname"] ?></p>
@@ -23,7 +23,7 @@ $movies = $requestMovies->fetchAll();
 
                 <div class="card__description-listMovies">
                     <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><span><?= $movie["title"] ?></span></a>
-                    <p><?= $movie["releaseYear"] ?></p>
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><p><?= $movie["releaseYear"] ?></p></a>
                 </div>
 
             </figure>
@@ -46,3 +46,4 @@ $title = "Movies' List (" . $requestMovies->rowCount() . ")";
 $secondary_title = "Movies' List (" . $requestMovies->rowCount() . ")";
 $content = ob_get_clean();
 require "view/template.php";
+?>

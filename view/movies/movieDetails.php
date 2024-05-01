@@ -60,8 +60,9 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
             ?>
             <div class="movie__themes-movieDetails">
                 <?php
-                foreach ($requestMovieThemes->fetchAll() as $themes) {
-                    echo "Theme(s) : " . $themes["theme"] . "<br>";
+                foreach ($requestMovieThemes->fetchAll() as $themes) { ?>
+                    <p>Theme(s) : <?= $themes["theme"] ?> </p>
+                <?php
                 }
                 ?>
             </div>
@@ -107,14 +108,16 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
             if (!$moviesCasting == null) {
                 foreach ($moviesCasting as $movieCasting) {
             ?>
-                    <figure class="movie__castingcard-movieDetails">
+                    <figure class="movie__castingcard-movieDetails" title="<?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>">
                         <div class="castingcard__header-movieDetails">
-                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><img src="<?= $movieCasting["picture"] ?>" alt="<?= "Picture of " . $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>" title="<?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?> "></a>
+                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><img src="<?= $movieCasting["picture"] ?>" alt="<?= "Picture of " . $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>"></a>
                         </div>
 
                         <div class="castingcard__description-movieDetails">
                             <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a>
-                            <p>as <?= $movieCasting["roleName"] ?></p>
+                            <a href="index.php?action=roleDetails&id=<?= $movieCasting["idRole"] ?>">
+                                <p title="<?= $movieCasting["roleName"] ?>">as <?= $movieCasting["roleName"] ?></p>
+                            </a>
                         </div>
 
                         <div class="castingcard__edit-movieDetails">
@@ -145,3 +148,4 @@ $title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
 $secondary_title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
 $content = ob_get_clean();
 require "view/template.php";
+?>

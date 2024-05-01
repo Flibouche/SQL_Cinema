@@ -9,22 +9,22 @@
 
             <div class="form__group">
                 <label for="title">Title : *</label>
-                <input type="text" name="title" placeholder="Enter movie title" required>
+                <input type="text" id="title" name="title" placeholder="Enter movie title" required>
             </div>
 
             <div class="form__group">
                 <label for="releaseYear">Release Year : *</label>
-                <input type="text" name="releaseYear" placeholder="Enter release year" required>
+                <input type="text" id="releaseYear" name="releaseYear" placeholder="Enter release year" required>
             </div>
 
             <div class="form__group">
                 <label for="duration">Duration (in minutes) : *</label>
-                <input type="number" name="duration" placeholder="Enter duration" required>
+                <input type="number" id="duration" name="duration" placeholder="Enter duration" required>
             </div>
 
             <div class="form__group">
                 <label for="note">Note : *</label>
-                <input type="number" step="0.1" min="1" max="5" name="note" placeholder="Enter a note (1-5)" required>
+                <input type="number" id="note" step="0.1" min="1" max="5" name="note" placeholder="Enter a note (1-5)" required>
             </div>
 
             <div class="form__group">
@@ -34,7 +34,7 @@
 
             <div class="form__group">
                 <label for="idDirector">Director :</label>
-                <select name="idDirector" id="">
+                <select id="idDirector" name="idDirector">
                     <?php
                     foreach ($requestDirectors->fetchAll() as $director) {
                     ?>
@@ -52,8 +52,8 @@
                     foreach ($requestThemes->fetchAll() as $theme) {
                     ?>
                         <div class="checkbox-grid">
-                            <input type="checkbox" id="" name="theme[]" value="<?= $theme["idTheme"] ?> ">
-                            <label for="" value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></label>
+                            <input type="checkbox" id="<?= $theme["idTheme"] ?>" name="theme[]" value="<?= $theme["idTheme"] ?> ">
+                            <label for="<?= $theme["idTheme"] ?>" value="<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></label>
                         </div>
                     <?php
                     }
@@ -63,7 +63,7 @@
 
             <div class="form__group">
                 <label for="synopsis">Synopsis :</label>
-                <textarea name="synopsis" rows="4" cols="45" placeholder="Enter a synopsis"></textarea>
+                <textarea id="synopsis" name="synopsis" rows="4" cols="45" placeholder="Enter a synopsis"></textarea>
             </div>
 
             <button class="main__button form" type="submit" name="submit" value="Add movie"><span>Add Movie</span></button>
@@ -80,3 +80,4 @@ $title = "Add a movie";
 $secondary_title = "Add a movie";
 $content = ob_get_clean();
 require "view/template.php";
+?>

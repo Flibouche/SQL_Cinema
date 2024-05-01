@@ -96,7 +96,7 @@ $personDetails = $requestPersonDetails->fetch();
                     ?>
                         <figure class="person__filmographycard-personDetails" title="<?= $filmography["title"] ?>">
                             <div class="filmographycard__header-personDetails">
-                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt=""></a>
+                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt="Poster of <?= $filmography["title"] ?>"></a>
                             </div>
 
                             <div class="filmographycard__description-personDetails">
@@ -127,14 +127,16 @@ $personDetails = $requestPersonDetails->fetch();
                 } else {
                     foreach ($actorFilmography as $filmography) {
                     ?>
-                        <figure class="person__filmographycard-personDetails">
+                        <figure class="person__filmographycard-personDetails" title="<?= $filmography["title"] ?>">
                             <div class="filmographycard__header-personDetails">
-                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt=""></a>
+                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt="Poster of <?= $filmography["title"] ?>"></a>
                             </div>
 
                             <div class="filmographycard__description-personDetails">
                                 <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><?= $filmography["title"] . " (" . $filmography["releaseYear"] . ")" ?></a>
-                                <p>as <?= $filmography["roleName"] ?></p>
+                                <a href="index.php?action=roleDetails&id=<?= $filmography["idRole"] ?>">
+                                    <p title="<?= $filmography["roleName"] ?>">as <?= $filmography["roleName"] ?></p>
+                                </a>
                             </div>
 
                         </figure>
@@ -159,3 +161,4 @@ $metaDescription = "Discover the filmography of " . $personDetails["firstname"] 
 $secondary_title = $personDetails["firstname"] . " " . $personDetails["surname"];
 $content = ob_get_clean();
 require "view/template.php";
+?>
