@@ -24,4 +24,6 @@ ob_start();
 $title = "Profile";
 $secondary_title = "Profile";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

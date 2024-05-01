@@ -737,7 +737,8 @@ color: var(--yellow-color);
 }
 
 .card__header-listMovies,
-.card__header-listActors {
+.card__header-listActors,
+.card__header-listDirectors {
   position: relative;
   overflow: hidden;
 }
@@ -754,7 +755,8 @@ color: var(--yellow-color);
 }
 
 .card__header-listMovies:hover .bg-card-hover,
-.card__header-listActors:hover .bg-card-hover {
+.card__header-listActors:hover .bg-card-hover,
+.card__header-listDirectors:hover .bg-card-hover {
   opacity: 100%;
 }
 

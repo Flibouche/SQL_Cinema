@@ -5,7 +5,7 @@
 
     <div class="addMovie__container container">
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="index.php?action=addMovie" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
                 <label for="title">Title : *</label>
@@ -79,5 +79,6 @@
 $title = "Add a movie";
 $secondary_title = "Add a movie";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

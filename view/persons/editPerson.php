@@ -6,21 +6,21 @@ $personDetails = $requestPerson->fetch();
 
     <div class="editPerson__container container">
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="index.php?action=editPerson" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
-                <label class="firstname">Person's firstname : *</label>
-                <input class="" type="text" name="firstname" value="<?= $personDetails['firstname'] ?>" required>
+                <label for="firstname">Person's firstname : *</label>
+                <input id="firstname" type="text" name="firstname" value="<?= $personDetails['firstname'] ?>" required>
             </div>
 
             <div class="form__group">
                 <label for="surname">Person's surname : *</label>
-                <input type="text" name="surname" value="<?= $personDetails['surname'] ?>" required>
+                <input id="surname" type="text" name="surname" value="<?= $personDetails['surname'] ?>" required>
             </div>
 
             <div class="form__group">
-                <label class="sex">Sex : *</label>
-                <select name="sex" id="sex__select" placeholder="Please choose a sex" value="<?= $personDetails['sex'] ?>" required>
+                <label for="sex">Sex : *</label>
+                <select id="sex" name="sex" placeholder="Please choose a sex" value="<?= $personDetails['sex'] ?>" required>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
                 </select>
@@ -28,18 +28,18 @@ $personDetails = $requestPerson->fetch();
 
             <div class="form__group">
                 <label for="birthdate">Birthdate : *</label>
-                <input type="date" id="" name="birthdate" value="<?= $personDetails['birthdate'] ?>" required>
+                <input id="birthdate" type="date" name="birthdate" value="<?= $personDetails['birthdate'] ?>" required>
             </div>
 
             <div class="form__group">
                 <label for="file">Picture upload :</label>
                 <input type="file" name="file">
-                <img class="editPerson-picture" src="<?= $personDetails['picture'] ?>" alt="Person's picture">
+                <img class="editPerson-picture" src="<?= $personDetails['picture'] ?>" alt="Picture of <?= $personDetails["firstname"] . " " . $personDetails["surname"] ?>">
             </div>
 
             <div class="form__group">
                 <label for="biography">Biography :</label>
-                <textarea name="biography" rows="4" cols="50"><?= $personDetails['biography'] ?></textarea>
+                <textarea id="biography" name="biography" rows="4" cols="50"><?= $personDetails['biography'] ?></textarea>
             </div>
 
             <button class="main__button form" type="submit" name="submit" value="Edit person"><span>Edit Person</span></button>
@@ -55,4 +55,6 @@ $personDetails = $requestPerson->fetch();
 $title = "Edit the person : " . $personDetails["firstname"] . " " . $personDetails["surname"];
 $secondary_title = "Edit the person : " . $personDetails["firstname"] . " " . $personDetails["surname"];
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

@@ -5,21 +5,21 @@
 
     <div class="addPerson__container container">
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="index.php?action=addPerson" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
-                <label class="firstname">Person's firstname : *</label>
-                <input class="" type="text" name="firstname" placeholder="Enter firstname" required>
+                <label for="firstname">Person's firstname : *</label>
+                <input id="firstname" type="text" name="firstname" placeholder="Enter firstname" required>
             </div>
 
             <div class="form__group">
                 <label for="surname">Person's surname : *</label>
-                <input type="text" name="surname" placeholder="Enter surname" required>
+                <input id="surname" type="text" name="surname" placeholder="Enter surname" required>
             </div>
 
             <div class="form__group">
-                <label class="sex">Sex : *</label>
-                <select name="sex" id="sex__select" required>
+                <label for="sex">Sex : *</label>
+                <select id="sex" name="sex" id="sex__select" required>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
                 </select>
@@ -27,7 +27,7 @@
 
             <div class="form__group">
                 <label for="birthdate">Birthdate : *</label>
-                <input type="date" id="" name="birthdate" required>
+                <input id="birthdate" type="date" name="birthdate" required>
             </div>
 
             <div class="form__group">
@@ -37,7 +37,7 @@
 
             <div class="form__group">
                 <label for="biography">Biography :</label>
-                <textarea name="biography" rows="4" cols="45" placeholder="Enter a biography"></textarea>
+                <textarea id="biography" name="biography" rows="4" cols="45" placeholder="Enter a biography"></textarea>
             </div>
 
             <div class="form__group">
@@ -75,4 +75,6 @@
 $title = "Add a person";
 $secondary_title = "Add a person";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

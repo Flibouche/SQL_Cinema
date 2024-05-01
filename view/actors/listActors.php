@@ -39,5 +39,6 @@ $actors = $requestActors->fetchAll();
 $title = "Actor's list (" . $requestActors->rowCount() . ")";
 $secondary_title = "Actor's list (" . $requestActors->rowCount() . ")";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

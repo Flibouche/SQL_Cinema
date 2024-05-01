@@ -2,10 +2,8 @@
 
 namespace Service;
 
-
 class Session
 {
-
 
     public function setUser($user){
         $_SESSION["user"] = $user;
@@ -20,6 +18,5 @@ class Session
         }
         return false;
     }
-
-
 }
+?>

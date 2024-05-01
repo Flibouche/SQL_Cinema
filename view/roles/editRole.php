@@ -6,12 +6,12 @@ $editRoleName = $requestRoleID->fetch();
 
     <div class="editMovie__container container">
 
-        <form action="" method="post">
+        <form action="index.php?action=editRole" method="POST">
 
-        <div class="form__group">
-            <label class="roleName">Rename this role : *</label>
-            <input type="text" name="roleName" required>
-        </div>
+            <div class="form__group">
+                <label for="roleName">Rename this role : *</label>
+                <input id="roleName" type="text" name="roleName" value="<?= $editRoleName['roleName'] ?>" required>
+            </div>
 
             <button class="main__button form" type="submit" name="submit" value="Rename"><span>Rename</span></button>
 
@@ -26,4 +26,6 @@ $editRoleName = $requestRoleID->fetch();
 $title = "Edit this role : " . $editRoleName["roleName"];
 $secondary_title = "Edit this role : " . $editRoleName["roleName"];
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

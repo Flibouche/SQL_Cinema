@@ -6,7 +6,7 @@ $movieDetails = $requestMovie->fetch();
 
     <div class="editMovie__container container">
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="index.php?action=editMovie" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
                 <label for="title">Title : *</label>
@@ -83,5 +83,6 @@ $movieDetails = $requestMovie->fetch();
 $title = "Edit the movie : " . $movieDetails["title"];
 $secondary_title = "Edit the movie : " . $movieDetails["title"];
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

@@ -39,7 +39,7 @@ $roleID = $requestRoleID->fetch();
                 <?php
                 foreach ($roleDetails as $roleDetails) {
                 ?>
-                    <figure class="role__castingcard-roleDetails">
+                    <figure class="role__castingcard-roleDetails" title="<?= $roleDetails["firstname"] . " " . $roleDetails["surname"] ?>">
                         <div class="castingcard__header-roleDetails">
                             <a href="index.php?action=personDetails&id=<?= $roleDetails["idPerson"] ?>"><img src="<?= $roleDetails["picture"] ?>" alt="Picture of <?= $roleDetails["firstname"] . " " . $roleDetails["surname"] ?>"></a>
                             </a>
@@ -47,7 +47,7 @@ $roleID = $requestRoleID->fetch();
 
                         <div class="castingcard__description-roleDetails">
                             <p>In the movie :</p>
-                            <div class="castingcard__descriptionMovie-roleDetails">
+                            <div class="castingcard__descriptionMovie-roleDetails" title="<?= $roleDetails["title"] ?>">
                                 <a href="index.php?action=movieDetails&id=<?= $roleDetails["idMovie"] ?>"><?= $roleDetails["title"] ?></a>
                             </div>
                             <div class="castingcard__descriptionPerson-roleDetails">
@@ -74,4 +74,6 @@ $roleID = $requestRoleID->fetch();
 $title = $roleID["roleName"];
 $secondary_title = $roleID["roleName"];
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

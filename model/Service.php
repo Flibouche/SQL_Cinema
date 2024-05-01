@@ -16,3 +16,4 @@ abstract class Service {
         return $req->fetch();
     }
 }
+?>

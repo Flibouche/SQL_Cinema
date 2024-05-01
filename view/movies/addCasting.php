@@ -6,7 +6,7 @@ $movie = $requestMovies->fetch();
 
     <div class="addCasting__container container">
 
-        <form action="" method="post">
+        <form action="index.php?action=addCasting" method="POST">
 
             <div class="form__group">
                 <label for="title"> Movie : *</label>
@@ -54,5 +54,6 @@ $movie = $requestMovies->fetch();
 $title = "Add a casting to the movie : " . $movie["title"];
 $secondary_title = "Add a casting to the movie : " . $movie["title"];
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

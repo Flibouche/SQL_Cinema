@@ -45,5 +45,6 @@ $movies = $requestMovies->fetchAll();
 $title = "Movies' List (" . $requestMovies->rowCount() . ")";
 $secondary_title = "Movies' List (" . $requestMovies->rowCount() . ")";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

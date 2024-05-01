@@ -39,7 +39,7 @@ $themeID = $requestThemeID->fetch();
                 <?php
                 foreach ($themeDetails as $themeDetails) {
                 ?>
-                    <figure class="theme__moviecard-themeDetails">
+                    <figure class="theme__moviecard-themeDetails" title="<?= $themeDetails["title"] ?>">
                         <div class="moviecard__header-themeDetails">
                             <a href="index.php?action=movieDetails&id=<?= $themeDetails["idMovie"] ?>"><img src="<?= $themeDetails["poster"] ?>" alt="Poster of <?= $themeDetails["title"] ?>"></a>
                         </div>
@@ -74,3 +74,4 @@ $title = $themeID["typeName"];
 $secondary_title = $themeID["typeName"];
 $content = ob_get_clean();
 require "view/template.php";
+?>

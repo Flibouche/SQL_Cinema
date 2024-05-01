@@ -147,5 +147,6 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 $title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
 $secondary_title = $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>

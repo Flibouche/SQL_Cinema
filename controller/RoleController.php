@@ -147,3 +147,4 @@ class RoleController
         exit;
     }
 }
+?>

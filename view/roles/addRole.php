@@ -5,11 +5,11 @@
 
     <div class="addRole__container container">
 
-        <form action="" method="post">
+        <form action="index.php?action=addRole" method="POST">
 
             <div class="form__group">
-                <label class="role">Role name : *</label>
-                <input class="" type="text" name="role" placeholder="Enter name" required>
+                <label for="role">Role name : *</label>
+                <input id="role" type="text" name="role" placeholder="Enter name" required>
             </div>
 
             <button class="main__button form" type="submit" name="submit" value="Add role"><span>Add role</span></button>
@@ -25,4 +25,6 @@
 $title = "Add a role";
 $secondary_title = "Add a role";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

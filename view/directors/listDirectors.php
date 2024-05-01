@@ -8,8 +8,21 @@ $directors = $requestDirectors->fetchAll();
         <?php
         foreach ($directors as $director) {
         ?>
-            <figure class="director__card-listDirectors">
-                <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>" alt=""><span><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></span></a>
+            <figure class="director__card-listDirectors" title="<?= $director["firstname"] . " " . $director["surname"] ?>">
+                <div class="card__header-listDirectors">
+                    <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>" alt="Picture of <?= $director["firstname"] . " " . $director["surname"] ?>"></a>
+                    <div class="bg-card-hover">
+                        <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>">
+                            <p class="text-hover">Born in <?= $director["birthdate"] ?></p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card__description-listDirectors">
+                    <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><span><?= $director["firstname"] . " " . $director["surname"] ?></span></a>
+
+                </div>
+
             </figure>
         <?php
         }
@@ -26,4 +39,6 @@ $directors = $requestDirectors->fetchAll();
 $title = "Directors's List (" . $requestDirectors->rowCount() . ")";
 $secondary_title = "Directors's List (" . $requestDirectors->rowCount() . ")";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

@@ -1,5 +1,4 @@
 <?php ob_start();
-$hideBgImage = true;
 ?>
 
 <section class="main section" id="main">
@@ -139,6 +138,7 @@ $hideBgImage = true;
 <?php
 
 $title = "CineDune";
-// $secondary_title = "CinEDunE";
 $content = ob_get_clean();
+$hideBgImage = true;
 require "template.php";
+?>

@@ -20,11 +20,11 @@
     </div>
 </section>
 
-
-
 <?php
 
 $title = "Submission";
 $secondary_title = "Submission";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "template.php";
+?>

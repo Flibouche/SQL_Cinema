@@ -53,4 +53,6 @@ ob_start();
 $title = "Register";
 $secondary_title = "Register";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

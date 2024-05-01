@@ -14,3 +14,4 @@ class SubmissionController
         require "view/listSubmissions.php";
     }
 }
+?>

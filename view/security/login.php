@@ -44,4 +44,6 @@ ob_start();
 $title = "Sign In";
 $secondary_title = "Sign In";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

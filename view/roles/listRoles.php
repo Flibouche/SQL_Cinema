@@ -8,7 +8,7 @@ $roles = $requestRoles->fetchAll();
         <?php
         foreach ($roles as $role) {
         ?>
-            <a href="index.php?action=roleDetails&id=<?= $role["idRole"] ?>"><?= $role["roleName"] . "<br>" ?></a>
+            <a href="index.php?action=roleDetails&id=<?= $role["idRole"] ?>" title="<?= $role["roleName"] ?>"><?= $role["roleName"] . "<br>" ?></a>
         <?php
         }
 
@@ -25,4 +25,6 @@ $roles = $requestRoles->fetchAll();
 $title = "Roles' List (" . $requestRoles->rowCount() . ")";
 $secondary_title = "Roles' List (" . $requestRoles->rowCount() . ")";
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
+?>

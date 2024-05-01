@@ -84,7 +84,6 @@
                     </a>
                 <?php } ?>
 
-
                 <!-- Toggle Button -->
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="fa-solid fa-bars"></i>
@@ -122,9 +121,6 @@
                     echo $_SESSION['message'];
                     unset($_SESSION['message']);
                 }
-                ?>
-                <?php
-
                 ?>
             </div>
 

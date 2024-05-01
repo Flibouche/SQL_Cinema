@@ -64,7 +64,7 @@ class PersonController
             $requestPersonDetails->execute(["id" => $id]);
 
             $requestActorsFilmography = $pdo->prepare("
-        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, movie.poster, person.firstname, person.surname, role.roleName
+        SELECT actor.idActor, movie.idMovie, movie.title, movie.releaseYear, movie.poster, person.firstname, person.surname, role.idRole, role.roleName
         FROM play
         INNER JOIN movie ON play.idMovie = movie.idMovie
         INNER JOIN role ON play.idRole = role.idRole
@@ -100,7 +100,7 @@ class PersonController
             $sex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $birthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $biography = filter_input(INPUT_POST, "biography", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $job = filter_input(INPUT_POST, "job", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $job = filter_input(INPUT_POST, "job", FILTER_SANITIZE_NUMBER_INT);
 
             if (isset($_FILES['file'])) {
                 $tmpName = $_FILES['file']['tmp_name'];
@@ -114,7 +114,7 @@ class PersonController
 
                 // Tableau des extensions qu'on autorise
                 $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
-                $maxSize = 1000000;
+                $maxSize = 10000000;
 
                 if (in_array($extension, $allowedExtensions) && $size <= $maxSize && $error == 0) {
 
@@ -322,3 +322,4 @@ class PersonController
         exit;
     }
 }
+?>

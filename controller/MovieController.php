@@ -91,7 +91,7 @@ class MovieController
             $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
             $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $director = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $director = filter_input(INPUT_POST, "idDirector", FILTER_SANITIZE_NUMBER_INT);
 
             if (isset($_FILES['file'])) {
                 $tmpName = $_FILES['file']['tmp_name'];
@@ -437,3 +437,4 @@ class MovieController
         exit;
     }
 }
+?>

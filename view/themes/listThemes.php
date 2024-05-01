@@ -8,7 +8,7 @@ $themes = $requestThemes->fetchAll();
         <?php
         foreach ($themes as $theme) {
         ?>
-            <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>"><?= $theme["typeName"] . "<br>" ?></a>
+            <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>" title="<?= $theme["typeName"] ?>"><?= $theme["typeName"] . "<br>" ?></a>
         <?php
         }
 
@@ -25,3 +25,4 @@ $title = "Themes's List (" . $requestThemes->rowCount() . ")";
 $secondary_title = "Themes's List (" . $requestThemes->rowCount() . ")";
 $content = ob_get_clean();
 require "view/template.php";
+?>

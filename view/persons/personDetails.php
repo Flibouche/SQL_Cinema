@@ -160,5 +160,6 @@ $title = $personDetails["firstname"] . " " . $personDetails["surname"];
 $metaDescription = "Discover the filmography of " . $personDetails["firstname"] . " " . $personDetails["surname"] . ", born on " . $personDetails["birthdate"] . ". Learn more about his life and biography.";
 $secondary_title = $personDetails["firstname"] . " " . $personDetails["surname"];
 $content = ob_get_clean();
+$hideBgImage = false;
 require "view/template.php";
 ?>
