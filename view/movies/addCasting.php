@@ -6,7 +6,7 @@ $movie = $requestMovies->fetch();
 
     <div class="addCasting__container container">
 
-        <form action="index.php?action=addCasting" method="POST">
+        <form action="index.php?action=addCasting&id=<?= $movie['idMovie'] ?>" method="POST">
 
             <div class="form__group">
                 <label for="title"> Movie : *</label>

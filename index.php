@@ -30,6 +30,7 @@ $session = new Session();
 
 // Récupération de l'ID et de l'action à partir des paramètres GET
 $id = (isset($_GET["id"])) ? $_GET["id"] : null;
+$idMovie = (isset($_GET["idMovie"])) ? $_GET["idMovie"] : null;
 // $type = (isset($_GET["type"])) ? $_GET["type"] : null;
 
 // Exécution des actions en fonction de l'action spécifiée dans les paramètres GET
@@ -41,7 +42,7 @@ if(isset($_GET["action"])){
         case "addMovie" : $ctrlMovie->addMovie(); break; // Ajout d'un film
         case "editMovie" : $ctrlMovie->editMovie($id); break; // Modification d'un film
         case "addCasting" : $ctrlMovie->addCasting($id); break; // Ajout de casting à un film
-        case "delCasting" : $ctrlMovie->delCasting($id); break; // Suppression de casting d'un film
+        case "delCasting" : $ctrlMovie->delCasting($id, $idMovie); break; // Suppression de casting d'un film
         case "delMovie" : $ctrlMovie->delMovie($id); break; // Suppression d'un film
 
         case "listActors" : $ctrlPerson->listActors(); break; // Affichage de la liste des acteurs

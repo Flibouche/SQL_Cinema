@@ -398,25 +398,17 @@ class MovieController
         }
     }
 
-    public function delCasting($id)
+    public function delCasting($id, $idMovie)
     {
         $pdo = Connect::toLogIn();
-    
-        $requestMovie = $pdo->prepare("
-            SELECT play.idMovie
-            FROM play
-            WHERE idActor = :id
-        ");
-        $requestMovie->execute(["id" => $id]);
-        $idMovie = $requestMovie->fetch();
-    
+
         $requestDelCasting = $pdo->prepare("
-            DELETE 
-            FROM play
-            WHERE play.idActor = :actor_id AND play.idMovie = :movie_id
+        DELETE FROM play
+        WHERE play.idActor = :actor_id AND play.idMovie = :movie_id
         ");
+
         $requestDelCasting->execute(["actor_id" => $id, "movie_id" => $idMovie]);
-    
+
         header("Location:index.php?action=movieDetails&id=$idMovie");
         $_SESSION['message'] = "<div class='alert'>This person has been deleted from the cast successfully !</div>";
         exit;
@@ -450,4 +442,3 @@ class MovieController
         exit;
     }
 }
-?>

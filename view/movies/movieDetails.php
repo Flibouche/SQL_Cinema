@@ -121,7 +121,7 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
                         </div>
 
                         <div class="castingcard__edit-movieDetails">
-                            <a class="delete-casting" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>">
+                            <a class="delete-casting" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>&idMovie=<?= $movieCasting["idMovie"] ?>">
                                 <i class="fa-solid fa-user-xmark"></i>
                             </a>
                         </div>
