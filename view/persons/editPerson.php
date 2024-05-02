@@ -6,7 +6,7 @@ $personDetails = $requestPerson->fetch();
 
     <div class="editPerson__container container">
 
-        <form action="index.php?action=editPerson" method="POST" enctype="multipart/form-data">
+        <form action="index.php?action=editPerson&id=<?= $personDetails['idPerson'] ?>" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
                 <label for="firstname">Person's firstname : *</label>

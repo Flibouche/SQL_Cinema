@@ -6,7 +6,7 @@ $movieDetails = $requestMovie->fetch();
 
     <div class="editMovie__container container">
 
-        <form action="index.php?action=editMovie" method="POST" enctype="multipart/form-data">
+        <form action="index.php?action=editMovie&id=<?= $movieDetails['idMovie'] ?>" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
                 <label for="title">Title : *</label>

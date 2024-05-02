@@ -14,11 +14,6 @@ $themes = $requestThemes->fetchAll();
             <figure class="theme__card-listThemes" title="<?= $theme["typeName"] ?>">
                 <div class="card__header-listThemes">
                     <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>"><img src="<?= $theme["illustration"] ?>" alt="Illustration of the theme <?= $theme["typeName"] ?>"></a>
-                    <div class="bg-card-hover">
-                        <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>">
-                            <p class="text-hover">Test</p>
-                        </a>
-                    </div>
                 </div>
 
                 <div class="card__description-listThemes">

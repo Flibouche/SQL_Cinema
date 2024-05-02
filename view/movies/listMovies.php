@@ -14,8 +14,8 @@ $movies = $requestMovies->fetchAll();
         ?>
             <figure class="movie__card-listMovies" title="<?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?>">
 
-                <div id="test" class="card__header-listMovies">
-                    <a class="test2" href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["title"] ?>"></a>
+                <div class="card__header-listMovies">
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["title"] ?>"></a>
                     <div class="bg-card-hover">
                         <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>">
                             <p class="text-hover">By : <?= $movie["firstname"] . " " . $movie["surname"] ?></p>

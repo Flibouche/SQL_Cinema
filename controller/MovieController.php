@@ -266,7 +266,7 @@ class MovieController
                         // Permet de récupérer l'image du poster du film et de la supprimer en passant par la variable et le tableau "poster", autrement on pourrait faire une variable pour récupérer directement le tableau
                         $linkPoster = $requestPoster->fetch();
 
-                        if (!$linkPoster == "./public/img/movies/default.webp") {
+                        if (!$linkPoster !== "./public/img/movies/default.webp") {
                             unlink($linkPoster['poster']);
                         }
 

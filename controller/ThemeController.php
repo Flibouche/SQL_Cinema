@@ -175,7 +175,7 @@ class ThemeController
 
                         $linkIllustration = $requestIllustration->fetch();
 
-                        if (!$linkIllustration == "./public/img/themes/default.webp") {
+                        if (!$linkIllustration !== "./public/img/themes/default.webp") {
                             unlink($linkIllustration['illustration']);
                         }
 

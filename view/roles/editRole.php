@@ -6,7 +6,7 @@ $editRoleName = $requestRoleID->fetch();
 
     <div class="editMovie__container container">
 
-        <form action="index.php?action=editRole" method="POST">
+        <form action="index.php?action=editRole&id=<?= $editRoleName['idRole'] ?>" method="POST">
 
             <div class="form__group">
                 <label for="roleName">Rename this role : *</label>

@@ -6,7 +6,7 @@ $editThemeName = $requestThemeID->fetch();
 
     <div class="editTheme__container container">
 
-        <form action="index.php?action=editTheme" method="POST" enctype="multipart/form-data">
+        <form action="index.php?action=editTheme&id=<?= $editThemeName['idTheme'] ?>" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
                 <label for="typeName">Rename this theme : *</label>

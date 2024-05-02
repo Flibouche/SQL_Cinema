@@ -740,10 +740,23 @@ textarea {
   filter: grayscale(0);
 }
 
+.movie__card-listMovies a,
+.actor__card-listActors a,
+.director__card-listDirectors a,
+.theme__card-listThemes a {
+  transition: .7s;
+}
+
+.movie__card-listMovies:hover a,
+.actor__card-listActors:hover a,
+.director__card-listDirectors:hover a,
+.theme__card-listThemes:hover a {
+  color: var(--yellow-color);
+}
+
 .card__header-listMovies,
 .card__header-listActors,
-.card__header-listDirectors,
-.card__header-listThemes {
+.card__header-listDirectors {
   position: relative;
   overflow: hidden;
 }
@@ -771,22 +784,6 @@ textarea {
   text-align: left;
   padding-left: 5px;
   font-size: 1rem;
-}
-
-.listRoles__container a,
-.card__description-listActors a,
-.card__description-listMovies a,
-.card__description-listDirectors a,
-.card__description-listThemes a {
-  transition: .7s;
-}
-
-.listRoles__container a:hover,
-.card__description-listActors a:hover,
-.card__description-listMovies a:hover,
-.card__description-listDirectors a:hover,
-.card__description-listThemes a:hover {
-  color: var(--yellow-color);
 }
 
 /* ==================================================== */
