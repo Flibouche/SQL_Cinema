@@ -76,8 +76,8 @@
             foreach ($requestActorsMain->fetchAll() as $actor) {
             ?>
                 <figure class="actor__card-main">
-                    <img src="<?= $actor["picture"] ?>">
-                    <figcaption class="actor__figcaption-main" href="index.php?action=actorsDetails&id=<?= $actor["idActor"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] . "<br>" ?></figcaption>
+                    <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>"><img src="<?= $actor["picture"] ?>"></a>
+                    <figcaption class="actor__figcaption-main" href="index.php?action=actorsDetails&id=<?= $actor["idActor"] ?>"><a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] ?></a></figcaption>
                 </figure>
             <?php
             }
@@ -113,8 +113,8 @@
             foreach ($requestDirectorsMain->fetchAll() as $director) {
             ?>
                 <figure class="director__card-main">
-                    <img src="<?= $director["picture"] ?>">
-                    <figcaption class="director__figcaption-main" href="index.php?action=directorsDetails&id=<?= $director["idDirector"] ?>"><?= $director["firstname"] . " " . $director["surname"] . "<br>" ?></figcaption>
+                    <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>"></a>
+                    <figcaption class="director__figcaption-main" href="index.php?action=directorsDetails&id=<?= $director["idDirector"] ?>"><a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><?= $director["firstname"] . " " . $director["surname"] ?></a></figcaption>
                 </figure>
             <?php
             }

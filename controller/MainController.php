@@ -23,7 +23,7 @@ class MainController
 
         // Récupération d'un échantillon aléatoire de 4 acteurs pour afficher sur la page d'accueil
         $requestActorsMain = $pdo->query("
-            SELECT actor.idActor, person.firstname, person.surname, person.picture
+            SELECT actor.idActor, person.idPerson, person.firstname, person.surname, person.picture
             FROM actor
             INNER JOIN person ON actor.idPerson = person.idPerson
             ORDER BY RAND()
@@ -32,7 +32,7 @@ class MainController
 
         // Récupération d'un échantillon aléatoire de 4 réalisateurs pour afficher sur la page d'accueil
         $requestDirectorsMain = $pdo->query("
-            SELECT director.idDirector, person.firstname, person.surname, person.picture
+            SELECT director.idDirector, person.idPerson, person.firstname, person.surname, person.picture
             FROM director
             INNER JOIN person ON director.idPerson = person.idPerson
             ORDER BY RAND()

@@ -405,7 +405,6 @@ textarea {
 .carousel-box {
   position: relative;
   width: clamp(360px, 100%, 949px);
-  /* padding-top: 50px; */
   display: flex;
   align-items: center;
 }
@@ -467,8 +466,6 @@ textarea {
 .carousel .carousel-item img {
   width: 235px;
   height: 319px;
-  /* width: 25vmin;
-  height: 35vmin; */
   border-radius: 10px;
   transform: translateX(8px) translateY(-100px);
   object-fit: cover;
@@ -574,7 +571,7 @@ textarea {
   bottom: 0%;
 }
 
-/* Actors */
+/* Actors & Directors */
 
 .actors__content-main,
 .directors__content-main {
@@ -583,6 +580,8 @@ textarea {
   justify-content: center;
   gap: 10px 20px;
   padding-top: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .actor__card-main,

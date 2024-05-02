@@ -16,6 +16,10 @@ ob_start();
         <p>Profile picture :</p>
         <img src="<?= $infosSession["profilePicture"] ?>" alt="">
 
+
+
+        <button class="main__button btn"><a href="index.php?action=delAccount&id=<?= $infosSession["idUser"] ?>">Delete Account</a></button>
+
     </div>
 </section>
 

@@ -69,6 +69,7 @@ if(isset($_GET["action"])){
         case "login" : $ctrlSecurity->login(); break;
         case "profile" : $ctrlSecurity->profile(); break;
         case "logout" : $ctrlSecurity->logout(); break;
+        case "delAccount" : $ctrlSecurity->delAccount($id); break;
 
         case "listSubmissions" : $ctrlSubmission->listSubmissions(); break; // Affichage de la liste des soumissions
 
