@@ -690,6 +690,7 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  margin-bottom: 20px;
 }
 
 .listRoles__container {

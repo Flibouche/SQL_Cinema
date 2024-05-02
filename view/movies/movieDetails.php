@@ -27,21 +27,21 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
             <div class="movie__poster-movieDetails">
                 <img src="<?= $movieDetails["poster"] ?>" alt="Movie poster's of <?= $movieDetails["title"] ?>">
             </div>
+            <?php if ($session->isAdmin()) { ?>
+                <div class="movie__edit-movieDetails">
+                    <a href="index.php?action=editMovie&id=<?= $movieDetails["idMovie"] ?>">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
 
-            <div class="movie__edit-movieDetails">
-                <a href="index.php?action=editMovie&id=<?= $movieDetails["idMovie"] ?>">
-                    <i class="fa-solid fa-pencil"></i>
-                </a>
+                    <a href="index.php?action=addCasting&id=<?= $movieDetails["idMovie"] ?>">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </a>
 
-                <a href="index.php?action=addCasting&id=<?= $movieDetails["idMovie"] ?>">
-                    <i class="fa-solid fa-user-plus"></i>
-                </a>
-
-                <a id="delete-button" class="btn-openModal">
-                    <i class="fa-solid fa-delete-left"></i>
-                </a>
-            </div>
-
+                    <a id="delete-button" class="btn-openModal">
+                        <i class="fa-solid fa-delete-left"></i>
+                    </a>
+                </div>
+            <?php } ?>
         </div>
 
         <div class="movie__information-movieDetails">
@@ -119,13 +119,13 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
                                 <p title="<?= $movieCasting["roleName"] ?>">as <?= $movieCasting["roleName"] ?></p>
                             </a>
                         </div>
-
-                        <div class="castingcard__edit-movieDetails">
-                            <a class="delete-casting" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>&idMovie=<?= $movieCasting["idMovie"] ?>">
-                                <i class="fa-solid fa-user-xmark"></i>
-                            </a>
-                        </div>
-
+                        <?php if ($session->isAdmin()) { ?>
+                            <div class="castingcard__edit-movieDetails">
+                                <a class="delete-casting" href="index.php?action=delCasting&id=<?= $movieCasting["idActor"] ?>&idMovie=<?= $movieCasting["idMovie"] ?>">
+                                    <i class="fa-solid fa-user-xmark"></i>
+                                </a>
+                            </div>
+                        <?php } ?>
                     </figure>
                 <?php
                 }

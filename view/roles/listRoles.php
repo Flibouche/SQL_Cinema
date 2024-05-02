@@ -19,7 +19,10 @@ $roles = $requestRoles->fetchAll();
 
     </div>
 
-    <button class="main__button list__button"><a href="index.php?action=addRole">Add a role</a></button>
+    <?php
+    if ($session->isAdmin()) { ?>
+        <button class="main__button list__button"><a href="index.php?action=addRole">Add a role</a></button>
+    <?php } ?>
 
 </section>
 

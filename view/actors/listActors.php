@@ -33,7 +33,10 @@ $actors = $requestActors->fetchAll();
 
     </div>
 
-    <button class="main__button list__button"><a href="index.php?action=addPerson">Add a person</a></button>
+    <?php
+    if ($session->isAdmin()) { ?>
+        <button class="main__button list__button"><a href="index.php?action=addPerson">Add a person</a></button>
+    <?php } ?>
 
 </section>
 

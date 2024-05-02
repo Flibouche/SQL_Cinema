@@ -4,6 +4,7 @@ namespace Controller;
 
 use Model\Connect;
 use Model\Service;
+use Service\Session;
 
 class PersonController
 {
@@ -11,7 +12,10 @@ class PersonController
     // Méthode pour afficher la liste des acteurs
     public function listActors()
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+        // Initialisation de la session
+        $session = new Session();
+
+        // Connexion à la base de données
         $pdo = Connect::toLogIn();
 
         // Préparation et exécution de la requête SQL pour récupérer les informations sur les acteurs
@@ -29,7 +33,10 @@ class PersonController
     // Méthode pour afficher la liste des réalisateurs
     public function listDirectors()
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+        // Initialisation de la session
+        $session = new Session();
+
+        // Connexion à la base de données
         $pdo = Connect::toLogIn();
 
         // Préparation et exécution de la requête SQL pour récupérer les informations sur les réalisateurs
@@ -50,6 +57,8 @@ class PersonController
             header("Location:index.php");
             exit;
         } else {
+            // Initialisation de la session
+            $session = new Session();
 
             $pdo = Connect::toLogIn();
 

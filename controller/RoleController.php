@@ -4,12 +4,15 @@ namespace Controller;
 
 use Model\Connect; // Importation de la classe Connect depuis le namespace Model
 use Model\Service;
+use Service\Session;
 
 class RoleController
 {
     // Méthode pour afficher la liste des rôles
     public function listRoles()
     {
+        // Initialisation de la session
+        $session = new Session();
         // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
         $pdo = Connect::toLogIn();
 
@@ -150,4 +153,3 @@ class RoleController
         exit;
     }
 }
-?>

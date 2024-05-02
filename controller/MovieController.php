@@ -39,6 +39,9 @@ class MovieController
             header("Location:index.php?action=listMovies");
             exit;
         } else {
+            // Initialisation de la session
+            $session = new Session();
+
             // Connexion à la base de données
             $pdo = Connect::toLogIn();
 

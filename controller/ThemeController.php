@@ -4,12 +4,16 @@ namespace Controller;
 
 use Model\Connect; // Importation de la classe Connect depuis le namespace Model
 use Model\Service;
+use Service\Session;
 
 class ThemeController
 {
     // Méthode pour afficher la liste des thèmes
     public function listThemes(): void
     {
+        // Initialisation de la session
+        $session = new Session();
+        
         // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
         $pdo = Connect::toLogIn();
 
@@ -240,4 +244,3 @@ class ThemeController
         exit;
     }
 }
-?>
