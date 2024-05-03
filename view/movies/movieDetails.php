@@ -3,21 +3,24 @@ $movieDetails = $requestMovieDetails->fetch();
 $moviesCasting = $requestMoviesCasting->fetchAll();
 ?>
 
-<section class="modal hidden">
-    <div class="flex">
-        <button class="btn-close">
-            <p>X</p>
-        </button>
-    </div>
-    <div>
-        <h3>Are you sure you want to delete this movie ?</h3>
-    </div>
+<?php
+if ($session->isAdmin()) { ?>
+    <section class="modal hidden">
+        <div class="flex">
+            <button class="btn-close">
+                <p>X</p>
+            </button>
+        </div>
+        <div>
+            <h3>Are you sure you want to delete this movie ?</h3>
+        </div>
 
-    <button class="main__button btn"><a href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Yes</a></button>
-    <button class="main__button btn-close2"><span>Nevermind</span></button>
-</section>
+        <button class="main__button btn"><a href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Yes</a></button>
+        <button class="main__button btn-close2"><span>Nevermind</span></button>
+    </section>
 
-<div class="overlay hidden"></div>
+    <div class="overlay hidden"></div>
+<?php } ?>
 
 <section class="movieDetails section" id="listMovies">
 

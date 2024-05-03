@@ -18,9 +18,9 @@ class RoleController
 
         // Exécution de la requête SQL pour récupérer les informations sur les rôles
         $requestRoles = $pdo->query("
-            SELECT role.idRole, role.roleName
-            FROM role
-            ORDER BY roleName
+        SELECT role.idRole, role.roleName
+        FROM role
+        ORDER BY roleName
         ");
 
         // Inclusion du fichier de vue pour afficher la liste des rôles
@@ -30,11 +30,12 @@ class RoleController
     // Méthode pour afficher les détails d'un rôle
     public function roleDetails($id)
     {
-
         if (!Service::exists("role", $id)) {
             header("Location:index.php?action=listRoles");
             exit;
         } else {
+            // Initialisation de la session
+            $session = new Session();
 
             // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
             $pdo = Connect::toLogIn();
@@ -48,7 +49,7 @@ class RoleController
             INNER JOIN actor ON play.idActor = actor.idActor
             INNER JOIN person ON actor.idPerson = person.idPerson
             WHERE role.idRole = :id
-        ");
+            ");
             $requestRoleDetails->execute(["id" => $id]);
 
             // Exécution de la requête SQL pour récupérer l'ID du rôle spécifique
@@ -56,7 +57,7 @@ class RoleController
             SELECT role.idRole, role.roleName
             FROM role
             WHERE role.idRole = :id
-        ");
+            ");
             $requestRoleID->execute(["id" => $id]);
 
             // Inclusion du fichier de vue pour afficher les détails du rôle
@@ -67,28 +68,37 @@ class RoleController
     // Méthode pour ajouter un nouveau rôle
     public function addRole(): void
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-        $pdo = Connect::toLogIn();
+        // Initialisation de la session
+        $session = new Session();
 
-        if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
-            // Récupération et filtrage des données du formulaire
-            $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Récupère et filtre le nom du rôle
+        if ($session->isAdmin()) {
 
-            // Exécution de la requête SQL pour ajouter le nouveau rôle à la base de données
-            $requestAddRole = $pdo->prepare("
+            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+            $pdo = Connect::toLogIn();
+
+            if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
+                // Récupération et filtrage des données du formulaire
+                $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Récupère et filtre le nom du rôle
+
+                // Exécution de la requête SQL pour ajouter le nouveau rôle à la base de données
+                $requestAddRole = $pdo->prepare("
                 INSERT INTO role (roleName)
                 VALUES (:role)
             ");
-            $requestAddRole->execute(["role" => $role]);
+                $requestAddRole->execute(["role" => $role]);
 
-            // Redirection vers la page 'index.php?action=addRole' après le traitement du formulaire
-            header("Location:index.php?action=addRole");
-            $_SESSION['message'] = "<div class='alert'>Role added successfully !</div>";
+                // Redirection vers la page 'index.php?action=addRole' après le traitement du formulaire
+                header("Location:index.php?action=addRole");
+                $_SESSION['message'] = "<div class='alert'>Role added successfully !</div>";
+                exit;
+            }
+
+            // Inclusion du fichier de vue pour afficher le formulaire d'ajout de rôle
+            require "view/roles/addRole.php";
+        } else {
+            header("Location:index.php");
             exit;
         }
-
-        // Inclusion du fichier de vue pour afficher le formulaire d'ajout de rôle
-        require "view/roles/addRole.php";
     }
 
     // Méthode pour modifier un rôle existant

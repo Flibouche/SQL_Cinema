@@ -2,28 +2,31 @@
 $personDetails = $requestPersonDetails->fetch();
 ?>
 
-<section class="modal hidden">
-    <div class="flex">
-        <button class="btn-close">
-            <p>X</p>
-        </button>
-    </div>
-    <div>
-        <?php if (!empty($personDetails["idDirector"]) && $personDetails["idDirector"]) { ?>
-            <h3>Are you sure you want to delete this director ?</h3>
-            <button class="main__button btn"><a href="index.php?action=delDirector&id=<?= $personDetails['idDirector'] ?>">Yes</a></button>
-            <button class="main__button btn-close2"><span>Nevermind</span></button>
-        <?php } ?>
-        <?php if (!empty($personDetails["idActor"])) { ?>
-            <h3>Are you sure you want to delete this actor ?</h3>
-            <button class="main__button btn"><a href="index.php?action=delActor&id=<?= $personDetails['idActor'] ?>">Yes</a></button>
-            <button class="main__button btn-close2"><span>Nevermind</span></button>
-        <?php } ?>
-    </div>
+<?php
+if ($session->isAdmin()) { ?>
+    <section class="modal hidden">
+        <div class="flex">
+            <button class="btn-close">
+                <p>X</p>
+            </button>
+        </div>
+        <div>
+            <?php if (!empty($personDetails["idDirector"]) && $personDetails["idDirector"]) { ?>
+                <h3>Are you sure you want to delete this director ?</h3>
+                <button class="main__button btn"><a href="index.php?action=delDirector&id=<?= $personDetails['idDirector'] ?>">Yes</a></button>
+                <button class="main__button btn-close2"><span>Nevermind</span></button>
+            <?php } ?>
+            <?php if (!empty($personDetails["idActor"])) { ?>
+                <h3>Are you sure you want to delete this actor ?</h3>
+                <button class="main__button btn"><a href="index.php?action=delActor&id=<?= $personDetails['idActor'] ?>">Yes</a></button>
+                <button class="main__button btn-close2"><span>Nevermind</span></button>
+            <?php } ?>
+        </div>
 
-</section>
+    </section>
 
-<div class="overlay hidden"></div>
+    <div class="overlay hidden"></div>
+<?php } ?>
 
 <section class="personDetails section" id="listPersons">
     <div class="personDetails__container container">
@@ -32,15 +35,17 @@ $personDetails = $requestPersonDetails->fetch();
             <div class="person__picture-personDetails">
                 <img src="<?= $personDetails["picture"] ?>" alt="Picture of <?= $personDetails["firstname"] . " " . $personDetails["surname"] ?>">
             </div>
-
-            <div class="person__edit-personDetails">
-                <a href="index.php?action=editPerson&id=<?= $personDetails['idPerson'] ?>">
-                    <i class="fa-solid fa-pencil"></i>
-                </a>
-                <a id="delete-button" class="btn-openModal">
-                    <i class="fa-solid fa-user-xmark"></i>
-                </a>
-            </div>
+            <?php
+            if ($session->isAdmin()) { ?>
+                <div class="person__edit-personDetails">
+                    <a href="index.php?action=editPerson&id=<?= $personDetails['idPerson'] ?>">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
+                    <a id="delete-button" class="btn-openModal">
+                        <i class="fa-solid fa-user-xmark"></i>
+                    </a>
+                </div>
+            <?php } ?>
 
         </div>
 
