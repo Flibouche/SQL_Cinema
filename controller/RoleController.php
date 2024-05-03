@@ -104,7 +104,6 @@ class RoleController
     // Méthode pour modifier un rôle existant
     public function editRole($id)
     {
-
         if (!Service::exists("role", $id)) {
             header("Location:index.php?action=listRoles");
             exit;

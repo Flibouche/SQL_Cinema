@@ -12,11 +12,10 @@ class PersonController
     // Méthode pour afficher la liste des acteurs
     public function listActors()
     {
-        // Initialisation de la session
-        $session = new Session();
 
         // Connexion à la base de données
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         // Préparation et exécution de la requête SQL pour récupérer les informations sur les acteurs
         $requestActors = $pdo->query("
@@ -33,11 +32,10 @@ class PersonController
     // Méthode pour afficher la liste des réalisateurs
     public function listDirectors()
     {
-        // Initialisation de la session
-        $session = new Session();
 
         // Connexion à la base de données
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         // Préparation et exécution de la requête SQL pour récupérer les informations sur les réalisateurs
         $requestDirectors = $pdo->query("
@@ -57,10 +55,9 @@ class PersonController
             header("Location:index.php");
             exit;
         } else {
-            // Initialisation de la session
-            $session = new Session();
 
             $pdo = Connect::toLogIn();
+            $session = new Session();
 
             $requestPersonDetails = $pdo->prepare("
         SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.picture, person.biography, actor.idActor, director.idDirector
@@ -100,6 +97,8 @@ class PersonController
     public function addPerson(): void
     {
         $pdo = Connect::toLogIn();
+        $session = new Session();
+
         if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
 
             // Récupération et filtrage des données du formulaire
@@ -201,6 +200,8 @@ class PersonController
         } else {
 
             $pdo = Connect::toLogIn();
+            $session = new Session();
+            
             $requestPerson = $pdo->prepare("
             SELECT person.idPerson, person.firstname, person.surname, person.sex, person.birthdate, person.biography, person.picture
             FROM person
@@ -294,6 +295,7 @@ class PersonController
     {
 
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         $requestDelCasting = $pdo->prepare("
         DELETE FROM play
@@ -316,6 +318,7 @@ class PersonController
     {
 
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         $requestDelMovieDirector = $pdo->prepare("
         UPDATE movie

@@ -11,11 +11,10 @@ class MovieController
     // Méthode pour lister tous les films
     public function listMovies()
     {
-        // Initialisation de la session
-        $session = new Session();
 
         // Connexion à la base de données
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         // Requête pour récupérer les détails des films avec les réalisateurs associés
         $requestMovies = $pdo->query("
@@ -39,11 +38,10 @@ class MovieController
             header("Location:index.php?action=listMovies");
             exit;
         } else {
-            // Initialisation de la session
-            $session = new Session();
 
             // Connexion à la base de données
             $pdo = Connect::toLogIn();
+            $session = new Session();
 
             // Requête pour récupérer les détails du film spécifié par son ID
             $requestMovieDetails = $pdo->prepare("
@@ -86,6 +84,7 @@ class MovieController
     {
 
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         $requestDirectors = $pdo->query("
         SELECT director.idDirector, person.firstname, person.surname
@@ -196,6 +195,8 @@ class MovieController
         } else {
 
             $pdo = Connect::toLogIn();
+            $session = new Session();
+
             $requestMovie = $pdo->prepare("
         SELECT movie.idMovie, movie.title, movie.releaseYear, movie.duration, movie.note, movie.synopsis, movie.poster, movie.idDirector
         FROM movie
@@ -353,6 +354,7 @@ class MovieController
         } else {
 
             $pdo = Connect::toLogIn();
+            $session = new Session();
 
             $requestCasting = $pdo->query("
         SELECT play.idMovie, play.idActor, play.idRole
@@ -404,6 +406,7 @@ class MovieController
     public function delCasting($id, $idMovie)
     {
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         $requestDelCasting = $pdo->prepare("
         DELETE FROM play
@@ -421,6 +424,7 @@ class MovieController
     {
 
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         $requestDelMovieTheme = $pdo->prepare("
         DELETE FROM movie_theme

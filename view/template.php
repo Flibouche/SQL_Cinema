@@ -52,6 +52,12 @@
                         <a href="index.php?action=listThemes">Themes</a>
                     </li>
 
+                    <?php if ($session->isAdmin()) { ?>
+                        <div class="nav__toggle" id="nav-toggle">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    <?php } ?>
+
                     <!-- <li class="nav__item">
                         <a href="index.php?action=listSubmissions">Submission</a>
                     </li> -->

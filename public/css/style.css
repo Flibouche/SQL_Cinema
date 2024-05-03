@@ -49,6 +49,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: var(--nav-text-font);
   padding: 0;
   margin: 0;
 }
