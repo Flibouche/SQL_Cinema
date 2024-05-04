@@ -82,11 +82,28 @@ a {
   text-decoration: none;
 }
 
-h2 {
+a:hover {
+  color: var(--yellow-color);
+}
+
+h1,
+h2,
+h3 {
   font-family: var(--h2-font);
-  font-size: 1.5rem;
-  /* padding-left: 0.7rem; */
   padding-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-family: var(--nav-text-font);
+  font-size: 1.2rem;
 }
 
 hr {
@@ -159,6 +176,7 @@ textarea {
   overflow: hidden;
   position: relative;
   padding: 10px 50px;
+  margin-top: 20px;
   font-family: var(--nav-text-font);
   font-size: 20px;
   color: var(--text-color);
@@ -701,6 +719,10 @@ textarea {
   line-height: 2rem;
 }
 
+.listRoles__container a {
+  transition: .7s;
+}
+
 .card__description-listMovies,
 .filmographycard__description-personDetails {
   white-space: nowrap;
@@ -717,7 +739,7 @@ textarea {
   width: 150px;
   height: 200px;
   margin-bottom: 30px;
-  transition: 1.5s;
+  transition: .7s;
 }
 
 .movie__card-listMovies img,
@@ -836,30 +858,39 @@ textarea {
   width: 150px;
   height: 200px;
   margin-bottom: 30px;
+  transition: .7s;
 }
 
 .movie__castingcard-movieDetails img,
 .person__filmographycard-personDetails img,
 .role__castingcard-roleDetails img,
 .theme__moviecard-themeDetails img {
+  object-fit: fill;
   width: 150px;
   height: 200px;
   border-radius: 20px 20px 0px 0px;
+  filter: grayscale(0);
+}
+
+.movie__casting-movieDetails:hover> :not(:hover),
+.person__filmography-personDetails:hover> :not(:hover),
+.role__casting-roleDetails:hover> :not(:hover),
+.theme__movie-themeDetails:hover> :not(:hover) {
+filter: grayscale(1);
+}
+
+.movie__castingcard-movieDetails a,
+.person__filmography-personDetails a,
+.role__casting-roleDetails a,
+.theme__movie-themeDetails a {
   transition: .7s;
 }
 
-.movie__casting-movieDetails:hover .movie__castingcard-movieDetails img,
-.person__filmography-personDetails:hover .person__filmographycard-personDetails img,
-.role__casting-roleDetails:hover .role__castingcard-roleDetails img,
-.theme__movie-themeDetails:hover .theme__moviecard-themeDetails img {
-  filter: grayscale(1)
-}
-
-.movie__casting-movieDetails .movie__castingcard-movieDetails img:hover,
-.person__filmography-personDetails .person__filmographycard-personDetails img:hover,
-.role__casting-roleDetails .role__castingcard-roleDetails img:hover,
-.theme__movie-themeDetails .theme__moviecard-themeDetails img:hover {
-  filter: grayscale(0);
+.movie__castingcard-movieDetails:hover a,
+.person__filmography-personDetails:hover a,
+.role__casting-roleDetails:hover a,
+.theme__movie-themeDetails:hover a {
+  color: var(--yellow-color);
 }
 
 .movie__information-movieDetails h3,

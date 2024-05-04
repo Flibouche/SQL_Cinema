@@ -12,8 +12,8 @@
         </div>
 
         <div class="main__description">
-            <h3>Welcome to <span class="main__span">CineDune<span></h3>
-            <p>Are you lost in this tumult of information when you just wanted to know the cast of the movie you just watched ?<br> No problem, CineDune gets straight to the point !<br> And as a bonus, you can contribute to the site yourself !</p>
+            <h2>Welcome to <strong class="main__span">CinEDunE</strong></h2>
+            <p>Are you lost in this tumult of information when you just wanted to know the cast of the <strong>movie</strong> you just watched ?<br> No problem, <strong class="main__span">CineDune</strong> gets straight to the point !<br> And as a bonus, you can contribute to the site yourself !</p>
         </div>
     </div>
 </section>
