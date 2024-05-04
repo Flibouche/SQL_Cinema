@@ -11,10 +11,9 @@ class RoleController
     // Méthode pour afficher la liste des rôles
     public function listRoles()
     {
-        // Initialisation de la session
-        $session = new Session();
         // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
         $pdo = Connect::toLogIn();
+        $session = new Session();
 
         // Exécution de la requête SQL pour récupérer les informations sur les rôles
         $requestRoles = $pdo->query("
@@ -34,11 +33,10 @@ class RoleController
             header("Location:index.php?action=listRoles");
             exit;
         } else {
-            // Initialisation de la session
-            $session = new Session();
 
             // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
             $pdo = Connect::toLogIn();
+            $session = new Session();
 
             // Exécution de la requête SQL pour récupérer les détails d'un rôle spécifique
             $requestRoleDetails = $pdo->prepare("
@@ -68,7 +66,6 @@ class RoleController
     // Méthode pour ajouter un nouveau rôle
     public function addRole(): void
     {
-        // Initialisation de la session
         $session = new Session();
 
         if ($session->isAdmin()) {
@@ -88,11 +85,10 @@ class RoleController
                 $requestAddRole->execute(["role" => $role]);
 
                 // Redirection vers la page 'index.php?action=addRole' après le traitement du formulaire
-                header("Location:index.php?action=addRole");
+                header("Location:index.php?action=listRoles");
                 $_SESSION['message'] = "<div class='alert'>Role added successfully !</div>";
                 exit;
             }
-
             // Inclusion du fichier de vue pour afficher le formulaire d'ajout de rôle
             require "view/roles/addRole.php";
         } else {
@@ -105,60 +101,69 @@ class RoleController
     public function editRole($id)
     {
         if (!Service::exists("role", $id)) {
-            header("Location:index.php?action=listRoles");
+            header("Location:index.php");
             exit;
         } else {
 
-            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-            $pdo = Connect::toLogIn();
+            $session = new Session();
+            if ($session->isAdmin()) {
+                // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+                $pdo = Connect::toLogIn();
 
-            // Exécution de la requête SQL pour récupérer les informations du rôle à modifier
-            $requestRoleID = $pdo->prepare("
+                // Exécution de la requête SQL pour récupérer les informations du rôle à modifier
+                $requestRoleID = $pdo->prepare("
             SELECT role.idRole, role.roleName
             FROM role
             WHERE idRole = :id
         ");
-            $requestRoleID->execute(["id" => $id]);
+                $requestRoleID->execute(["id" => $id]);
 
-            if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
-                // Récupération et filtrage des données du formulaire
-                $newRoleName = filter_input(INPUT_POST, "roleName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                if (isset($_POST['submit'])) { // Vérifie si le formulaire a été soumis
+                    // Récupération et filtrage des données du formulaire
+                    $newRoleName = filter_input(INPUT_POST, "roleName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-                // Exécution de la requête SQL pour modifier le nom du rôle dans la base de données
-                $requestEditRole = $pdo->prepare("
+                    // Exécution de la requête SQL pour modifier le nom du rôle dans la base de données
+                    $requestEditRole = $pdo->prepare("
                 UPDATE role
                 SET roleName = :roleName
                 WHERE idRole = :id
             ");
-                $requestEditRole->execute(["roleName" => $newRoleName, "id" => $id]);
+                    $requestEditRole->execute(["roleName" => $newRoleName, "id" => $id]);
 
-                // Redirection vers la page 'index.php?action=listRoles' après la modification du rôle
-                header("Location:index.php?action=listRoles");
-                $_SESSION['message'] = "<div class='alert'>Role edited successfully !</div>";
+                    // Redirection vers la page 'index.php?action=listRoles' après la modification du rôle
+                    header("Location:index.php?action=listRoles");
+                    $_SESSION['message'] = "<div class='alert'>Role edited successfully !</div>";
+                    exit;
+                }
+
+                // Inclusion du fichier de vue pour afficher le formulaire de modification de rôle
+                require "view/roles/editRole.php";
+            } else {
+                header("Location:index.php");
                 exit;
             }
-
-            // Inclusion du fichier de vue pour afficher le formulaire de modification de rôle
-            require "view/roles/editRole.php";
         }
     }
 
     // Méthode pour supprimer un rôle
     public function delRole($id)
     {
-        // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
-        $pdo = Connect::toLogIn();
+        $session = new Session();
+        if ($session->isAdmin()) {
+            // Établissement d'une connexion à la base de données en utilisant la méthode statique toLogIn() de la classe Connect
+            $pdo = Connect::toLogIn();
 
-        // Exécution de la requête SQL pour supprimer le rôle de la base de données
-        $requestDelRole = $pdo->prepare("
+            // Exécution de la requête SQL pour supprimer le rôle de la base de données
+            $requestDelRole = $pdo->prepare("
             DELETE FROM role
             WHERE idRole = :id
         ");
-        $requestDelRole->execute(["id" => $id]);
+            $requestDelRole->execute(["id" => $id]);
 
-        // Redirection vers la page 'index.php?action=listRoles' après la suppression du rôle
-        header("Location: index.php?action=listRoles");
-        $_SESSION['message'] = "<div class='alert'>Role deleted successfully !</div>";
-        exit;
+            // Redirection vers la page 'index.php?action=listRoles' après la suppression du rôle
+            header("Location: index.php?action=listRoles");
+            $_SESSION['message'] = "<div class='alert'>Role deleted successfully !</div>";
+            exit;
+        }
     }
 }

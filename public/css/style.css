@@ -106,9 +106,9 @@ textarea {
 
 /*========================== REUSABLE CSS CLASSES ======================*/
 
-section {
+/* section {
   min-height: 450px;
-}
+} */
 
 .container {
   width: clamp(330px, 80vw, 954px);
