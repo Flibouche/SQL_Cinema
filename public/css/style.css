@@ -49,7 +49,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: var(--nav-text-font);
+  /* font-family: var(--nav-text-font); */
   padding: 0;
   margin: 0;
 }
@@ -106,9 +106,9 @@ textarea {
 
 /*========================== REUSABLE CSS CLASSES ======================*/
 
-/* section {
+section {
   min-height: 450px;
-} */
+}
 
 .container {
   width: clamp(330px, 80vw, 954px);
@@ -118,6 +118,9 @@ textarea {
 #wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .main {
@@ -622,7 +625,7 @@ textarea {
   left: 0px;
   bottom: 0%;
   width: 100%;
-  /* min-height: 55vh; */
+  /* min-height: 100vh; */
   background-color: var(--brown-color);
   padding-block: 1rem 2rem;
   margin-top: 100px;
@@ -714,6 +717,7 @@ textarea {
   width: 150px;
   height: 200px;
   margin-bottom: 30px;
+  transition: 1.5s;
 }
 
 .movie__card-listMovies img,
@@ -724,21 +728,14 @@ textarea {
   width: 150px;
   height: 200px;
   border-radius: 20px 20px 0px 0px;
-  transition: .7s;
-}
-
-.listMovies__container:hover .movie__card-listMovies img,
-.listActors__container:hover .actor__card-listActors img,
-.listDirectors__container:hover .director__card-listDirectors img,
-.listThemes__container:hover .theme__card-listThemes img {
-  filter: grayscale(1)
-}
-
-.listMovies__container .movie__card-listMovies img:hover,
-.listActors__container .actor__card-listActors img:hover,
-.listDirectors__container .director__card-listDirectors img:hover,
-.listThemes__container .theme__card-listThemes img:hover {
   filter: grayscale(0);
+}
+
+.listMovies__container:hover> :not(:hover),
+.listActors__container:hover> :not(:hover),
+.listDirectors__container:hover> :not(:hover),
+.listThemes__container:hover> :not(:hover) {
+  filter: grayscale(1);
 }
 
 .movie__card-listMovies a,
@@ -773,10 +770,10 @@ textarea {
   transition: .7s;
 }
 
-.card__header-listMovies:hover .bg-card-hover,
-.card__header-listActors:hover .bg-card-hover,
-.card__header-listDirectors:hover .bg-card-hover,
-.card__header-listThemes:hover .bg-card-hover {
+.movie__card-listMovies:hover .bg-card-hover,
+.actor__card-listActors:hover .bg-card-hover,
+.director__card-listDirectors:hover .bg-card-hover,
+.theme__card-listThemes:hover .bg-card-hover {
   opacity: 100%;
 }
 

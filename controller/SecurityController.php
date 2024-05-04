@@ -122,6 +122,9 @@ class SecurityController
     public function profile()
     {
 
+        // Initialisation de la session
+        $session = new Session();
+
         require "view/security/profile.php";
     }
 
