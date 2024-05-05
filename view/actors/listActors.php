@@ -4,7 +4,7 @@ $actors = $requestActors->fetchAll();
 
 <section class="listActors section" id="listActors">
 
-    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for an actor.." title="Type in a name">
+    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for an actor.." title="Type in a name" aria-label="Search for an actor by name">
 
     <div class="listActors__container container">
 
@@ -13,9 +13,11 @@ $actors = $requestActors->fetchAll();
         ?>
             <figure class="actor__card-listActors" title="<?= $actor["firstname"] . " " . $actor["surname"] ?>">
                 <div class="card__header-listActors">
-                    <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>"><img src="<?= $actor["picture"] ?>" alt="Picture of <?= $actor["firstname"] . " " . $actor["surname"] ?>"></a>
+                    <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>" aria-label="Details of <?= $actor["firstname"] . " " . $actor["surname"] ?>">
+                        <img src="<?= $actor["picture"] ?>" alt="Picture of <?= $actor["firstname"] . " " . $actor["surname"] ?>" loading="lazy" />
+                    </a>
                     <div class="bg-card-hover">
-                        <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>">
+                        <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>" aria-label="Details of <?= $actor["firstname"] . " " . $actor["surname"] ?>">
                             <p class="text-hover">Born in <?= $actor["birthdate"] ?></p>
                         </a>
                     </div>
@@ -28,14 +30,13 @@ $actors = $requestActors->fetchAll();
             </figure>
         <?php
         }
-
         ?>
 
     </div>
 
     <?php
     if ($session->isAdmin()) { ?>
-        <button class="main__button list__button"><a href="index.php?action=addPerson">Add a person</a></button>
+        <button class="main__button list__button" aria-label="Add a person"><a href="index.php?action=addPerson">Add a person</a></button>
     <?php } ?>
 
 </section>

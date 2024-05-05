@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Flibouche">
     <meta name="description" content="<?= isset($metaDescription) ? $metaDescription : 'Default meta description'; ?>">
-    
 
     <!-- ========================== FONT AWESOME =======================-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,11 +23,11 @@
 
         <nav class="nav">
 
-            <a href="index.php" class="nav__logo">
+            <a href="index.php" class="nav__logo" aria-label="Logo CineDune">
                 <img src="public/img/bxs-planet.svg" alt="Logo CineDune"><span>CinE<span class="nav__span">DunE</span></span>
             </a>
 
-            <div class="nav__menu" id="nav-menu">
+            <div class="nav__menu" id="nav-menu" aria-label="Main Navigation">
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a href="index.php">Main</a>
@@ -55,7 +54,7 @@
                     </li>
 
                     <?php if ($session->isAdmin()) { ?>
-                        <div class="nav__toggle" id="nav-toggle">
+                        <div class="nav__toggle" id="nav-toggle" aria-label="Toggle Navigation">
                             <i class="fa-solid fa-bars"></i>
                         </div>
                     <?php } ?>
@@ -67,35 +66,35 @@
 
                 <!-- Close button -->
                 <div class="nav__close" id="nav-close">
-                    <i class="fa-solid fa-xmark"></i>
+                    <i class="fa-solid fa-xmark" aria-label="Close Navigation"></i>
                 </div>
             </div>
 
             <div class="nav__actions">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-magnifying-glass" aria-label="Search"></i>
 
                 <?php
                 // Si je suis connecté
                 if (isset($_SESSION["user"])) {
                     $infosSession = $_SESSION["user"];
                 ?>
-                    <a class="nav__profile-picture" href="index.php?action=profile">
+                    <a class="nav__profile-picture" href="index.php?action=profile" aria-label="Profile">
                         <img src="<?= $infosSession["profilePicture"] ?>" alt="">
-                        <i class="fa-solid fa-address-card"></i>
+                        <i class="fa-solid fa-address-card" aria-label="Profile"></i>
                     </a>
 
-                    <a href="index.php?action=logout">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <a href="index.php?action=logout" aria-label="Logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket" aria-label="Logout"></i>
                     </a>
                 <?php } else { ?>
-                    <a id="open-logs" class="btn-openModal2">
-                        <i class="fa-solid fa-user"></i>
+                    <a id="open-logs" class="btn-openModal2" aria-label="Login">
+                        <i class="fa-solid fa-user" aria-label="Login"></i>
                     </a>
                 <?php } ?>
 
                 <!-- Toggle Button -->
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class="fa-solid fa-bars"></i>
+                <div class="nav__toggle" id="nav-toggle" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars" aria-label="Toggle Navigation"></i>
                 </div>
 
             </div>
@@ -114,7 +113,7 @@
 
                 <section class="modal2 hidden">
                     <div class="flex2">
-                        <button class="btn-close3">
+                        <button class="btn-close3" aria-label="Close Modal">
                             <p>X</p>
                         </button>
                     </div>
@@ -123,7 +122,7 @@
                     <button class="main__button btn2"><a href="index.php?action=register">Register</a></button>
                 </section>
 
-                <div class="overlay2 hidden"></div>
+                <div class="overlay2 hidden" aria-label="Overlay"></div>
 
                 <?php
                 if (isset($_SESSION['message'])) {
@@ -213,7 +212,7 @@
                     </span>
                 </div>
 
-                <a href="index.php" class="footer__logo">
+                <a href="index.php" class="footer__logo" aria-label="Go to home page">
                     <img src="public/img/bxs-planet.svg" alt="Logo CineDune"><span>CinE<span class="nav__span">DunE</span></span>
                 </a>
             </div>
@@ -221,7 +220,7 @@
     </div>
 
     <!--========================== SCROLL UP ==========================-->
-    <a href="#content" class="scrollup" id="scroll-up">
+    <a href="#content" class="scrollup" id="scroll-up" aria-label="Scroll to top">
         <i class="fa-solid fa-jet-fighter-up"></i>
     </a>
 

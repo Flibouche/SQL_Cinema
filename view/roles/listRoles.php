@@ -4,14 +4,14 @@ $roles = $requestRoles->fetchAll();
 
 <section class="listRoles section" id="listRoles">
 
-    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a role.." title="Type in a name">
+    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a role.." title="Type in a name" aria-label="Search for a role">
 
     <div class="listRoles__container container">
 
         <?php
         foreach ($roles as $role) {
         ?>
-            <a href="index.php?action=roleDetails&id=<?= $role["idRole"] ?>" title="<?= $role["roleName"] ?>"><?= $role["roleName"] . "<br>" ?></a>
+            <a class="role_listRoles" href="index.php?action=roleDetails&id=<?= $role["idRole"] ?>" title="<?= $role["roleName"] ?>" aria-label="View details for role <?= $role["roleName"] ?>"><?= $role["roleName"] . "<br>" ?></a>
         <?php
         }
 
@@ -21,7 +21,7 @@ $roles = $requestRoles->fetchAll();
 
     <?php
     if ($session->isAdmin()) { ?>
-        <button class="main__button list__button"><a href="index.php?action=addRole">Add a role</a></button>
+        <button class="main__button list__button"><a href="index.php?action=addRole" aria-label="Add a role">Add a role</a></button>
     <?php } ?>
 
 </section>

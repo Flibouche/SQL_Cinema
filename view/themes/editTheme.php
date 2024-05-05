@@ -10,16 +10,16 @@ $editThemeName = $requestThemeID->fetch();
 
             <div class="form__group">
                 <label for="typeName">Rename this theme : *</label>
-                <input id="typeName" type="text" name="typeName" value="<?= $editThemeName['typeName'] ?>">
+                <input id="typeName" type="text" name="typeName" value="<?= $editThemeName['typeName'] ?>" aria-label="Enter the new name for this theme">
             </div>
 
             <div class="form__group">
                 <label for="file">Picture upload :</label>
-                <input type="file" name="file">
-                <img class="editTheme-picture" src="<?= $editThemeName['illustration'] ?>" alt="Picture of the theme : <?= $editThemeName["typeName"] ?>">
+                <input type="file" name="file" aria-label="Upload a new picture for this theme">
+                <img class="editTheme-picture" src="<?= $editThemeName['illustration'] ?>" alt="Picture of the theme : <?= $editThemeName["typeName"] ?>" loading="lazy" aria-label="Current picture of the theme: <?= $editThemeName["typeName"] ?>">
             </div>
 
-            <button class="main__button form" type="submit" name="submit" value="Rename"><span>Rename</span></button>
+            <button class="main__button form" type="submit" name="submit" value="Rename" aria-label="Rename"><span>Rename</span></button>
 
         </form>
 

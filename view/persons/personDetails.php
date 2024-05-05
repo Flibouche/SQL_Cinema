@@ -6,20 +6,20 @@ $personDetails = $requestPersonDetails->fetch();
 if ($session->isAdmin()) { ?>
     <section class="modal hidden">
         <div class="flex">
-            <button class="btn-close">
+            <button class="btn-close" aria-label="Close modal">
                 <p>X</p>
             </button>
         </div>
         <div>
             <?php if (!empty($personDetails["idDirector"]) && $personDetails["idDirector"]) { ?>
                 <h3>Are you sure you want to delete this director ?</h3>
-                <button class="main__button btn"><a href="index.php?action=delDirector&id=<?= $personDetails['idDirector'] ?>">Yes</a></button>
-                <button class="main__button btn-close2"><span>Nevermind</span></button>
+                <button class="main__button btn" aria-label="Delete this director"><a href="index.php?action=delDirector&id=<?= $personDetails['idDirector'] ?>">Yes</a></button>
+                <button class="main__button btn-close2" aria-label="Don't delete this director"><span>Nevermind</span></button>
             <?php } ?>
             <?php if (!empty($personDetails["idActor"])) { ?>
                 <h3>Are you sure you want to delete this actor ?</h3>
-                <button class="main__button btn"><a href="index.php?action=delActor&id=<?= $personDetails['idActor'] ?>">Yes</a></button>
-                <button class="main__button btn-close2"><span>Nevermind</span></button>
+                <button class="main__button btn" aria-label="Delete this actor"><a href="index.php?action=delActor&id=<?= $personDetails['idActor'] ?>">Yes</a></button>
+                <button class="main__button btn-close2" aria-label="Don't delete this actor"><span>Nevermind</span></button>
             <?php } ?>
         </div>
 
@@ -33,15 +33,15 @@ if ($session->isAdmin()) { ?>
 
         <div class="person__header-personDetails">
             <div class="person__picture-personDetails">
-                <img src="<?= $personDetails["picture"] ?>" alt="Picture of <?= $personDetails["firstname"] . " " . $personDetails["surname"] ?>">
+                <img src="<?= $personDetails["picture"] ?>" alt="Picture of <?= $personDetails["firstname"] . " " . $personDetails["surname"] ?>" loading="lazy" />
             </div>
             <?php
             if ($session->isAdmin()) { ?>
                 <div class="person__edit-personDetails">
-                    <a href="index.php?action=editPerson&id=<?= $personDetails['idPerson'] ?>">
+                    <a href="index.php?action=editPerson&id=<?= $personDetails['idPerson'] ?>" aria-label="Edit person">
                         <i class="fa-solid fa-pencil"></i>
                     </a>
-                    <a id="delete-button" class="btn-openModal">
+                    <a id="delete-button" class="btn-openModal" aria-label="Delete person">
                         <i class="fa-solid fa-user-xmark"></i>
                     </a>
                 </div>
@@ -101,7 +101,7 @@ if ($session->isAdmin()) { ?>
                     ?>
                         <figure class="person__filmographycard-personDetails" title="<?= $filmography["title"] ?>">
                             <div class="filmographycard__header-personDetails">
-                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt="Poster of <?= $filmography["title"] ?>"></a>
+                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt="Poster of <?= $filmography["title"] ?>" loading="lazy" /></a>
                             </div>
 
                             <div class="filmographycard__description-personDetails">
@@ -134,7 +134,7 @@ if ($session->isAdmin()) { ?>
                     ?>
                         <figure class="person__filmographycard-personDetails" title="<?= $filmography["title"] ?>">
                             <div class="filmographycard__header-personDetails">
-                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt="Poster of <?= $filmography["title"] ?>"></a>
+                                <a href="index.php?action=movieDetails&id=<?= $filmography["idMovie"] ?>"><img src="<?= $filmography["poster"] ?>" alt="Poster of <?= $filmography["title"] ?>" loading="lazy" /></a>
                             </div>
 
                             <div class="filmographycard__description-personDetails">
@@ -157,7 +157,6 @@ if ($session->isAdmin()) { ?>
 
     </div>
 </section>
-
 
 <?php
 

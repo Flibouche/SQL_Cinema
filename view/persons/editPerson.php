@@ -9,17 +9,17 @@ $personDetails = $requestPerson->fetch();
         <form action="index.php?action=editPerson&id=<?= $personDetails['idPerson'] ?>" method="POST" enctype="multipart/form-data">
 
             <div class="form__group">
-                <label for="firstname">Person's firstname : *</label>
+                <label for="firstname" aria-label="Person's firstname">Person's firstname : *</label>
                 <input id="firstname" type="text" name="firstname" value="<?= $personDetails['firstname'] ?>" required>
             </div>
 
             <div class="form__group">
-                <label for="surname">Person's surname : *</label>
+                <label for="surname" aria-label="Person's surname">Person's surname : *</label>
                 <input id="surname" type="text" name="surname" value="<?= $personDetails['surname'] ?>" required>
             </div>
 
             <div class="form__group">
-                <label for="sex">Sex : *</label>
+                <label for="sex" aria-label="Sex">Sex : *</label>
                 <select id="sex" name="sex" placeholder="Please choose a sex" value="<?= $personDetails['sex'] ?>" required>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
@@ -27,22 +27,22 @@ $personDetails = $requestPerson->fetch();
             </div>
 
             <div class="form__group">
-                <label for="birthdate">Birthdate : *</label>
+                <label for="birthdate" aria-label="Birthdate">Birthdate : *</label>
                 <input id="birthdate" type="date" name="birthdate" value="<?= $personDetails['birthdate'] ?>" required>
             </div>
 
             <div class="form__group">
-                <label for="file">Picture upload :</label>
+                <label for="file" aria-label="Upload a picture">Picture upload :</label>
                 <input type="file" name="file">
-                <img class="editPerson-picture" src="<?= $personDetails['picture'] ?>" alt="Picture of <?= $personDetails["firstname"] . " " . $personDetails["surname"] ?>">
+                <img class="editPerson-picture" src="<?= $personDetails['picture'] ?>" alt="Picture of <?= $personDetails["firstname"] . " " . $personDetails["surname"] ?>" loading="lazy" />
             </div>
 
             <div class="form__group">
-                <label for="biography">Biography :</label>
+                <label for="biography" aria-label="Biography">Biography :</label>
                 <textarea id="biography" name="biography" rows="4" cols="50"><?= $personDetails['biography'] ?></textarea>
             </div>
 
-            <button class="main__button form" type="submit" name="submit" value="Edit person"><span>Edit Person</span></button>
+            <button class="main__button form" type="submit" name="submit" value="Edit person" aria-label="Edit Person"><span>Edit Person</span></button>
 
         </form>
 

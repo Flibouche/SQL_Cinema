@@ -4,7 +4,7 @@ $themes = $requestThemes->fetchAll();
 ?>
 <section class="listThemes section" id="listRoles">
 
-    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a theme.." title="Type in a name">
+    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a theme.." title="Type in a name" aria-label="Search for a theme by name">
 
     <div class="listThemes__container container">
 
@@ -13,7 +13,9 @@ $themes = $requestThemes->fetchAll();
         ?>
             <figure class="theme__card-listThemes" title="<?= $theme["typeName"] ?>">
                 <div class="card__header-listThemes">
-                    <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>"><img src="<?= $theme["illustration"] ?>" alt="Illustration of the theme <?= $theme["typeName"] ?>"></a>
+                    <a href="index.php?action=themeDetails&id=<?= $theme["idTheme"] ?>" aria-label="Details of the theme <?= $theme["typeName"] ?>">
+                        <img src="<?= $theme["illustration"] ?>" alt="Illustration of the theme <?= $theme["typeName"] ?>" loading="lazy" />
+                    </a>
                 </div>
 
                 <div class="card__description-listThemes">
@@ -29,7 +31,7 @@ $themes = $requestThemes->fetchAll();
 
     <?php
     if ($session->isAdmin()) { ?>
-        <button class="main__button list__button"><a href="index.php?action=addTheme">Add a theme</a></button>
+        <button class="main__button list__button" aria-label="Add a theme"><a href="index.php?action=addTheme">Add a theme</a></button>
     <?php } ?>
 
 </section>
@@ -56,7 +58,6 @@ $themes = $requestThemes->fetchAll();
         }
     }
 </script>
-
 
 <?php
 

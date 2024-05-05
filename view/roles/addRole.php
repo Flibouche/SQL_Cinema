@@ -8,11 +8,11 @@
         <form action="index.php?action=addRole" method="POST">
 
             <div class="form__group">
-                <label for="role">Role name : *</label>
-                <input id="role" type="text" name="role" placeholder="Enter name" required>
+                <label for="role">Role name <span aria-hidden="true">*</span></label>
+                <input id="role" type="text" name="role" placeholder="Enter name" required aria-label="Role name">
             </div>
 
-            <button class="main__button form" type="submit" name="submit" value="Add role"><span>Add role</span></button>
+            <button class="main__button form" type="submit" name="submit" value="Add role" aria-label="Add role"><span>Add role</span></button>
 
         </form>
 

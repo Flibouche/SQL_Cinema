@@ -9,7 +9,7 @@ class SecurityController
 {
     public function register()
     {
-
+        $session = new Session();
         $pdo = Connect::toLogIn();
 
         // Récupération et nettoyage des données du formulaire

@@ -2,36 +2,38 @@
 ob_start();
 ?>
 
-<section class="register section" id="register">
+<section class="register section" id="register" aria-label="User Registration">
     <div class="register__container container grid">
 
         <form action="index.php?action=register" method="POST">
 
             <div class="form__group">
                 <label for="pseudo">Pseudo</label>
-                <input type="text" name="pseudo" id="pseudo">
+                <input type="text" name="pseudo" id="pseudo" aria-label="Pseudo">
             </div>
 
             <div class="form__group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" aria-label="Email">
             </div>
 
             <div class="form__group">
                 <label for="pass1">Password</label>
-                <input type="password" name="pass1" id="password">
+                <input type="password" name="pass1" id="password" aria-label="Password">
             </div>
 
             <div class="form__group">
                 <label for="pass2">Confirm Password</label>
-                <input type="password" name="pass2" id="password2">
+                <input type="password" name="pass2" id="password2" aria-label="Confirm Password">
             </div>
 
             <div>
                 <input class="showPassword" type="checkbox" onclick="showPassword()"><span>Show Password</span>
             </div>
 
-            <button class="main__button form" type="submit" name="submit" value="Register"><span>Register</span></button>
+            <button class="main__button form" type="submit" name="submit" value="Register" aria-label="Register Button">
+                <span>Register</span>
+            </button>
 
     </div>
 

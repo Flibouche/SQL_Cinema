@@ -1,11 +1,12 @@
-<?php ob_start();
+<?php
+ob_start();
 $themeDetails = $requestThemeDetails->fetchAll();
 $themeID = $requestThemeID->fetch();
 ?>
 
-<section class="modal hidden">
+<section class="modal hidden" aria-label="Delete Theme Confirmation">
     <div class="flex">
-        <button class="btn-close">
+        <button class="btn-close" aria-label="Close Modal">
             <p>X</p>
         </button>
     </div>
@@ -14,8 +15,8 @@ $themeID = $requestThemeID->fetch();
         <h3>Are you sure you want to delete this theme ?</h3>
     </div>
 
-    <button class="main__button btn"><a href="index.php?action=delTheme&id=<?= $themeID["idTheme"] ?>" type="submit" name="submit">Delete theme</a></button>
-    <button class="main__button btn-close2"><span>Nevermind</span></button>
+    <button class="main__button btn" aria-label="Delete this theme"><a href="index.php?action=delTheme&id=<?= $themeID["idTheme"] ?>" type="submit" name="submit">Delete theme</a></button>
+    <button class="main__button btn-close2" aria-label="Don't delete this theme"><span>Nevermind</span></button>
 
 </section>
 
@@ -26,7 +27,7 @@ $themeID = $requestThemeID->fetch();
 
         <div class="theme__header-themeDetails">
             <h3>Details of : <?= $themeID["typeName"] ?></h3>
-            <a href="index.php?action=editTheme&id=<?= $themeID["idTheme"] ?>">
+            <a href="index.php?action=editTheme&id=<?= $themeID["idTheme"] ?>" aria-label="Edit Theme">
                 <i class="fa-solid fa-pencil"></i>
             </a>
         </div>
@@ -41,7 +42,7 @@ $themeID = $requestThemeID->fetch();
                 ?>
                     <figure class="theme__moviecard-themeDetails" title="<?= $themeDetails["title"] ?>">
                         <div class="moviecard__header-themeDetails">
-                            <a href="index.php?action=movieDetails&id=<?= $themeDetails["idMovie"] ?>"><img src="<?= $themeDetails["poster"] ?>" alt="Poster of <?= $themeDetails["title"] ?>"></a>
+                            <a href="index.php?action=movieDetails&id=<?= $themeDetails["idMovie"] ?>" aria-label="Details of <?= $themeDetails["title"] ?>"><img src="<?= $themeDetails["poster"] ?>" alt="Poster of <?= $themeDetails["title"] ?>" loading="lazy" /></a>
                         </div>
 
                         <div class="moviecard__description-themeDetails">
@@ -63,7 +64,7 @@ $themeID = $requestThemeID->fetch();
 
             </div>
 
-            <button class="main__button list__button"><a id="delete-button" class="btn-openModal">Delete theme</a></button>
+            <button class="main__button list__button"><a id="delete-button" class="btn-openModal" aria-label="Delete Theme">Delete theme</a></button>
 
     </div>
 </section>

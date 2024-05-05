@@ -4,7 +4,7 @@ $directors = $requestDirectors->fetchAll();
 
 <section class="listDirectors section" id="listDirectors">
 
-    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a director.." title="Type in a name">
+    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a director.." title="Type in a name" aria-label="Search for a director by name" />
 
     <div class="listDirectors__container container">
 
@@ -13,9 +13,11 @@ $directors = $requestDirectors->fetchAll();
         ?>
             <figure class="director__card-listDirectors" title="<?= $director["firstname"] . " " . $director["surname"] ?>">
                 <div class="card__header-listDirectors">
-                    <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>" alt="Picture of <?= $director["firstname"] . " " . $director["surname"] ?>"></a>
+                    <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>" aria-label="Details of <?= $director["firstname"] . " " . $director["surname"] ?>">
+                        <img src="<?= $director["picture"] ?>" alt="Picture of <?= $director["firstname"] . " " . $director["surname"] ?>" loading="lazy" />
+                    </a>
                     <div class="bg-card-hover">
-                        <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>">
+                        <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>" aria-label="Details of <?= $director["firstname"] . " " . $director["surname"] ?>">
                             <p class="text-hover">Born in <?= $director["birthdate"] ?></p>
                         </a>
                     </div>
@@ -35,7 +37,7 @@ $directors = $requestDirectors->fetchAll();
 
     <?php
     if ($session->isAdmin()) { ?>
-        <button class="main__button list__button"><a href="index.php?action=addPerson">Add a person</a></button>
+        <button class="main__button list__button" aria-label="Add a person"><a href="index.php?action=addPerson">Add a person</a></button>
     <?php } ?>
 
 </section>

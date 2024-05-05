@@ -1,7 +1,7 @@
 <?php ob_start();
 ?>
 
-<section class="main section" id="main">
+<section class="main section" id="main" aria-label="Main Content">
     <div class="main__background"></div>
 
     <div class="main__container container">
@@ -22,7 +22,7 @@
     <hr />
 </div>
 
-<section class="slider section" id="carousel">
+<section class="slider section" id="carousel" aria-label="Featured Movies Carousel">
     <div class="carousel__container container">
         <div class="title-background__main">
             <h2>Movies</h2>
@@ -35,7 +35,7 @@
                 ?>
                     <div class="carousel-item">
                         <div class="carousel-header">
-                            <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt=""></a>
+                            <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["title"] ?>" loading="lazy" /></a>
                         </div>
                         <div class="carousel-description">
                             <p><?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?></p>
@@ -57,7 +57,7 @@
                 </svg>
             </div>
         </div>
-        <button class="main__button"><a href="index.php?action=listMovies">See All Movies</a></button>
+        <button class="main__button" aria-label="See All Movies Button"><a href="index.php?action=listMovies">See All Movies</a></button>
     </div>
 </section>
 
@@ -65,7 +65,7 @@
     <hr />
 </div>
 
-<section class="actors section" id="actors">
+<section class="actors section" id="actors" aria-label="Featured Actors Section">
     <div class="actors__container container">
         <div class="title-background__main">
             <h2>Actors</h2>
@@ -76,7 +76,7 @@
             foreach ($requestActorsMain->fetchAll() as $actor) {
             ?>
                 <figure class="actor__card-main">
-                    <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>"><img src="<?= $actor["picture"] ?>"></a>
+                    <a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>"><img src="<?= $actor["picture"] ?>" alt="Picture of <?= $actor["firstname"] . " " . $actor["surname"] ?>" loading="lazy" /></a>
                     <figcaption class="actor__figcaption-main" href="index.php?action=actorsDetails&id=<?= $actor["idActor"] ?>"><a href="index.php?action=personDetails&id=<?= $actor["idPerson"] ?>"><?= $actor["firstname"] . " " . $actor["surname"] ?></a></figcaption>
                 </figure>
             <?php
@@ -94,7 +94,7 @@
                 </defs>
             </svg>
         </div>
-        <button class="main__button"><a href="index.php?action=listActors">See All Actors</a></button>
+        <button class="main__button" aria-label="See All Actors Button"><a href="index.php?action=listActors">See All Actors</a></button>
     </div>
 </section>
 
@@ -102,7 +102,7 @@
     <hr />
 </div>
 
-<section class="directors section" id="directors">
+<section class="directors section" id="directors" aria-label="Featured Directors Section">
     <div class="directors__container container">
         <div class="title-background__main">
             <h2>Directors</h2>
@@ -113,7 +113,7 @@
             foreach ($requestDirectorsMain->fetchAll() as $director) {
             ?>
                 <figure class="director__card-main">
-                    <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>"></a>
+                    <a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><img src="<?= $director["picture"] ?>" alt="Picture of <?= $director["firstname"] . " " . $director["surname"] ?>" loading="lazy" /></a>
                     <figcaption class="director__figcaption-main" href="index.php?action=directorsDetails&id=<?= $director["idDirector"] ?>"><a href="index.php?action=personDetails&id=<?= $director["idPerson"] ?>"><?= $director["firstname"] . " " . $director["surname"] ?></a></figcaption>
                 </figure>
             <?php
@@ -131,7 +131,7 @@
                 </defs>
             </svg>
         </div>
-        <button class="main__button gradient__button"><a href="index.php?action=listDirectors">See All Directors</a></button>
+        <button class="main__button" aria-label="See All Directors Button"><a href="index.php?action=listDirectors">See All Directors</a></button>
     </div>
 </section>
 

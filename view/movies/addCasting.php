@@ -9,14 +9,14 @@ $movie = $requestMovies->fetch();
         <form action="index.php?action=addCasting&id=<?= $movie['idMovie'] ?>" method="POST">
 
             <div class="form__group">
-                <label for="title"> Movie : *</label>
+                <label for="title" aria-label="Movie selection"> Movie : *</label>
                 <select id="title" name="idMovie" id="title">
                     <option value="<?= $movie["idMovie"] ?>" selected required><?= $movie["title"] ?></option>
                 </select>
             </div>
 
             <div class="form__group">
-                <label for="actor">Actor : *</label>
+                <label for="actor" aria-label="Actor selection">Actor : *</label>
                 <select id="actor" name="idActor" id="actor">
                     <?php
                     foreach ($requestActors->fetchAll() as $actor) {
@@ -29,7 +29,7 @@ $movie = $requestMovies->fetch();
             </div>
 
             <div class="form__group">
-                <label for="role">Role : *</label>
+                <label for="role" aria-label="Role selection">Role : *</label>
                 <select id="role" name="idRole">
                     <?php
                     foreach ($requestRoles->fetchAll() as $role) {
@@ -41,7 +41,7 @@ $movie = $requestMovies->fetch();
                 </select>
             </div>
 
-            <button class="main__button form" type="submit" name="submit" value="Add casting"><span>Add to cast</span></button>
+            <button class="main__button form" type="submit" name="submit" value="Add casting" aria-label="Add actor to cast"><span>Add to cast</span></button>
 
         </form>
 

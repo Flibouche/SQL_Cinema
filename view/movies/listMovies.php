@@ -4,10 +4,9 @@ $movies = $requestMovies->fetchAll();
 
 <section class="listMovies section" id="listMovies">
 
-    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a movie.." title="Type in a name">
+    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for a movie.." title="Type in a name" aria-label="Search for a movie by title" />
 
     <div class="listMovies__container container">
-
 
         <?php
         foreach ($movies as $movie) {
@@ -15,9 +14,11 @@ $movies = $requestMovies->fetchAll();
             <figure class="movie__card-listMovies" title="<?= $movie["title"] . " (" . $movie["releaseYear"] . ")" ?>">
 
                 <div class="card__header-listMovies">
-                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["title"] ?>"></a>
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>" aria-label="Details of <?= $movie["title"] ?>">
+                        <img src="<?= $movie["poster"] ?>" alt="Poster of <?= $movie["title"] ?>" loading="lazy" />
+                    </a>
                     <div class="bg-card-hover">
-                        <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>">
+                        <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>" aria-label="Details of <?= $movie["title"] ?>">
                             <p class="text-hover">By : <?= $movie["firstname"] . " " . $movie["surname"] ?></p>
                             <p class="text-hover"><?= $movie["note"] ?>/5</p>
                         </a>
@@ -25,8 +26,10 @@ $movies = $requestMovies->fetchAll();
                 </div>
 
                 <div class="card__description-listMovies">
-                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><span><?= $movie["title"] ?></span></a>
-                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>"><p><?= $movie["releaseYear"] ?></p></a>
+                    <a href="index.php?action=movieDetails&id=<?= $movie["idMovie"] ?>" aria-label="Details of <?= $movie["title"] ?>">
+                        <span><?= $movie["title"] ?></span>
+                        <p><?= $movie["releaseYear"] ?></p>
+                    </a>
                 </div>
 
             </figure>
@@ -38,7 +41,7 @@ $movies = $requestMovies->fetchAll();
 
     <?php
     if ($session->isAdmin()) { ?>
-        <button class="main__button list__button"><a href="index.php?action=addMovie">Add a movie</a></button>
+        <button class="main__button list__button" aria-label="Add a movie"><a href="index.php?action=addMovie">Add a movie</a></button>
     <?php } ?>
 
 </section>

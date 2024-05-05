@@ -9,15 +9,15 @@
 
             <div class="form__group">
                 <label for="theme">Movie theme name : *</label>
-                <input id="theme" type="text" name="theme" placeholder="Enter name" required>
+                <input id="theme" type="text" name="theme" placeholder="Enter name" required aria-label="Enter the name of the movie theme">
             </div>
 
             <div class="form__group">
                 <label for="file">Upload an illustration for this theme :</label>
-                <input type="file" name="file">
+                <input type="file" name="file" aria-label="Upload an illustration for this theme">
             </div>
 
-            <button class="main__button form" type="submit" name="submit" value="Add theme"><span>Add Theme</span></button>
+            <button class="main__button form" type="submit" name="submit" value="Add theme" aria-label="Add Theme"><span>Add Theme</span></button>
 
         </form>
 

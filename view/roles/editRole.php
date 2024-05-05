@@ -9,11 +9,11 @@ $editRoleName = $requestRoleID->fetch();
         <form action="index.php?action=editRole&id=<?= $editRoleName['idRole'] ?>" method="POST">
 
             <div class="form__group">
-                <label for="roleName">Rename this role : *</label>
-                <input id="roleName" type="text" name="roleName" value="<?= $editRoleName['roleName'] ?>" required>
+                <label for="roleName">Rename this role <span aria-hidden="true">*</span></label>
+                <input id="roleName" type="text" name="roleName" value="<?= $editRoleName['roleName'] ?>" required aria-label="New role name">
             </div>
 
-            <button class="main__button form" type="submit" name="submit" value="Rename"><span>Rename</span></button>
+            <button class="main__button form" type="submit" name="submit" value="Rename" aria-label="Rename role"><span>Rename</span></button>
 
         </form>
 

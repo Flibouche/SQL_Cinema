@@ -7,16 +7,17 @@ $moviesCasting = $requestMoviesCasting->fetchAll();
 if ($session->isAdmin()) { ?>
     <section class="modal hidden">
         <div class="flex">
-            <button class="btn-close">
+            <button class="btn-close" aria-label="Close modal">
                 <p>X</p>
             </button>
         </div>
+
         <div>
-            <h3>Are you sure you want to delete this movie ?</h3>
+            <h3 aria-label="Confirmation message">Are you sure you want to delete this movie ?</h3>
         </div>
 
-        <button class="main__button btn"><a href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Yes</a></button>
-        <button class="main__button btn-close2"><span>Nevermind</span></button>
+        <button class="main__button btn" aria-label="Delete this movie"><a href="index.php?action=delMovie&id=<?= $movieDetails["idMovie"] ?>">Yes</a></button>
+        <button class="main__button btn-close2" aria-label="Don't delete this movie"><span>Nevermind</span></button>
     </section>
 
     <div class="overlay hidden"></div>
@@ -28,27 +29,27 @@ if ($session->isAdmin()) { ?>
 
         <div class="movie__header-movieDetails">
             <div class="movie__poster-movieDetails">
-                <img src="<?= $movieDetails["poster"] ?>" alt="Movie poster's of <?= $movieDetails["title"] ?>">
+                <img src="<?= $movieDetails["poster"] ?>" alt="Movie poster's of <?= $movieDetails["title"] ?>" aria-label="Movie poster" loading="lazy" />
             </div>
             <?php if ($session->isAdmin()) { ?>
                 <div class="movie__edit-movieDetails">
                     <a href="index.php?action=editMovie&id=<?= $movieDetails["idMovie"] ?>">
-                        <i class="fa-solid fa-pencil"></i>
+                        <i class="fa-solid fa-pencil" aria-label="Edit movie"></i>
                     </a>
 
                     <a href="index.php?action=addCasting&id=<?= $movieDetails["idMovie"] ?>">
-                        <i class="fa-solid fa-user-plus"></i>
+                        <i class="fa-solid fa-user-plus" aria-label="Add casting"></i>
                     </a>
 
                     <a id="delete-button" class="btn-openModal">
-                        <i class="fa-solid fa-delete-left"></i>
+                        <i class="fa-solid fa-delete-left" aria-label="Delete movie"></i>
                     </a>
                 </div>
             <?php } ?>
         </div>
 
         <div class="movie__information-movieDetails">
-            <h3><?= $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")" ?></h3>
+            <h3 aria-label="Details of <?= $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")" ?>"><?= $movieDetails["title"] . " (" . $movieDetails["releaseYear"] . ")" ?></h3>
 
             <?php
             if (!$movieDetails["idPerson"] == null) {
@@ -73,7 +74,6 @@ if ($session->isAdmin()) { ?>
             <p>Duration : <?= $movieDetails["duration"] . " minutes" ?></p>
 
             <p>Note : <?= $movieDetails["note"] ?></p>
-
 
         </div>
 
@@ -113,11 +113,10 @@ if ($session->isAdmin()) { ?>
             ?>
                     <figure class="movie__castingcard-movieDetails" title="<?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>">
                         <div class="castingcard__header-movieDetails">
-                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><img src="<?= $movieCasting["picture"] ?>" alt="<?= "Picture of " . $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>"></a>
+                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><img src="<?= $movieCasting["picture"] ?>" alt="<?= "Picture of " . $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>" loading="lazy" /></a>
                         </div>
-
                         <div class="castingcard__description-movieDetails">
-                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a>
+                            <a href="index.php?action=personDetails&id=<?= $movieCasting["idPerson"] ?>" aria-label="Details of <?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?>"><?= $movieCasting["firstname"] . " " . $movieCasting["surname"] ?></a>
                             <a href="index.php?action=roleDetails&id=<?= $movieCasting["idRole"] ?>">
                                 <p title="<?= $movieCasting["roleName"] ?>">as <?= $movieCasting["roleName"] ?></p>
                             </a>
