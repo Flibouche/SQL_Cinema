@@ -1,6 +1,8 @@
 # SQL_Cinema
 
-This Film Wiki project is a web application designed to manage information about movies, actors/actresses, movie directors, roles and film genres.
+<img style="width:100%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune1.png">
+
+This Film Wiki project is a fully responsive web application designed to manage information about movies, actors/actresses, movie directors, roles and film genres.
 
 ## Project Contents
 
@@ -18,3 +20,13 @@ This Film Wiki project is a web application designed to manage information about
 - Figma for the mockups
 - Looping (Conceptual Data Modeling)
 - Docker
+
+## More illustrations
+
+<img style="width:100%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune2.png">
+<img style="width:100%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune3.png">
+<img style="width:100%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune4.png">
+<img style="width:100%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune5.png">
+<img style="width:100%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune6.png">
+<img style="width:25%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune7.png">
+<img style="width:25%" src="https://github.com/Flibouche/SQL_Cinema/blob/main/images/cinedune8.png">
