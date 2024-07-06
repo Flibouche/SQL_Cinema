@@ -15,7 +15,8 @@ This Film Wiki project is a fully responsive web application designed to manage 
 
 ## Technologies Used
 
-- HTML, CSS, JavaScript and PHP for the User Interface (UI)
+- PHP
+- HTML, CSS and JavaScript for the User Interface (UI)
 - MySQL with HeidiSQL for the database
 - Figma for the mockups
 - Looping (Conceptual Data Modeling)
